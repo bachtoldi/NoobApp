@@ -1,2 +1,3 @@
 D:\Dev\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
 D:\Dev\New folder\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
