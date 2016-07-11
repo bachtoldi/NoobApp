@@ -1,0 +1,2 @@
+D:\Dev\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
+D:\Dev\New folder\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
