@@ -75,6 +75,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entity\Attendance.cs" />
+    <Compile Include="Entity\Event.cs" />
+    <Compile Include="Entity\EventInventory.cs" />
+    <Compile Include="Entity\EventPrice.cs" />
+    <Compile Include="Entity\Item.cs" />
+    <Compile Include="Entity\Purchase.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
