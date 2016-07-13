@@ -14,81 +14,81 @@ namespace NoobApp.Entity {
 
     #region - Properties -
 
-    #region -- Id --
+    #region -- EventId --
 
-    public static string IdPropertyName = "Id";
-    private int _id;
-    public int Id {
+    public static string EventIdPropertyName = "EventId";
+    private int _eventId;
+    public int EventId {
       get {
-        return _id;
+        return _eventId;
       }
       set {
-        if (_id == value) {
+        if (_eventId == value) {
           return;
         }
 
-        _id = value;
-        RaisePropertyChanged(IdPropertyName);
+        _eventId = value;
+        RaisePropertyChanged(EventIdPropertyName);
       }
     }
 
     #endregion
 
-    #region -- Name --
+    #region -- EventName --
 
-    public static string NamePropertyName = "Name";
-    private string _name;
-    public string Name {
+    public static string EventNamePropertyName = "EventName";
+    private string _eventName;
+    public string EventName {
       get {
-        return _name;
+        return _eventName;
       }
       set {
-        if (_name == value) {
+        if (_eventName == value) {
           return;
         }
 
-        _name = value;
-        RaisePropertyChanged(NamePropertyName);
+        _eventName = value;
+        RaisePropertyChanged(EventNamePropertyName);
       }
     }
 
     #endregion
 
-    #region -- StartDate --
+    #region -- EventStartDate --
 
-    public static string StartDatePropertyName = "StartDate";
-    private DateTime _startDate;
-    public DateTime StartDate {
+    public static string EventStartDatePropertyName = "EventStartDate";
+    private DateTime _eventStartDate;
+    public DateTime EventStartDate {
       get {
-        return _startDate;
+        return _eventStartDate;
       }
       set {
-        if (_startDate == value) {
+        if (_eventStartDate == value) {
           return;
         }
 
-        _startDate = value;
-        RaisePropertyChanged(StartDatePropertyName);
+        _eventStartDate = value;
+        RaisePropertyChanged(EventStartDatePropertyName);
       }
     }
 
     #endregion
 
-    #region -- EndDate --
+    #region -- EventEndDate --
 
-    public static string EndDatePropertyName = "EndDate";
-    private DateTime _endDate;
-    public DateTime EndDate {
+    public static string EventEndDatePropertyName = "EventEndDate";
+    private DateTime _eventEndDate;
+    public DateTime EventEndDate {
       get {
-        return _endDate;
+        return _eventEndDate;
       }
       set {
-        if (_endDate == value) {
+        if (_eventEndDate == value) {
           return;
         }
 
-        _endDate = value;
-        RaisePropertyChanged(EndDatePropertyName);
+        _eventEndDate = value;
+        RaisePropertyChanged(EventEndDatePropertyName);
       }
     }
 

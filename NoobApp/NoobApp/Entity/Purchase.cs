@@ -13,81 +13,81 @@ namespace NoobApp.Entity {
 
     #region - Properties -
 
-    #region -- Id --
+    #region -- PurchaseId --
 
-    public static string IdPropertyName = "Id";
-    private int _id;
-    public int Id {
+    public static string PurchaseIdPropertyName = "PurchaseId";
+    private int _purchaseId;
+    public int PurchaseId {
       get {
-        return _id;
+        return _purchaseId;
       }
       set {
-        if (_id == value) {
+        if (_purchaseId == value) {
           return;
         }
 
-        _id = value;
-        RaisePropertyChanged(IdPropertyName);
+        _purchaseId = value;
+        RaisePropertyChanged(PurchaseIdPropertyName);
       }
     }
 
     #endregion
 
-    #region -- ItemRef --
+    #region -- PurchaseEventInventoryRef --
 
-    public static string ItemRefPropertyName = "ItemRef";
-    private Item _itemRef;
-    public Item ItemRef {
+    public static string PurchaseEventInventoryRefPropertyName = "PurchaseEventInventoryRef";
+    private EventInventory _purchaseEventInventoryRef;
+    public EventInventory PurchaseEventInventoryRef {
       get {
-        return _itemRef;
+        return _purchaseEventInventoryRef;
       }
       set {
-        if (_itemRef == value) {
+        if (_purchaseEventInventoryRef == value) {
           return;
         }
 
-        _itemRef = value;
-        RaisePropertyChanged(ItemRefPropertyName);
+        _purchaseEventInventoryRef = value;
+        RaisePropertyChanged(PurchaseEventInventoryRefPropertyName);
       }
     }
 
     #endregion
 
-    #region -- UserRef --
+    #region -- PurchaseUserRef --
 
-    public static string UserRefPropertyName = "UserRef";
-    private User _userRef;
-    public User UserRef {
+    public static string PurchaseUserRefPropertyName = "PurchaseUserRef";
+    private User _purchaseUserRef;
+    public User PurchaseUserRef {
       get {
-        return _userRef;
+        return _purchaseUserRef;
       }
       set {
-        if (_userRef == value) {
+        if (_purchaseUserRef == value) {
           return;
         }
 
-        _userRef = value;
-        RaisePropertyChanged(UserRefPropertyName);
+        _purchaseUserRef = value;
+        RaisePropertyChanged(PurchaseUserRefPropertyName);
       }
     }
 
     #endregion
 
-    #region -- Billed --
+    #region -- PurchaseBilled --
 
-    public static string BilledPropertyName = "Billed";
-    private bool _billed;
-    public bool Billed {
+    public static string PurchaseBilledPropertyName = "PurchaseBilled";
+    private bool _purchaseBilled;
+    public bool PurchaseBilled {
       get {
-        return _billed;
+        return _purchaseBilled;
       }
       set {
-        if (_billed == value) {
+        if (_purchaseBilled == value) {
           return;
         }
 
-        _billed = value;
-        RaisePropertyChanged(BilledPropertyName);
+        _purchaseBilled = value;
+        RaisePropertyChanged(PurchaseBilledPropertyName);
       }
     }
 

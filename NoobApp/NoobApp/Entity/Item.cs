@@ -13,41 +13,41 @@ namespace NoobApp.Entity {
 
     #region - Properties -
 
-    #region -- Id --
+    #region -- ItemId --
 
-    public static string IdPropertyName = "Id";
-    private int _id;
-    public int Id {
+    public static string ItemIdPropertyName = "ItemId";
+    private int _itemId;
+    public int ItemId {
       get {
-        return _id;
+        return _itemId;
       }
       set {
-        if (_id == value) {
+        if (_itemId == value) {
           return;
         }
 
-        _id = value;
-        RaisePropertyChanged(IdPropertyName);
+        _itemId = value;
+        RaisePropertyChanged(ItemIdPropertyName);
       }
     }
 
     #endregion
 
-    #region -- Name --
+    #region -- ItemName --
 
-    public static string NamePropertyName = "Name";
-    private string _name;
-    public string Name {
+    public static string ItemNamePropertyName = "ItemName";
+    private string _itemName;
+    public string ItemName {
       get {
-        return _name;
+        return _itemName;
       }
       set {
-        if (_name == value) {
+        if (_itemName == value) {
           return;
         }
 
-        _name = value;
-        RaisePropertyChanged(NamePropertyName);
+        _itemName = value;
+        RaisePropertyChanged(ItemNamePropertyName);
       }
     }
 
@@ -55,7 +55,7 @@ namespace NoobApp.Entity {
 
     #region -- Image --
 
-    
+    // bin noni sicher was gschiter isch - db oder filesyschtem - und isch ja au nonig würklich relevant oder so :D
 
     #endregion
 

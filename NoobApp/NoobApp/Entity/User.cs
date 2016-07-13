@@ -13,81 +13,81 @@ namespace NoobApp.Entity {
 
     #region - Properties -
 
-    #region -- Id --
+    #region -- UserId --
 
-    public static string IdPropertyName = "Id";
-    private int _id;
-    public int Id {
+    public static string UserIdPropertyName = "UserId";
+    private int _userId;
+    public int UserId {
       get {
-        return _id;
+        return _userId;
       }
       set {
-        if(_id == value) {
+        if(_userId == value) {
           return;
         }
 
-        _id = value;
-        RaisePropertyChanged(IdPropertyName);
+        _userId = value;
+        RaisePropertyChanged(UserIdPropertyName);
       }
     }
 
     #endregion
 
-    #region -- FirstName --
+    #region -- UserFirstName --
 
-    public static string FirstNamePropertyName = "FirstName";
-    private string _firstName;
-    public string FirstName {
+    public static string UserFirstNamePropertyName = "UserFirstName";
+    private string _userFirstName;
+    public string UserFirstName {
       get {
-        return _firstName;
+        return _userFirstName;
       }
       set {
-        if(_firstName == value) {
+        if(_userFirstName == value) {
           return;
         }
 
-        _firstName = value;
-        RaisePropertyChanged(FirstNamePropertyName);
+        _userFirstName = value;
+        RaisePropertyChanged(UserFirstNamePropertyName);
       }
     }
 
     #endregion
 
-    #region -- LastName --
+    #region -- UserLastName --
 
-    private static string LastNamePropertyName = "LastName";
-    private string _lastName;
-    public string LastName {
+    private static string UserLastNamePropertyName = "UserLastName";
+    private string _userLastName;
+    public string UserLastName {
       get {
-        return _lastName;
+        return _userLastName;
       }
       set {
-        if(_lastName == value) {
+        if(_userLastName == value) {
           return;
         }
 
-        _lastName = value;
-        RaisePropertyChanged(LastNamePropertyName);
+        _userLastName = value;
+        RaisePropertyChanged(UserLastNamePropertyName);
       }
     }
 
     #endregion
 
-    #region -- DisplayName --
+    #region -- UserDisplayName --
 
-    public static string DisplayNamePropertyName = "DisplayName";
-    private string _displayName;
-    public string DisplayName {
+    public static string UserDisplayNamePropertyName = "UserDisplayName";
+    private string _userDisplayName;
+    public string UserDisplayName {
       get {
-        return _displayName;
+        return _userDisplayName;
       }
       set {
-        if(_displayName == value) {
+        if(_userDisplayName == value) {
           return;
         }
 
-        _displayName = value;
-        RaisePropertyChanged(DisplayNamePropertyName);
+        _userDisplayName = value;
+        RaisePropertyChanged(UserDisplayNamePropertyName);
       }
     }
 

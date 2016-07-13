@@ -76,6 +76,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entity\Attendance.cs" />
+    <Compile Include="Entity\AttendanceType.cs" />
     <Compile Include="Entity\Event.cs" />
     <Compile Include="Entity\EventInventory.cs" />
     <Compile Include="Entity\EventPrice.cs" />
