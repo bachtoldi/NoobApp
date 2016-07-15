@@ -1,34 +1,98 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using NoobApp.View;
+using System.Windows;
 
-namespace NoobApp.ViewModel
-{
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
-    public class MainViewModel : ViewModelBase
-    {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        public MainViewModel()
-        {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
-        }
+namespace NoobApp.ViewModel {
+  public class MainViewModel : ViewModelBase {
+
+    #region - Instance Variables -
+
+    #endregion
+
+    #region - Constructor -
+
+    public MainViewModel() {
+      InitializeData();
+      InitializeCommands();
     }
+
+    #endregion
+
+    #region - Properties -
+
+    #region -- ContentControlView --
+
+    public static string ContentControlViewPropertyName = "ContentControlView";
+    private FrameworkElement _contentControlView;
+    public FrameworkElement ContentControlView {
+      get {
+        return _contentControlView;
+      }
+      set {
+        if (_contentControlView == value) {
+          return;
+        }
+
+        _contentControlView = value;
+        RaisePropertyChanged(ContentControlViewPropertyName);
+      }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region - Commands -
+
+    #region -- HomeCmd --
+
+    private RelayCommand _homeCmd;
+
+    public RelayCommand HomeCmd {
+      get {
+        return _homeCmd;
+      }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region - Private Methods -
+
+    #region -- InitializeData --
+
+    private void InitializeData() {
+
+    }
+
+    #endregion
+
+    #region -- InitializeCommands --
+
+    private void InitializeCommands() {
+      _homeCmd = new RelayCommand(ExecuteHomeCmd, CanExecuteHomeCmd);
+    }
+
+    #endregion
+
+    #region -- HomeCmd --
+
+    private void ExecuteHomeCmd() {
+      HomeViewModel viewModel = new HomeViewModel();
+      HomeView view = new HomeView(viewModel);
+
+      ContentControlView = view;
+    }
+
+    private bool CanExecuteHomeCmd() {
+      return true;
+    }
+
+    #endregion
+
+    #endregion
+
+  }
 }

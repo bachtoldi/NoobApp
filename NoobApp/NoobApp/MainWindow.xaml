@@ -16,14 +16,7 @@
             <Button Command="{Binding HomeCmd}">Home</Button>
         </ToolBar>
 
-        <DockPanel>
-            <ItemsControl ItemsSource="{Binding UserList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Name="{Binding Path=Id}" Content="{Binding Path=DisplayName}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </DockPanel>
+        <ContentControl Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding ContentControlView}" />
+
     </Grid>
 </Window>
