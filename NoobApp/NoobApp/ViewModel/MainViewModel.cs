@@ -59,6 +59,21 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region - Public Methods -
+
+    private ChangeWindowDelegate _changeWindowDelegate;
+    public delegate void ChangeWindowDelegate(FrameworkElement element);
+
+    public void AddChangeWindowDelegate(ChangeWindowDelegate changeWindowDelegate) {
+      _changeWindowDelegate += changeWindowDelegate;
+    }
+
+    public void RemoveChangeWindowDelegate(ChangeWindowDelegate changeWindowDelegate) {
+      _changeWindowDelegate -= changeWindowDelegate;
+    }
+
+    #endregion
+
     #region - Private Methods -
 
     #region -- InitializeData --
