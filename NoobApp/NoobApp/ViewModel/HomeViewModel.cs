@@ -96,6 +96,8 @@ namespace NoobApp.ViewModel {
 
     private void InitializeData() {
       InitializeCommands();
+
+      InitializeDummyData();
     }
 
     #endregion
@@ -116,6 +118,21 @@ namespace NoobApp.ViewModel {
 
     private bool CanExecuteSelectUserCmd() {
       return false;
+    }
+
+    #endregion
+
+    #region -- InitializeDummyData --
+
+    private void InitializeDummyData() {
+      UserList = new BindingList<User>();
+
+      UserList.Add(new User() { UserId = 1, UserFirstName = "Pascal", UserLastName = "Schneider", UserDisplayName = "BACHTOLDI", });
+      UserList.Add(new User() { UserId = 2, UserFirstName = "Michi", UserLastName = "Rickli", UserDisplayName = "Gnorsh", });
+      UserList.Add(new User() { UserId = 3, UserFirstName = "Beni", UserLastName = "Käslin", UserDisplayName = "Prelmoid", });
+      UserList.Add(new User() { UserId = 4, UserFirstName = "Donat", UserLastName = "Roduner", UserDisplayName = "Skatanic", });
+      UserList.Add(new User() { UserId = 5, UserFirstName = "Oli", UserLastName = "Bachem", UserDisplayName = "DrNoEscape", });
+      UserList.Add(new User() { UserId = 6, UserFirstName = "Lukas", UserLastName = "Tuggener", UserDisplayName = "Schnidlauch", });
     }
 
     #endregion
