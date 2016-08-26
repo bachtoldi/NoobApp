@@ -7,6 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label>hi</Label>
+
+        <ListBox HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0">
+            <Button Width="250" Height="40" Command="{Binding AddPurchaseCmd}" Content="Artikel konsumieren" />
+            <Button Width="250" Height="40" Command="{Binding AttendanceCmd}" Content="Anwesenheit definieren" />
+            <Button Width="250" Height="40" Command="{Binding ViewPurchasesCmd}" Content="Aktuelle Abrechnung" />
+        </ListBox>
+        
     </Grid>
 </UserControl>

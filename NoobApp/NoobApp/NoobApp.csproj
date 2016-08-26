@@ -75,6 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connector\DummyDataConnector.cs" />
     <Compile Include="Entity\Attendance.cs" />
     <Compile Include="Entity\AttendanceType.cs" />
     <Compile Include="Entity\Event.cs" />
@@ -83,6 +84,9 @@
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\Purchase.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\Enums.cs" />
+    <Compile Include="Event\ChangeWindowEventHandler.cs" />
+    <Compile Include="Event\UserControlEventArgs.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
@@ -143,7 +147,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Connector\" />
     <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

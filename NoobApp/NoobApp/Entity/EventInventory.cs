@@ -22,7 +22,7 @@ namespace NoobApp.Entity {
         return _eventInventoryId;
       }
       set {
-        if (_eventInventoryId == value) {
+        if(_eventInventoryId == value) {
           return;
         }
 
@@ -42,12 +42,32 @@ namespace NoobApp.Entity {
         return _eventInventoryItemRef;
       }
       set {
-        if (_eventInventoryItemRef == value) {
+        if(_eventInventoryItemRef == value) {
           return;
         }
 
         _eventInventoryItemRef = value;
         RaisePropertyChanged(EventInventoryItemRefPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region -- EventInventoryEventRef --
+
+    public static string EventInventoryEventRefPropertyName = "EventInventoryEventRef";
+    private Event _eventInventoryEventRef;
+    public Event EventInventoryEventRef {
+      get {
+        return _eventInventoryEventRef;
+      }
+      set {
+        if(_eventInventoryEventRef == value) {
+          return;
+        }
+
+        _eventInventoryEventRef = value;
+        RaisePropertyChanged(EventInventoryEventRefPropertyName);
       }
     }
 
@@ -62,7 +82,7 @@ namespace NoobApp.Entity {
         return _eventInventoryPrice;
       }
       set {
-        if (_eventInventoryPrice == value) {
+        if(_eventInventoryPrice == value) {
           return;
         }
 

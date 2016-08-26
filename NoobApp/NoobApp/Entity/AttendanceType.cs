@@ -58,26 +58,6 @@ namespace NoobApp.Entity {
 
     #endregion
 
-    #region -- AttendanceTypeEventPriceRef --
-
-    public static string AttendanceTypeEventPriceRefPropertyName = "AttendanceTypeEventPriceRef";
-    private EventPrice _attendanceTypeEventPriceRef;
-    public EventPrice AttendanceTypeEventPriceRef {
-      get {
-        return _attendanceTypeEventPriceRef;
-      }
-      set {
-        if (_attendanceTypeEventPriceRef == value) {
-          return;
-        }
-
-        _attendanceTypeEventPriceRef = value;
-        RaisePropertyChanged(AttendanceTypeEventPriceRefPropertyName);
-      }
-    }
-
-    #endregion
-
     #endregion
 
   }

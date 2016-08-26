@@ -40,18 +40,11 @@ namespace NoobApp.ViewModel {
       ////}
 
       SimpleIoc.Default.Register<MainViewModel>();
-      SimpleIoc.Default.Register<HomeViewModel>();
     }
 
     public MainViewModel Main {
       get {
         return ServiceLocator.Current.GetInstance<MainViewModel>();
-      }
-    }
-
-    public HomeViewModel Home {
-      get {
-        return ServiceLocator.Current.GetInstance<HomeViewModel>();
       }
     }
 

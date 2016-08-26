@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using NoobApp.Connector;
 using NoobApp.Entity;
+using NoobApp.Event;
 using System.ComponentModel;
 
 namespace NoobApp.ViewModel {

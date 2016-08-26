@@ -22,7 +22,7 @@ namespace NoobApp.Entity {
         return _eventPriceId;
       }
       set {
-        if (_eventPriceId == value) {
+        if(_eventPriceId == value) {
           return;
         }
 
@@ -42,7 +42,7 @@ namespace NoobApp.Entity {
         return _eventPriceValue;
       }
       set {
-        if (_eventPriceValue == value) {
+        if(_eventPriceValue == value) {
           return;
         }
 
@@ -62,12 +62,32 @@ namespace NoobApp.Entity {
         return _eventPriceAttendanceTypeRef;
       }
       set {
-        if (_eventPriceAttendanceTypeRef == value) {
+        if(_eventPriceAttendanceTypeRef == value) {
           return;
         }
 
         _eventPriceAttendanceTypeRef = value;
         RaisePropertyChanged(EventPriceAttendanceTypeRefPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region -- EventPriceEventRef --
+
+    public static string EventPriceEventRefPropertyName = "EventPriceEventRef";
+    private Event _eventPriceEventRef;
+    public Event EventPriceEventRef {
+      get {
+        return _eventPriceEventRef;
+      }
+      set {
+        if(_eventPriceEventRef == value) {
+          return;
+        }
+
+        _eventPriceEventRef = value;
+        RaisePropertyChanged(EventPriceEventRefPropertyName);
       }
     }
 
