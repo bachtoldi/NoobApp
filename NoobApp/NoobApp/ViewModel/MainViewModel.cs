@@ -79,7 +79,7 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-
+      ExecuteHomeCmd();
     }
 
     #endregion

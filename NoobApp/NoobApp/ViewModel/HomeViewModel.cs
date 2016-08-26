@@ -113,11 +113,11 @@ namespace NoobApp.ViewModel {
     #region -- ExecuteSelectUserCmd --
 
     private void ExecuteSelectUserCmd() {
-
+      int i = 0;
     }
 
     private bool CanExecuteSelectUserCmd() {
-      return false;
+      return true;
     }
 
     #endregion
