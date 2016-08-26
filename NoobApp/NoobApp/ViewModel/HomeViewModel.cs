@@ -1,12 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using NoobApp.Connector;
 using NoobApp.Entity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoobApp.ViewModel {
   public class HomeViewModel : ViewModelBase {
@@ -34,7 +30,7 @@ namespace NoobApp.ViewModel {
         return _userList;
       }
       set {
-        if (_userList == value) {
+        if(_userList == value) {
           return;
         }
 
@@ -54,12 +50,16 @@ namespace NoobApp.ViewModel {
         return _userSelected;
       }
       set {
-        if (_userSelected == value) {
+        if(_userSelected == value) {
           return;
         }
 
         _userSelected = value;
         RaisePropertyChanged(UserSelectedPropertyName);
+
+        if(CanExecuteSelectUserCmd()) {
+          ExecuteSelectUserCmd();
+        }
       }
     }
 
@@ -85,8 +85,7 @@ namespace NoobApp.ViewModel {
 
     #region - Public Methods -
 
-    public delegate void ChangeWindowCommand();
-    public event ChangeWindowCommand ChangeWindow;
+    public event ChangeWindowEventHandler OnUserSelected;
 
     #endregion
 
@@ -97,7 +96,7 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       InitializeCommands();
 
-      InitializeDummyData();
+      UserList = DummyDataConnector.GetUserList();
     }
 
     #endregion
@@ -113,26 +112,26 @@ namespace NoobApp.ViewModel {
     #region -- ExecuteSelectUserCmd --
 
     private void ExecuteSelectUserCmd() {
-      int i = 0;
+      OpenUserView();
     }
-
+    
     private bool CanExecuteSelectUserCmd() {
       return true;
     }
 
     #endregion
 
-    #region -- InitializeDummyData --
+    #region -- ChangeWindow --
 
-    private void InitializeDummyData() {
-      UserList = new BindingList<User>();
+    private void OpenUserView() {
 
-      UserList.Add(new User() { UserId = 1, UserFirstName = "Pascal", UserLastName = "Schneider", UserDisplayName = "BACHTOLDI", });
-      UserList.Add(new User() { UserId = 2, UserFirstName = "Michi", UserLastName = "Rickli", UserDisplayName = "Gnorsh", });
-      UserList.Add(new User() { UserId = 3, UserFirstName = "Beni", UserLastName = "Käslin", UserDisplayName = "Prelmoid", });
-      UserList.Add(new User() { UserId = 4, UserFirstName = "Donat", UserLastName = "Roduner", UserDisplayName = "Skatanic", });
-      UserList.Add(new User() { UserId = 5, UserFirstName = "Oli", UserLastName = "Bachem", UserDisplayName = "DrNoEscape", });
-      UserList.Add(new User() { UserId = 6, UserFirstName = "Lukas", UserLastName = "Tuggener", UserDisplayName = "Schnidlauch", });
+      if(OnUserSelected == null) {
+        return;
+      }
+
+      UserControlEventArgs args = new UserControlEventArgs(Views.USER, false);
+      OnUserSelected(this, args);
+
     }
 
     #endregion

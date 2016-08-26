@@ -9,18 +9,20 @@
              DataContext="{Binding Home, Source={StaticResource Locator}}">
     <Grid>
 
-        <ItemsControl ItemsSource="{Binding UserList}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
+        <ListBox ItemsSource="{Binding UserList}" SelectedItem="{Binding UserSelected}" HorizontalAlignment="Center" BorderThickness="0">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Button Width="250" Height="40" Content="{Binding UserDisplayName}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.SelectUserCmd}" />
+                    <Label Content="{Binding UserDisplayName}" />
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="Width" Value="250"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
 
     </Grid>
 </UserControl>

@@ -1,5 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NoobApp.Entity;
+using NoobApp.Event;
 using NoobApp.View;
 using System.Windows;
 
@@ -7,6 +9,8 @@ namespace NoobApp.ViewModel {
   public class MainViewModel : ViewModelBase {
 
     #region - Instance Variables -
+
+
 
     #endregion
 
@@ -30,7 +34,7 @@ namespace NoobApp.ViewModel {
         return _contentControlView;
       }
       set {
-        if (_contentControlView == value) {
+        if(_contentControlView == value) {
           return;
         }
 
@@ -61,16 +65,7 @@ namespace NoobApp.ViewModel {
 
     #region - Public Methods -
 
-    private ChangeWindowDelegate _changeWindowDelegate;
-    public delegate void ChangeWindowDelegate(FrameworkElement element);
 
-    public void AddChangeWindowDelegate(ChangeWindowDelegate changeWindowDelegate) {
-      _changeWindowDelegate += changeWindowDelegate;
-    }
-
-    public void RemoveChangeWindowDelegate(ChangeWindowDelegate changeWindowDelegate) {
-      _changeWindowDelegate -= changeWindowDelegate;
-    }
 
     #endregion
 
@@ -99,6 +94,8 @@ namespace NoobApp.ViewModel {
       HomeView view = new HomeView(viewModel);
 
       ContentControlView = view;
+
+      viewModel.OnUserSelected += new ChangeWindowEventHandler(ChangeWindow);
     }
 
     private bool CanExecuteHomeCmd() {
@@ -107,7 +104,25 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region -- ChangeWindow --
+
+    private void ChangeWindow(object sender, UserControlEventArgs e) {
+      
+      if(e.View == Views.USER) {
+        UserViewModel viewModel = new UserViewModel(((HomeViewModel)sender).UserSelected);
+        UserView view = new UserView(viewModel);
+
+        ContentControlView = view;
+
+        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+      }
+
+    }
+
+    #endregion
+
     #endregion
 
   }
+
 }

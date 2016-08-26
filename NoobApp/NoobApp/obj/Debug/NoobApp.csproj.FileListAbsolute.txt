@@ -31,3 +31,5 @@ C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.Properti
 C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.csproj.GenerateResource.Cache
 C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.exe
 C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.pdb
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\UserView.g.cs
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\UserView.baml

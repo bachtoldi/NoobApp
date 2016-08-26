@@ -3,10 +3,10 @@ using System.Windows.Controls;
 
 namespace NoobApp.View {
   /// <summary>
-  /// Interaction logic for HomeView.xaml
+  /// Interaction logic for UserView.xaml
   /// </summary>
-  public partial class HomeView : UserControl {
-    public HomeView(HomeViewModel viewModel) {
+  public partial class UserView : UserControl {
+    public UserView(UserViewModel viewModel) {
       InitializeComponent();
       DataContext = viewModel;
     }
