@@ -33,3 +33,9 @@ C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.exe
 C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.pdb
 C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\UserView.g.cs
 C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\UserView.baml
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\AttendanceView.g.cs
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchasedView.g.cs
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchaseView.g.cs
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\AttendanceView.baml
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchasedView.baml
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchaseView.baml

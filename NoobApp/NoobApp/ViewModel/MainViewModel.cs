@@ -107,14 +107,43 @@ namespace NoobApp.ViewModel {
     #region -- ChangeWindow --
 
     private void ChangeWindow(object sender, UserControlEventArgs e) {
-      
+
       if(e.View == Views.USER) {
+
         UserViewModel viewModel = new UserViewModel(((HomeViewModel)sender).UserSelected);
         UserView view = new UserView(viewModel);
 
         ContentControlView = view;
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+
+      } else if(e.View == Views.PURCHASE) {
+
+        PurchaseViewModel viewModel = new PurchaseViewModel(((UserViewModel)sender).User);
+        PurchaseView view = new PurchaseView(viewModel);
+
+        ContentControlView = view;
+
+        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+
+      } else if(e.View == Views.ATTENDANCE) {
+
+        AttendanceViewModel viewModel = new AttendanceViewModel(((UserViewModel)sender).User);
+        AttendanceView view = new AttendanceView(viewModel);
+
+        ContentControlView = view;
+
+        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+
+      } else if(e.View == Views.PURCHASED) {
+
+        PurchasedViewModel viewModel = new PurchasedViewModel(((UserViewModel)sender).User);
+        PurchasedView view = new PurchasedView(viewModel);
+
+        ContentControlView = view;
+
+        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+
       }
 
     }

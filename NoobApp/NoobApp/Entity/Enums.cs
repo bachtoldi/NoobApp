@@ -2,5 +2,8 @@
   public enum Views {
     HOME,
     USER,
+    PURCHASE,
+    ATTENDANCE,
+    PURCHASED,
   }
 }

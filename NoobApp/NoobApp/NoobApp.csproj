@@ -87,12 +87,24 @@
     <Compile Include="Entity\Enums.cs" />
     <Compile Include="Event\ChangeWindowEventHandler.cs" />
     <Compile Include="Event\UserControlEventArgs.cs" />
+    <Compile Include="ViewModel\AttendanceViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PurchasedViewModel.cs" />
+    <Compile Include="ViewModel\PurchaseViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AttendanceView.xaml.cs">
+      <DependentUpon>AttendanceView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PurchasedView.xaml.cs">
+      <DependentUpon>PurchasedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PurchaseView.xaml.cs">
+      <DependentUpon>PurchaseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -109,7 +121,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AttendanceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PurchasedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PurchaseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
