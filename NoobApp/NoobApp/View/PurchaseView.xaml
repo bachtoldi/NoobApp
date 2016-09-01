@@ -3,10 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:NoobApp.View"
+             xmlns:ta="clr-namespace:NoobApp.TriggerAction"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <BitmapImage x:Key="Up" UriSource="../img/arrow_up_24dp_1x.png" />
+        <BitmapImage x:Key="Down" UriSource="../img/arrow_down_24dp_1x.png" />
+    </UserControl.Resources>
+
     <Grid>
-        <Label>PurchaseView</Label>
+        <ItemsControl ItemsSource="{Binding DisplayItemList}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <!--<Image Grid.Column="0" Source="{Binding DisplayItemImage}" Width="50" Height="50" />-->
+                        <Label Grid.Column="1" Content="{Binding DisplayItemName}" />
+                        <Label Grid.Column="2" Width="50" Height="30" Content="{Binding DisplayItemPrice}" />
+                        <Line Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+                        <DockPanel Grid.Column="4">
+                            <TextBox Name="TextBoxAmount" Width="50" Height="30" Text="{Binding DisplayItemAmount}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                            <StackPanel Margin="1,1,1,1">
+                                <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="14" Height="14" Margin="1,0,0,1">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{StaticResource Up}" />
+                                    </Button.Background>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <ta:IncreaseTextboxAction Target="{Binding ElementName=TextBoxAmount}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="14" Height="14" Margin="1,1,0,0">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="{StaticResource Down}" />
+                                    </Button.Background>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <ta:DecreaseTextboxAction Target="{Binding ElementName=TextBoxAmount}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                            </StackPanel>
+                        </DockPanel>
+
+                        <Label Grid.Column="5" Width="50" Height="30" Content="{Binding DisplayItemTotal}" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
     </Grid>
 </UserControl>
