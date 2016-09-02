@@ -15,26 +15,64 @@
     </UserControl.Resources>
 
     <Grid>
-        <ItemsControl ItemsSource="{Binding DisplayItemList}">
-            <ItemsControl.ItemTemplate>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <HeaderedItemsControl Grid.Row="0" ItemsSource="{Binding DisplayItemList}">
+            <HeaderedItemsControl.Template>
+                <ControlTemplate TargetType="HeaderedItemsControl">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                        <DockPanel>
+                            <ContentPresenter DockPanel.Dock="Top" ContentSource="Header" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </DockPanel>
+                    </Border>
+                </ControlTemplate>
+            </HeaderedItemsControl.Template>
+            <!--<HeaderedItemsControl.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="10*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="2" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Grid.ColumnSpan="2" Content="Artikel" />
+                        <Label Grid.Column="2" Content="Preis" />
+                        <Label Grid.Column="4" Content="Menge" />
+                        <Label Grid.Column="5" Content="Total" />
+                    </Grid>
+                </DataTemplate>
+            </HeaderedItemsControl.HeaderTemplate>-->
+            <HeaderedItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="2" />
+                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <!--<Image Grid.Column="0" Source="{Binding DisplayItemImage}" Width="50" Height="50" />-->
                         <Label Grid.Column="1" Content="{Binding DisplayItemName}" />
-                        <Label Grid.Column="2" Width="50" Height="30" Content="{Binding DisplayItemPrice}" />
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <Label Content="{Binding DisplayItemPrice}" />
+                            <Label Content="CHF" />
+                        </StackPanel>
                         <Line Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
                         <DockPanel Grid.Column="4">
-                            <TextBox Name="TextBoxAmount" Width="50" Height="30" Text="{Binding DisplayItemAmount}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+                            <TextBox Name="TextBoxAmount" Width="50" Height="30" Text="{Binding DisplayItemAmount, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
                             <StackPanel Margin="1,1,1,1">
                                 <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="14" Height="14" Margin="1,0,0,1">
                                     <Button.Background>
@@ -59,11 +97,26 @@
                             </StackPanel>
                         </DockPanel>
 
-                        <Label Grid.Column="5" Width="50" Height="30" Content="{Binding DisplayItemTotal}" />
+                        <StackPanel HorizontalAlignment="Right" Grid.Column="5" Orientation="Horizontal">
+                            <Label FontWeight="Bold" Content="{Binding DisplayItemTotal}" />
+                            <Label FontWeight="Bold" Content="CHF" />
+                        </StackPanel>
                     </Grid>
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            </HeaderedItemsControl.ItemTemplate>
+        </HeaderedItemsControl>
 
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Label FontWeight="Bold" FontSize="14" Content="{Binding TotalPurchase}" />
+            <Label FontWeight="Bold" FontSize="14" Content="CHF" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <DockPanel>
+                <Button Height="40" Width="150" Command="{Binding SaveCmd}">Speichern</Button>
+                <Button Height="40" Width="150" Command="{Binding CancelCmd}">Abbrechen</Button>
+            </DockPanel>
+        </StackPanel>
+        
     </Grid>
 </UserControl>

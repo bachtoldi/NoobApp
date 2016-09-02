@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 namespace NoobApp.Entity {
   public class DisplayItem : ViewModelBase {
 
+    // KEIN DTO - WIRD AUF DER DB NICHT GEBRAUCHT
+
     #region - InstanceVariables -
 
     private readonly EventInventory _eventInventory;
@@ -63,6 +65,10 @@ namespace NoobApp.Entity {
       }
       set {
         if (_displayItemAmount == value) {
+          return;
+        }
+
+        if(value < 0) {
           return;
         }
 

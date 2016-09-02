@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Event;
@@ -33,7 +34,7 @@ namespace NoobApp.ViewModel {
         return _user;
       }
       set {
-        if(_user == value) {
+        if (_user == value) {
           return;
         }
 
@@ -64,21 +65,12 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
-    #region -- DisplayItemSelected --
+    #region -- TotalPurchase --
 
-    public static string DisplayItemSelectedPropertyName = "DisplayItemSelected";
-    private DisplayItem _displayItemSelected;
-    public DisplayItem DisplayItemSelected {
+    public static string TotalPurchasePropertyName = "TotalPurchase";
+    public float TotalPurchase {
       get {
-        return _displayItemSelected;
-      }
-      set {
-        if (_displayItemSelected == value) {
-          return;
-        }
-
-        _displayItemSelected = value;
-        RaisePropertyChanged(DisplayItemSelectedPropertyName);
+        return DisplayItemList.Sum(x => x.DisplayItemTotal);
       }
     }
 
@@ -87,6 +79,30 @@ namespace NoobApp.ViewModel {
     #endregion
 
     #region - Commands -
+
+    #region -- SaveCmd --
+
+    private RelayCommand _saveCmd;
+
+    public RelayCommand SaveCmd {
+      get {
+        return _saveCmd;
+      }
+    }
+
+    #endregion
+
+    #region -- CancelCmd --
+
+    private RelayCommand _cancelCmd;
+
+    public RelayCommand CancelCmd {
+      get {
+        return _cancelCmd;
+      }
+    }
+
+    #endregion
 
     #endregion
 
@@ -111,7 +127,33 @@ namespace NoobApp.ViewModel {
     #region -- InitializeCommands --
 
     private void InitializeCommands() {
+      _saveCmd = new RelayCommand(ExecuteSaveCmd, CanExecuteSaveCmd);
+      _cancelCmd = new RelayCommand(ExecuteCancelCmd, CanExecuteCancelCmd);
+    }
 
+    #endregion
+
+    #region -- ExecuteSaveCmd --
+
+    private void ExecuteSaveCmd() {
+
+    }
+
+    private bool CanExecuteSaveCmd() {
+      return true;
+      //(DisplayItemList.Sum(x => x.DisplayItemTotal) != 0);
+    }
+
+    #endregion
+
+    #region -- ExecuteCancelCmd --
+
+    private void ExecuteCancelCmd() {
+
+    }
+
+    private bool CanExecuteCancelCmd() {
+      return true;
     }
 
     #endregion
