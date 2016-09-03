@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\
+C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj\Debug\
 NoobApp
 none
 false
 DEBUG;TRACE
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\App.xaml
+C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\App.xaml
 6-1825473270
 2-734414261
-35-633582518
-69-112897724
+361816102974
+72238314742
 MainWindow.xaml;View\AttendanceView.xaml;View\HomeView.xaml;View\PurchasedView.xaml;View\PurchaseView.xaml;View\UserView.xaml;
 
-True
+False
 
