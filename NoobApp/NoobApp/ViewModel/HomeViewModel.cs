@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using NoobApp.Connector;
 using NoobApp.Entity;
+using NoobApp.Enum;
 using NoobApp.Event;
 using System.ComponentModel;
 
@@ -97,6 +98,7 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       InitializeCommands();
 
+      //TODO
       UserList = DummyDataConnector.GetUserList();
     }
 
@@ -130,7 +132,7 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      UserControlEventArgs args = new UserControlEventArgs(Views.USER, false);
+      UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, UserSelected);
       OnUserSelected(this, args);
 
     }

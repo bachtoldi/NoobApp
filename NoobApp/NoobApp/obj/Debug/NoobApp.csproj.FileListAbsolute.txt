@@ -88,3 +88,23 @@ C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.csproj.GenerateResource.Cache
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.exe
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.pdb
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.xml
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.DataGrid.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll

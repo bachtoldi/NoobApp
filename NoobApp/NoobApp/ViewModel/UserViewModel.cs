@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NoobApp.Entity;
+using NoobApp.Enum;
 using NoobApp.Event;
 
 namespace NoobApp.ViewModel {
@@ -154,7 +155,7 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      UserControlEventArgs args = new UserControlEventArgs(Views.PURCHASE, false);
+      UserControlEventArgs args = new UserControlEventArgs(Views.PURCHASE, false, User);
       OnChangeWindow(this, args);
 
     }
@@ -169,7 +170,7 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      UserControlEventArgs args = new UserControlEventArgs(Views.ATTENDANCE, false);
+      UserControlEventArgs args = new UserControlEventArgs(Views.ATTENDANCE, false, User);
       OnChangeWindow(this, args);
 
     }
@@ -184,7 +185,7 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      UserControlEventArgs args = new UserControlEventArgs(Views.PURCHASED, false);
+      UserControlEventArgs args = new UserControlEventArgs(Views.PURCHASED, false, User);
       OnChangeWindow(this, args);
 
     }

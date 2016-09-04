@@ -1,14 +1,12 @@
 ﻿using NoobApp.Entity;
 using System.Data.Entity;
 
-namespace NoobApp.Connector {
+namespace NoobApp.Model {
 
-    class DataConnector : DbContext {
+    public class DataService : DbContext {
 
         public DbSet<Attendance> Attendaces { get; set; }
         public DbSet<AttendanceType> AttendaceTypes { get; set; }
-        public DbSet<DisplayItem>  DisplayItems { get; set; }
-        //public DbSet<Enums>  Enums{ get; set; }
         public DbSet<Entity.Event> Events{ get; set; }
         public DbSet<EventInventory> EventInventories { get; set; }
         public DbSet<EventPrice> EventPrices { get; set; }

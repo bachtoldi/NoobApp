@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NoobApp.Entity;
+using NoobApp.Connector;
+using NoobApp.Enum;
 using NoobApp.Event;
 using NoobApp.View;
 using System.Windows;
@@ -10,7 +11,7 @@ namespace NoobApp.ViewModel {
 
     #region - Instance Variables -
 
-
+    Entity.Event _event;
 
     #endregion
 
@@ -63,17 +64,13 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
-    #region - Public Methods -
-
-
-
-    #endregion
-
     #region - Private Methods -
 
     #region -- InitializeData --
 
     private void InitializeData() {
+      _event = DummyDataConnector.Event1;
+
       ExecuteHomeCmd();
     }
 
@@ -110,7 +107,7 @@ namespace NoobApp.ViewModel {
 
       if(e.View == Views.USER) {
 
-        UserViewModel viewModel = new UserViewModel(((HomeViewModel)sender).UserSelected);
+        UserViewModel viewModel = new UserViewModel(e.User);
         UserView view = new UserView(viewModel);
 
         ContentControlView = view;
@@ -119,7 +116,7 @@ namespace NoobApp.ViewModel {
 
       } else if(e.View == Views.PURCHASE) {
 
-        PurchaseViewModel viewModel = new PurchaseViewModel(((UserViewModel)sender).User);
+        PurchaseViewModel viewModel = new PurchaseViewModel(e.User);
         PurchaseView view = new PurchaseView(viewModel);
 
         ContentControlView = view;
@@ -128,7 +125,7 @@ namespace NoobApp.ViewModel {
 
       } else if(e.View == Views.ATTENDANCE) {
 
-        AttendanceViewModel viewModel = new AttendanceViewModel(((UserViewModel)sender).User);
+        AttendanceViewModel viewModel = new AttendanceViewModel(e.User, _event);
         AttendanceView view = new AttendanceView(viewModel);
 
         ContentControlView = view;
@@ -137,7 +134,7 @@ namespace NoobApp.ViewModel {
 
       } else if(e.View == Views.PURCHASED) {
 
-        PurchasedViewModel viewModel = new PurchasedViewModel(((UserViewModel)sender).User);
+        PurchasedViewModel viewModel = new PurchasedViewModel(e.User);
         PurchasedView view = new PurchasedView(viewModel);
 
         ContentControlView = view;

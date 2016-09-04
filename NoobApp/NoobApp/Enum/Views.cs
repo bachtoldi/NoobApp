@@ -1,4 +1,4 @@
-﻿namespace NoobApp.Entity {
+﻿namespace NoobApp.Enum {
   public enum Views {
     HOME,
     USER,

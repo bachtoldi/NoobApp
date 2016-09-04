@@ -4,9 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NoobApp.View"
+             xmlns:dt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label>AttendanceView</Label>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" FontSize="14" Content="Anwesenheit" />
+
+        <DockPanel Grid.Row="1" LastChildFill="True">
+            <Label Width="50" Content="von: " />
+            <dt:DateTimePicker Value="{Binding FromDateTime, UpdateSourceTrigger=PropertyChanged}" />
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" LastChildFill="True" VerticalAlignment="Top">
+            <Label Width="50" Content="bis: " />
+            <dt:DateTimePicker Value="{Binding TillDateTime, UpdateSourceTrigger=PropertyChanged}" />
+        </DockPanel>
+
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
+            <DockPanel>
+                <Button Height="40" Width="150" Command="{Binding SaveCmd}">Speichern</Button>
+                <Button Height="40" Width="150" Command="{Binding CancelCmd}">Abbrechen</Button>
+            </DockPanel>
+        </StackPanel>
+
     </Grid>
 </UserControl>

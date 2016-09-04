@@ -1,14 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NoobApp.Entity;
 
-namespace NoobApp.Entity {
+namespace NoobApp.ViewModel {
   public class DisplayItem : ViewModelBase {
-
-    // KEIN DTO - WIRD AUF DER DB NICHT GEBRAUCHT
 
     #region - InstanceVariables -
 
@@ -116,6 +110,18 @@ namespace NoobApp.Entity {
         _displayItemTotal = value;
         RaisePropertyChanged(DisplayItemTotalPropertyName);
       }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region - Public Methods -
+
+    #region -- GetEventInventory --
+
+    public EventInventory GetEventInventory() {
+      return _eventInventory;
     }
 
     #endregion

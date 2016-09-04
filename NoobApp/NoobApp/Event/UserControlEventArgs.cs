@@ -1,12 +1,14 @@
 ﻿using NoobApp.Entity;
+using NoobApp.Enum;
 using System;
 
 namespace NoobApp.Event {
   public class UserControlEventArgs : EventArgs {
 
-    public UserControlEventArgs(Views view, bool cancel) {
+    public UserControlEventArgs(Views view, bool cancel, User user) {
       Cancel = cancel;
       View = view;
+      User = user;
     }
 
     private Views _view;
@@ -26,6 +28,16 @@ namespace NoobApp.Event {
       }
       set {
         _cancel = value;
+      }
+    }
+
+    private User _user;
+    public User User {
+      get {
+        return _user;
+      }
+      set {
+        _user = value;
       }
     }
 

@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using NoobApp.Connector;
 using NoobApp.Entity;
+using NoobApp.Enum;
 using NoobApp.Event;
 using System.ComponentModel;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace NoobApp.ViewModel {
         return _user;
       }
       set {
-        if (_user == value) {
+        if(_user == value) {
           return;
         }
 
@@ -54,23 +55,12 @@ namespace NoobApp.ViewModel {
         return _displayItemList;
       }
       set {
-        if (_displayItemList == value) {
+        if(_displayItemList == value) {
           return;
         }
 
         _displayItemList = value;
         RaisePropertyChanged(DisplayItemListPropertyName);
-      }
-    }
-
-    #endregion
-
-    #region -- TotalPurchase --
-
-    public static string TotalPurchasePropertyName = "TotalPurchase";
-    public float TotalPurchase {
-      get {
-        return DisplayItemList.Sum(x => x.DisplayItemTotal);
       }
     }
 
@@ -117,6 +107,7 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
+      //TODO
       DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
 
       InitializeCommands();
@@ -137,11 +128,19 @@ namespace NoobApp.ViewModel {
 
     private void ExecuteSaveCmd() {
 
+      SavePurchase();
+
+      if(OnChangeWindow == null) {
+        return;
+      }
+
+      UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, User);
+      OnChangeWindow(this, args);
+
     }
 
     private bool CanExecuteSaveCmd() {
       return true;
-      //(DisplayItemList.Sum(x => x.DisplayItemTotal) != 0);
     }
 
     #endregion
@@ -150,10 +149,40 @@ namespace NoobApp.ViewModel {
 
     private void ExecuteCancelCmd() {
 
+      if(OnChangeWindow == null) {
+        return;
+      }
+
+      UserControlEventArgs args = new UserControlEventArgs(Views.USER, true, User);
+      OnChangeWindow(this, args);
+
     }
 
     private bool CanExecuteCancelCmd() {
       return true;
+    }
+
+    #endregion
+
+    #region -- SavePurchase --
+
+    private void SavePurchase() {
+
+      foreach(var item in DisplayItemList) {
+
+        var purchase = new Purchase() {
+
+          PurchaseBilled = false,
+          PurchaseEventInventoryRef = item.GetEventInventory(),
+          PurchaseUserRef = User,
+
+        };
+
+        //TODO
+        //Save<Purchase>(purchase);
+
+      }
+
     }
 
     #endregion
