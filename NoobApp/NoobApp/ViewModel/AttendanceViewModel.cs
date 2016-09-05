@@ -1,9 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
 using System;
+using System.ComponentModel;
 
 namespace NoobApp.ViewModel {
   public class AttendanceViewModel : ViewModelBase {
@@ -42,6 +44,46 @@ namespace NoobApp.ViewModel {
 
         _user = value;
         RaisePropertyChanged(UserPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region -- AttendanceTypeList --
+
+    public static string AttendanceTypeListPropertyName = "AttendanceTypeList";
+    private BindingList<AttendanceType> _attendanceTypeList;
+    public BindingList<AttendanceType> AttendanceTypeList {
+      get {
+        return _attendanceTypeList;
+      }
+      set {
+        if (_attendanceTypeList == value) {
+          return;
+        }
+
+        _attendanceTypeList = value;
+        RaisePropertyChanged(AttendanceTypeListPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region -- AttendanceTypeSelected --
+
+    public static string AttendanceTypeSelectedPropertyName = "AttendanceTypeSelected";
+    private AttendanceType _attendanceTypeSelected;
+    public AttendanceType AttendanceTypeSelected {
+      get {
+        return _attendanceTypeSelected;
+      }
+      set {
+        if (_attendanceTypeSelected == value) {
+          return;
+        }
+
+        _attendanceTypeSelected = value;
+        RaisePropertyChanged(AttendanceTypeSelectedPropertyName);
       }
     }
 
@@ -130,6 +172,9 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
+      //TODO
+      AttendanceTypeList = DummyDataConnector.GetAttendanceTypeList();
+
       InitializeCommands();
     }
 
@@ -160,7 +205,7 @@ namespace NoobApp.ViewModel {
     }
 
     private bool CanExecuteSaveCmd() {
-      return (_fromDateTime != null && _tillDateTime != null);
+      return (_fromDateTime != null && _tillDateTime != null && _attendanceTypeSelected != null);
     }
 
     #endregion
@@ -191,6 +236,7 @@ namespace NoobApp.ViewModel {
       var attendance = new Attendance() {
         AttendanceStartDateTime = FromDateTime.Value,
         AttendanceEndDateTime = TillDateTime.Value,
+        AttendanceAttendanceTypeRef = AttendanceTypeSelected,
         AttendanceEventRef = _event,
         AttendanceUserRef = User,
       };

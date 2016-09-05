@@ -11,6 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -18,16 +19,21 @@
         <Label Grid.Row="0" FontSize="14" Content="Anwesenheit" />
 
         <DockPanel Grid.Row="1" LastChildFill="True">
+            <Label Width="50" Content="Art: " />
+            <ComboBox ItemsSource="{Binding AttendanceTypeList}" SelectedItem="{Binding AttendanceTypeSelected}" DisplayMemberPath="AttendanceTypeName" />
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" LastChildFill="True">
             <Label Width="50" Content="von: " />
             <dt:DateTimePicker Value="{Binding FromDateTime, UpdateSourceTrigger=PropertyChanged}" />
         </DockPanel>
 
-        <DockPanel Grid.Row="2" LastChildFill="True" VerticalAlignment="Top">
+        <DockPanel Grid.Row="3" LastChildFill="True" VerticalAlignment="Top">
             <Label Width="50" Content="bis: " />
             <dt:DateTimePicker Value="{Binding TillDateTime, UpdateSourceTrigger=PropertyChanged}" />
         </DockPanel>
 
-        <StackPanel Grid.Row="3" HorizontalAlignment="Right" Orientation="Horizontal">
+        <StackPanel Grid.Row="4" HorizontalAlignment="Right" Orientation="Horizontal">
             <DockPanel>
                 <Button Height="40" Width="150" Command="{Binding SaveCmd}">Speichern</Button>
                 <Button Height="40" Width="150" Command="{Binding CancelCmd}">Abbrechen</Button>

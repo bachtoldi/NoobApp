@@ -7,6 +7,29 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Label>PurchasedView</Label>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" LastChildFill="True">
+            <Label Width="100" Content="Teilnahme: " />
+            <Label HorizontalContentAlignment="Right" Content="{Binding AttendancePrice}" />
+        </DockPanel>
+
+        <ItemsControl ItemsSource="{Binding DisplayItemList}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel LastChildFill="True">
+                        <Label Width="100" Content="{Binding DisplayItemAmount}" />
+                        <Label Width="100" Content="{Binding DisplayItemName}" />
+                        <Label Content="{Binding DisplayItemTotal}" />
+                    </DockPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
     </Grid>
 </UserControl>

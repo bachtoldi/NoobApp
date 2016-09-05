@@ -74,6 +74,26 @@ namespace NoobApp.Entity {
 
     #endregion
 
+    #region -- AttendanceAttendanceTypeRef --
+
+    public static string AttendanceAttendanceTypeRefPropertyName = "AttendanceAttendanceTypeRef";
+    private AttendanceType _attendanceAttendanceTypeRef;
+    public AttendanceType AttendanceAttendanceTypeRef {
+      get {
+        return _attendanceAttendanceTypeRef;
+      }
+      set {
+        if (_attendanceAttendanceTypeRef == value) {
+          return;
+        }
+
+        _attendanceAttendanceTypeRef = value;
+        RaisePropertyChanged(AttendanceAttendanceTypeRefPropertyName);
+      }
+    }
+    
+    #endregion
+
     #region -- AttendanceEventRef --
 
     public static string AttendanceEventRefPropertyName = "AttendanceEventRef";
