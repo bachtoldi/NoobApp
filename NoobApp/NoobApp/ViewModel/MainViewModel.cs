@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Event;
 using NoobApp.View;
@@ -61,6 +62,19 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region -- PopulateDatabaseCmd --
+
+    private RelayCommand _populateDatabaseCmd;
+
+    public RelayCommand PopulateDatabaseCmd{
+      get {
+        return _populateDatabaseCmd;
+      }
+    }
+
+    #endregion
+
+
     #endregion
 
     #region - Public Methods -
@@ -83,6 +97,8 @@ namespace NoobApp.ViewModel {
 
     private void InitializeCommands() {
       _homeCmd = new RelayCommand(ExecuteHomeCmd, CanExecuteHomeCmd);
+      _populateDatabaseCmd = new RelayCommand(ExecutePopulateDatabaseCmd, CanExecutePopulateDatabaseCmd);
+
     }
 
     #endregion
@@ -103,6 +119,34 @@ namespace NoobApp.ViewModel {
     }
 
     #endregion
+
+    #region -- PopulateDatabaseCmd --
+
+    private void ExecutePopulateDatabaseCmd() {
+
+      var userList = DummyDataConnector.GetUserList();
+      var inventoryItemsList = DummyDataConnector.GetEventInventoryList();
+      using (var dataConnector = new DataConnector()) {
+
+        foreach (var user in userList) {
+
+          dataConnector.Users.Add(user);
+        }
+
+        foreach(var inventoryItem in inventoryItemsList) {
+          dataConnector.EventInventories.Add(inventoryItem);
+        }
+
+        dataConnector.SaveChanges();
+      }
+    }
+
+    private bool CanExecutePopulateDatabaseCmd() {
+      return true;
+    }
+
+    #endregion
+
 
     #region -- ChangeWindow --
 

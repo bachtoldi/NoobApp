@@ -7,7 +7,7 @@ namespace NoobApp.Connector {
 
         public DbSet<Attendance> Attendaces { get; set; }
         public DbSet<AttendanceType> AttendaceTypes { get; set; }
-        public DbSet<DisplayItem>  DisplayItems { get; set; }
+        //public DbSet<DisplayItem>  DisplayItems { get; set; }
         //public DbSet<Enums>  Enums{ get; set; }
         public DbSet<Entity.Event> Events{ get; set; }
         public DbSet<EventInventory> EventInventories { get; set; }

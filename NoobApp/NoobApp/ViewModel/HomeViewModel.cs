@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Event;
+using System.Data.Entity;
 using System.ComponentModel;
 
 namespace NoobApp.ViewModel {
@@ -97,7 +98,12 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       InitializeCommands();
 
-      UserList = DummyDataConnector.GetUserList();
+      //UserList = DummyDataConnector.GetUserList();
+
+      using (var dataContext = new DataConnector()) {
+        dataContext.Users.Load();
+        UserList = dataContext.Users.Local.ToBindingList();
+      }
     }
 
     #endregion

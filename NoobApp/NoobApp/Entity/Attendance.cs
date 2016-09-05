@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace NoobApp.Entity {
   public class Attendance : ViewModelBase {
@@ -18,6 +19,7 @@ namespace NoobApp.Entity {
 
     public static string AttendanceIdPropertyName = "AttendanceId";
     private int _attendanceId;
+   [Key] 
     public int AttendanceId {
       get {
         return _attendanceId;

@@ -15,6 +15,7 @@
 
         <ToolBar Grid.Row="0">
             <Button Command="{Binding HomeCmd}">Home</Button>
+            <Button Command="{Binding PopulateDatabaseCmd}">DB füllen</Button>
         </ToolBar>
 
         <ContentControl Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding ContentControlView}" />

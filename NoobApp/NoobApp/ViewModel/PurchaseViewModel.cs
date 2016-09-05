@@ -4,6 +4,7 @@ using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Event;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 
 namespace NoobApp.ViewModel {
@@ -19,6 +20,8 @@ namespace NoobApp.ViewModel {
       User = user;
 
       InitializeData();
+
+      InitializeCommands();
     }
 
     #endregion
@@ -117,9 +120,17 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
 
-      InitializeCommands();
+      using (var dataContext = new DataConnector()) {
+
+        dataContext.EventInventories.Load();
+         
+        var eventInventories = dataContext.EventInventories.ToList();
+
+        DisplayItemList = new BindingList<DisplayItem>(eventInventories.Select(x => new DisplayItem(x)).ToList());
+      }
+
+      //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
     }
 
     #endregion

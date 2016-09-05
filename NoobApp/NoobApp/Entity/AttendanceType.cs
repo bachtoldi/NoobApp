@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace NoobApp.Entity {
 
     public static string AttendanceTypeIdPropertyName = "AttendanceTypeId";
     private int _attendanceTypeId;
+    [Key]
     public int AttendanceTypeId {
       get {
         return _attendanceTypeId;
