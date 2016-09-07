@@ -1,11 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
-using System.Data.Entity;
+using NoobApp.Model;
 using System.ComponentModel;
+using System.Data.Entity;
 
 namespace NoobApp.ViewModel {
   public class HomeViewModel : ViewModelBase {
@@ -101,7 +101,7 @@ namespace NoobApp.ViewModel {
 
       //UserList = DummyDataConnector.GetUserList();
 
-      using (var dataContext = new DataConnector()) {
+      using (var dataContext = new DataService()) {
         dataContext.Users.Load();
         UserList = dataContext.Users.Local.ToBindingList();
       }

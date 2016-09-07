@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using NoobApp.Connector;
 using NoobApp.Enum;
 using NoobApp.Event;
+using NoobApp.Model;
 using NoobApp.View;
 using System.Windows;
 
@@ -122,18 +123,18 @@ namespace NoobApp.ViewModel {
 
       var userList = DummyDataConnector.GetUserList();
       var inventoryItemsList = DummyDataConnector.GetEventInventoryList();
-      using (var dataConnector = new DataConnector()) {
+      using (var dataService = new DataService()) {
 
         foreach (var user in userList) {
 
-          dataConnector.Users.Add(user);
+          dataService.Users.Add(user);
         }
 
         foreach(var inventoryItem in inventoryItemsList) {
-          dataConnector.EventInventories.Add(inventoryItem);
+          dataService.EventInventories.Add(inventoryItem);
         }
 
-        dataConnector.SaveChanges();
+        dataService.SaveChanges();
       }
     }
 

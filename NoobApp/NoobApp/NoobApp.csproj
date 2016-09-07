@@ -108,7 +108,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\DataConnector.cs" />
+    <Compile Include="Model\DataService.cs" />
     <Compile Include="Connector\DummyDataConnector.cs" />
     <Compile Include="Entity\Attendance.cs" />
     <Compile Include="Entity\AttendanceType.cs" />

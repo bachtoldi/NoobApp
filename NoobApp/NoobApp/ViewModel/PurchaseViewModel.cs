@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
+using NoobApp.Model;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
@@ -112,7 +112,7 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       //TODO
 
-      using (var dataContext = new DataConnector()) {
+      using (var dataContext = new DataService()) {
 
         dataContext.EventInventories.Load();
          
