@@ -1,47 +1,5 @@
 D:\Dev\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
 D:\Dev\New folder\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.exe
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.pdb
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.Extras.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.Platform.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Microsoft.Practices.ServiceLocation.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.pdb
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.xml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.Extras.xml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\GalaSoft.MvvmLight.Platform.xml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Microsoft.Practices.ServiceLocation.xml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.csprojResolveAssemblyReference.cache
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\MainWindow.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\HomeView.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\App.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\GeneratedInternalTypeHelper.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp_MarkupCompile.cache
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp_MarkupCompile.lref
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\App.baml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\MainWindow.baml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\HomeView.baml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.g.resources
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.Properties.Resources.resources
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.csproj.GenerateResource.Cache
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.exe
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.pdb
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\UserView.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\UserView.baml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\AttendanceView.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchasedView.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchaseView.g.cs
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\AttendanceView.baml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchasedView.baml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\View\PurchaseView.baml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\img\arrow_down.svg
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\img\arrow_up.svg
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp_Content.g.cs
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\bin\Debug\img\arrow_down.svg
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\bin\Debug\img\arrow_up.svg
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\bin\Debug\NoobApp.exe.config
@@ -88,23 +46,3 @@ C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.csproj.GenerateResource.Cache
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.exe
 C:\Users\Michi\Documents\Visual Studio 2015\Projects\NoobApp\NoobApp\NoobApp\obj\Debug\NoobApp.pdb
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.xml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.DataGrid.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\Xceed.Wpf.Toolkit.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\Pascal\Documents\dev\NoobApp\NoobApp\NoobApp\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
