@@ -12,24 +12,37 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="0" LastChildFill="True">
-            <Label Width="100" Content="Teilnahme: " />
+            <Label Width="100" Content="Teilnahme" />
             <Label HorizontalContentAlignment="Right" Content="{Binding AttendancePrice}" />
         </DockPanel>
 
-        <ItemsControl ItemsSource="{Binding DisplayItemList}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel LastChildFill="True">
-                        <Label Width="100" Content="{Binding DisplayItemAmount}" />
-                        <Label Width="100" Content="{Binding DisplayItemName}" />
-                        <Label Content="{Binding DisplayItemTotal}" />
-                    </DockPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <DockPanel Grid.Row="1" LastChildFill="True">
+            <Label Width="100" Content="Konsum" />
+            <ItemsControl ItemsSource="{Binding DisplayItemList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel LastChildFill="True">
+                            <Label Width="100" Content="{Binding DisplayItemAmount}" />
+                            <Label Width="100" Content="{Binding DisplayItemName}" />
+                            <Label Content="{Binding DisplayItemTotal}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" LastChildFill="True">
+            <Label FontWeight="Bold" FontSize="14" Width="100" Content="Total" />
+            <Label FontWeight="Bold" FontSize="14" Content="{Binding Total}" />
+        </DockPanel>
+
+        <DockPanel Grid.Row="3" HorizontalAlignment="Right">
+            <Button Height="40" Width="150" Command="{Binding BackCmd}">Zurück</Button>
+        </DockPanel>
 
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
@@ -112,16 +113,16 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       //TODO
 
-      using (var dataContext = new DataService()) {
+      //using (var dataContext = new DataService()) {
 
-        dataContext.EventInventories.Load();
+      //  dataContext.EventInventories.Load();
          
-        var eventInventories = dataContext.EventInventories.ToList();
+      //  var eventInventories = dataContext.EventInventories.ToList();
 
-        DisplayItemList = new BindingList<DisplayItem>(eventInventories.Select(x => new DisplayItem(x)).ToList());
-      }
+      //  DisplayItemList = new BindingList<DisplayItem>(eventInventories.Select(x => new DisplayItem(x)).ToList());
+      //}
 
-      //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
+      DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
     }
 
     #endregion
