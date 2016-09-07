@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System.ComponentModel.DataAnnotations;
 
 namespace NoobApp.Entity {
   public class User : ViewModelBase {
@@ -17,6 +18,7 @@ namespace NoobApp.Entity {
 
     public static string UserIdPropertyName = "UserId";
     private int _userId;
+    [Key]
     public int UserId {
       get {
         return _userId;

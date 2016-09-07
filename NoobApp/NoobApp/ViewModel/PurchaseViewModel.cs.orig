@@ -110,7 +110,11 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
+<<<<<<< HEAD
       //TODO
+      DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
+=======
+>>>>>>> origin/EF_Test
 
       using (var dataContext = new DataConnector()) {
 

@@ -99,12 +99,17 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       InitializeCommands();
 
+<<<<<<< HEAD
+      //TODO
+      UserList = DummyDataConnector.GetUserList();
+=======
       //UserList = DummyDataConnector.GetUserList();
 
       using (var dataContext = new DataConnector()) {
         dataContext.Users.Load();
         UserList = dataContext.Users.Local.ToBindingList();
       }
+>>>>>>> origin/EF_Test
     }
 
     #endregion

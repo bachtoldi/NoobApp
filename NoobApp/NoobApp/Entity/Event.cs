@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace NoobApp.Entity {
   public class Event : ViewModelBase {
@@ -18,6 +19,7 @@ namespace NoobApp.Entity {
 
     public static string EventIdPropertyName = "EventId";
     private int _eventId;
+    [Key]
     public int EventId {
       get {
         return _eventId;

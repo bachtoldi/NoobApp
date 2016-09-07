@@ -1,7 +1,11 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NoobApp.Connector;
+<<<<<<< HEAD
 using NoobApp.Enum;
+=======
+using NoobApp.Entity;
+>>>>>>> origin/EF_Test
 using NoobApp.Event;
 using NoobApp.View;
 using System.Windows;
