@@ -1,11 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
+using NoobApp.Model;
 using System;
 using System.ComponentModel;
+using System.Data.Entity;
+using System.Linq;
 
 namespace NoobApp.ViewModel {
   public class AttendanceViewModel : ViewModelBase {
@@ -13,6 +15,7 @@ namespace NoobApp.ViewModel {
     #region - Instance Variables -
 
     private Entity.Event _event;
+    private Attendance _attendance;
 
     #endregion
 
@@ -38,7 +41,7 @@ namespace NoobApp.ViewModel {
         return _user;
       }
       set {
-        if(_user == value) {
+        if (_user == value) {
           return;
         }
 
@@ -98,7 +101,7 @@ namespace NoobApp.ViewModel {
         return _fromDateTime;
       }
       set {
-        if(_fromDateTime == value) {
+        if (_fromDateTime == value) {
           return;
         }
 
@@ -119,7 +122,7 @@ namespace NoobApp.ViewModel {
         return _tillDateTime;
       }
       set {
-        if(_tillDateTime == value) {
+        if (_tillDateTime == value) {
           return;
         }
 
@@ -172,10 +175,23 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      //TODO
-      //AttendanceTypeList = DummyDataConnector.GetAttendanceTypeList();
+
+      using (var dataService = new DataService()) {
+        dataService.AttendanceTypes.Load();
+        AttendanceTypeList = new BindingList<AttendanceType>(dataService.AttendanceTypes.Local);
+
+        dataService.Attendances.Load();
+        _attendance = dataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId).FirstOrDefault();
+
+        if (_attendance != null) {
+          AttendanceTypeSelected = AttendanceTypeList.Where(x => x.AttendanceTypeId == _attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
+          FromDateTime = _attendance.AttendanceStartDateTime;
+          TillDateTime = _attendance.AttendanceEndDateTime;
+        }
+      }
 
       InitializeCommands();
+
     }
 
     #endregion
@@ -195,7 +211,7 @@ namespace NoobApp.ViewModel {
 
       SaveAttendance();
 
-      if(OnChangeWindow == null) {
+      if (OnChangeWindow == null) {
         return;
       }
 
@@ -214,7 +230,7 @@ namespace NoobApp.ViewModel {
 
     private void ExecuteCancelCmd() {
 
-      if(OnChangeWindow == null) {
+      if (OnChangeWindow == null) {
         return;
       }
 
@@ -233,19 +249,24 @@ namespace NoobApp.ViewModel {
 
     private void SaveAttendance() {
 
-      var attendance = new Attendance() {
-        AttendanceStartDateTime = FromDateTime.Value,
-        AttendanceEndDateTime = TillDateTime.Value,
-        AttendanceAttendanceTypeRef = AttendanceTypeSelected,
-        AttendanceEventRef = _event,
-        AttendanceUserRef = User,
-      };
+      if (_attendance == null) {
+        _attendance = new Attendance() {
+          AttendanceStartDateTime = FromDateTime.Value,
+          AttendanceEndDateTime = TillDateTime.Value,
+          AttendanceAttendanceTypeRef = AttendanceTypeSelected,
+          AttendanceEventRef = _event,
+          AttendanceUserRef = User,
+        };
+      } else {
+        _attendance.AttendanceStartDateTime = FromDateTime.Value;
+        _attendance.AttendanceEndDateTime = TillDateTime.Value;
+        _attendance.AttendanceAttendanceTypeRef = AttendanceTypeSelected;
+      }
 
-      //TODO
-      //Save<Attendance>(attendance);
-
-      //TODO
-      //lots of logic to prevent double data
+      using (var dataService = new DataService()) {
+        dataService.Entry(_attendance).State = (_attendance.AttendanceId == 0) ? EntityState.Added : EntityState.Modified;
+        dataService.SaveChanges();
+      }
 
     }
 
@@ -254,8 +275,8 @@ namespace NoobApp.ViewModel {
     #region -- RaiseCanExecuteChanged --
 
     private void RaiseCanExecuteChanged() {
-      _saveCmd.RaiseCanExecuteChanged();
-      _cancelCmd.RaiseCanExecuteChanged();
+      if (_saveCmd != null) { _saveCmd.RaiseCanExecuteChanged(); }
+      if (_cancelCmd != null) { _cancelCmd.RaiseCanExecuteChanged(); }
     }
 
     #endregion

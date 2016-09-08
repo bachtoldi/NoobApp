@@ -5,8 +5,8 @@ namespace NoobApp.Model {
 
     public class DataService : DbContext {
 
-        public DbSet<Attendance> Attendaces { get; set; }
-        public DbSet<AttendanceType> AttendaceTypes { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<AttendanceType> AttendanceTypes { get; set; }
         public DbSet<Entity.Event> Events{ get; set; }
         public DbSet<EventInventory> EventInventories { get; set; }
         public DbSet<EventPrice> EventPrices { get; set; }

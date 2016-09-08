@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
@@ -98,14 +97,14 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      InitializeCommands();
 
-      //UserList = DummyDataConnector.GetUserList();
+      using (var dataService = new DataService()) {
+        dataService.Users.Load();
+        UserList = dataService.Users.Local.ToBindingList();
+      }
 
-      //using (var dataContext = new DataService()) {
-      //  dataContext.Users.Load();
-      //  UserList = dataContext.Users.Local.ToBindingList();
-      //}
+        InitializeCommands();
+
     }
 
     #endregion

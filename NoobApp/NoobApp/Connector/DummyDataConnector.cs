@@ -24,13 +24,13 @@ namespace NoobApp.Connector {
         }
 
         foreach(var attendanceType in GetAttendanceTypeList()) {
-          dataService.AttendaceTypes.Add(attendanceType);
+          dataService.AttendanceTypes.Add(attendanceType);
         }
 
         dataService.SaveChanges();
 
         foreach (var _event in dataService.Events.Local) {
-          foreach (var attendanceType in dataService.AttendaceTypes.Local) {
+          foreach (var attendanceType in dataService.AttendanceTypes.Local) {
             dataService.EventPrices.Add(new EventPrice() {
               EventPriceAttendanceTypeRef = attendanceType,
               EventPriceEventRef = _event,
