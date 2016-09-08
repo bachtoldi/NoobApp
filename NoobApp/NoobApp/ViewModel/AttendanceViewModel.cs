@@ -173,7 +173,7 @@ namespace NoobApp.ViewModel {
 
     private void InitializeData() {
       //TODO
-      AttendanceTypeList = DummyDataConnector.GetAttendanceTypeList();
+      //AttendanceTypeList = DummyDataConnector.GetAttendanceTypeList();
 
       InitializeCommands();
     }

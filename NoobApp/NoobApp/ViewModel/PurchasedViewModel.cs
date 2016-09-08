@@ -177,16 +177,16 @@ namespace NoobApp.ViewModel {
 
     private void InitializeAttendancePrice() {
 
-      var attendance = DummyDataConnector.Attendance1;
-      attendance.AttendanceAttendanceTypeRef = DummyDataConnector.AttendanceType1;
+      //var attendance = DummyDataConnector.Attendance1;
+      //attendance.AttendanceAttendanceTypeRef = DummyDataConnector.AttendanceType1;
 
-      if (attendance != null) {
-        var eventPrice = DummyDataConnector.GetEventPriceList().Where(x => x.EventPriceEventRef.EventId == attendance.AttendanceEventRef.EventId && x.EventPriceAttendanceTypeRef.AttendanceTypeId == attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
+      //if (attendance != null) {
+      //  var eventPrice = DummyDataConnector.GetEventPriceList().Where(x => x.EventPriceEventRef.EventId == attendance.AttendanceEventRef.EventId && x.EventPriceAttendanceTypeRef.AttendanceTypeId == attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
 
-        if (eventPrice != null) {
-          AttendancePrice = eventPrice.EventPriceValue;
-        }
-      }
+      //  if (eventPrice != null) {
+      //    AttendancePrice = eventPrice.EventPriceValue;
+      //  }
+      //}
 
     }
 
@@ -196,7 +196,7 @@ namespace NoobApp.ViewModel {
 
     private void InitializeDisplayItemList() {
 
-      DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
+      //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
 
       var random = new Random();
 

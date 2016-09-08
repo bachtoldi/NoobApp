@@ -100,7 +100,7 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       InitializeCommands();
 
-      UserList = DummyDataConnector.GetUserList();
+      //UserList = DummyDataConnector.GetUserList();
 
       //using (var dataContext = new DataService()) {
       //  dataContext.Users.Load();

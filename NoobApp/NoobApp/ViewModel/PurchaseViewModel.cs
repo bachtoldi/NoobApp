@@ -122,7 +122,7 @@ namespace NoobApp.ViewModel {
       //  DisplayItemList = new BindingList<DisplayItem>(eventInventories.Select(x => new DisplayItem(x)).ToList());
       //}
 
-      DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
+      //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
     }
 
     #endregion

@@ -1,29 +1,74 @@
 ﻿using NoobApp.Entity;
+using NoobApp.Model;
 using System;
 using System.ComponentModel;
 
 namespace NoobApp.Connector {
   public static class DummyDataConnector {
 
-    #region - Attendance -
+    public static void PopulateDatabase() {
+      var random = new Random();
 
-    public static Attendance Attendance1 {
-      get {
-        return new Attendance() {
-          AttendanceId = 1,
-          AttendanceEventRef = Event1,
-          AttendanceUserRef = User1,
-          AttendanceStartDateTime = new DateTime(2016, 10, 13),
-          AttendanceEndDateTime = new DateTime(2016, 10, 15),
-        };
+      using (var dataService = new DataService()) {
+
+        foreach (var user in GetUserList()) {
+          dataService.Users.Add(user);
+        }
+
+        foreach (var item in GetItemList()) {
+          dataService.Items.Add(item);
+        }
+
+        foreach (var _event in GetEventList()) {
+          dataService.Events.Add(_event);
+        }
+
+        foreach(var attendanceType in GetAttendanceTypeList()) {
+          dataService.AttendaceTypes.Add(attendanceType);
+        }
+
+        dataService.SaveChanges();
+
+        foreach (var _event in dataService.Events.Local) {
+          foreach (var attendanceType in dataService.AttendaceTypes.Local) {
+            dataService.EventPrices.Add(new EventPrice() {
+              EventPriceAttendanceTypeRef = attendanceType,
+              EventPriceEventRef = _event,
+              EventPriceValue = random.Next(20, 81),
+            });
+          }
+        }
+
+        foreach(var _event in dataService.Events.Local) {
+          foreach(var item in dataService.Items.Local) {
+            dataService.EventInventories.Add(new EventInventory() {
+              EventIntenvotryItemRef = item,
+              EventInventoryEventRef = _event,
+              EventInventoryPrice = random.Next(1, 6),
+            });
+          }
+        }
+
+        dataService.SaveChanges();
+
+
       }
-    }
 
-    #endregion
+    }
 
     #region - AttendanceType -
 
-    public static AttendanceType AttendanceType1 {
+    private static BindingList<AttendanceType> GetAttendanceTypeList() {
+      BindingList<AttendanceType> attendanceTypeList = new BindingList<AttendanceType>();
+
+      attendanceTypeList.Add(AttendanceType1);
+      attendanceTypeList.Add(AttendanceType2);
+      attendanceTypeList.Add(AttendanceType3);
+
+      return attendanceTypeList;
+    }
+
+    private static AttendanceType AttendanceType1 {
       get {
         return new AttendanceType() {
           AttendanceTypeId = 1,
@@ -32,7 +77,7 @@ namespace NoobApp.Connector {
       }
     }
 
-    public static AttendanceType AttendanceType2 {
+    private static AttendanceType AttendanceType2 {
       get {
         return new AttendanceType() {
           AttendanceTypeId = 2,
@@ -41,7 +86,7 @@ namespace NoobApp.Connector {
       }
     }
 
-    public static AttendanceType AttendanceType3 {
+    private static AttendanceType AttendanceType3 {
       get {
         return new AttendanceType() {
           AttendanceTypeId = 3,
@@ -54,7 +99,16 @@ namespace NoobApp.Connector {
 
     #region - Event -
 
-    public static Entity.Event Event1 {
+    private static BindingList<Entity.Event> GetEventList() {
+      BindingList<Entity.Event> eventList = new BindingList<Entity.Event>();
+
+      eventList.Add(Event1);
+      eventList.Add(Event2);
+
+      return eventList;
+    }
+
+    private static Entity.Event Event1 {
       get {
         return new Entity.Event() {
           EventId = 1,
@@ -65,7 +119,7 @@ namespace NoobApp.Connector {
       }
     }
 
-    public static Entity.Event Event2 {
+    private static Entity.Event Event2 {
       get {
         return new Entity.Event() {
           EventId = 2,
@@ -78,297 +132,9 @@ namespace NoobApp.Connector {
 
     #endregion
 
-    #region - EventInventory -
-
-    public static EventInventory EventInventory1 {
-      get {
-        return new EventInventory() {
-          EventInventoryId = 1,
-          EventInventoryEventRef = Event1,
-          EventIntenvotryItemRef = Item1,
-          EventInventoryPrice = 2,
-        };
-      }
-    }
-
-    public static EventInventory EventInventory2 {
-      get {
-        return new EventInventory() {
-          EventInventoryId = 2,
-          EventInventoryEventRef = Event1,
-          EventIntenvotryItemRef = Item2,
-          EventInventoryPrice = 2,
-        };
-      }
-    }
-
-    public static EventInventory EventInventory3 {
-      get {
-        return new EventInventory() {
-          EventInventoryId = 3,
-          EventInventoryEventRef = Event1,
-          EventIntenvotryItemRef = Item3,
-          EventInventoryPrice = 2,
-        };
-      }
-    }
-
-    public static EventInventory EventInventory4 {
-      get {
-        return new EventInventory() {
-          EventInventoryId = 4,
-          EventInventoryEventRef = Event1,
-          EventIntenvotryItemRef = Item4,
-          EventInventoryPrice = 5,
-        };
-      }
-    }
-
-    public static EventInventory EventInventory5 {
-      get {
-        return new EventInventory() {
-          EventInventoryId = 5,
-          EventInventoryEventRef = Event1,
-          EventIntenvotryItemRef = Item5,
-          EventInventoryPrice = 1,
-        };
-      }
-    }
-
-    #endregion
-
-    #region - EventPrice -
-
-    public static EventPrice EventPrice1 {
-      get {
-        return new EventPrice() {
-          EventPriceId = 1,
-          EventPriceEventRef = Event1,
-          EventPriceAttendanceTypeRef = AttendanceType1,
-          EventPriceValue = 30,
-        };
-      }
-    }
-
-    public static EventPrice EventPrice2 {
-      get {
-        return new EventPrice() {
-          EventPriceId = 2,
-          EventPriceEventRef = Event1,
-          EventPriceAttendanceTypeRef = AttendanceType2,
-          EventPriceValue = 50,
-        };
-      }
-    }
-
-    public static EventPrice EventPrice3 {
-      get {
-        return new EventPrice() {
-          EventPriceId = 3,
-          EventPriceEventRef = Event1,
-          EventPriceAttendanceTypeRef = AttendanceType3,
-          EventPriceValue = 70,
-        };
-      }
-    }
-
-    #endregion
-
     #region - Item -
 
-    public static Item Item1 {
-      get {
-        return new Item() {
-          ItemId = 1,
-          ItemName = "Coca Cola",
-        };
-      }
-    }
-
-    public static Item Item2 {
-      get {
-        return new Item() {
-          ItemId = 2,
-          ItemName = "Coca Cola Zero",
-        };
-      }
-    }
-
-    public static Item Item3 {
-      get {
-        return new Item() {
-          ItemId = 3,
-          ItemName = "MBudget Energy Drink",
-        };
-      }
-    }
-
-    public static Item Item4 {
-      get {
-        return new Item() {
-          ItemId = 4,
-          ItemName = "Pizza Prosciutto",
-        };
-      }
-    }
-
-    public static Item Item5 {
-      get {
-        return new Item() {
-          ItemId = 5,
-          ItemName = "Snickers",
-        };
-      }
-    }
-
-    #endregion
-
-    #region - Purchase -
-
-    public static Purchase Purchase1 {
-      get {
-        return new Purchase() {
-          PurchaseId = 1,
-          PurchaseUserRef = User1,
-          PurchaseEventInventoryRef = EventInventory1,
-          PurchaseBilled = false,
-        };
-      }
-    }
-
-    public static Purchase Purchase2 {
-      get {
-        return new Purchase() {
-          PurchaseId = 2,
-          PurchaseUserRef = User1,
-          PurchaseEventInventoryRef = EventInventory4,
-          PurchaseBilled = false,
-        };
-      }
-    }
-
-    #endregion
-
-    #region - User -
-
-    public static User User1 {
-      get {
-        return new User() {
-          UserId = 1,
-          UserFirstName = "Pascal",
-          UserLastName = "Schneider",
-          UserDisplayName = "BACHTOLDI",
-        };
-      }
-    }
-
-    public static User User2 {
-      get {
-        return new User() {
-          UserId = 2,
-          UserFirstName = "Michi",
-          UserLastName = "Rickli",
-          UserDisplayName = "Gnorsh",
-        };
-      }
-    }
-
-    public static User User3 {
-      get {
-        return new User() {
-          UserId = 3,
-          UserFirstName = "Beni",
-          UserLastName = "Käslin",
-          UserDisplayName = "Prelmoid",
-        };
-      }
-    }
-
-    public static User User4 {
-      get {
-        return new User() {
-          UserId = 4,
-          UserFirstName = "Donat",
-          UserLastName = "Roduner",
-          UserDisplayName = "Skatanic",
-        };
-      }
-    }
-
-    public static User User5 {
-      get {
-        return new User() {
-          UserId = 5,
-          UserFirstName = "Oli",
-          UserLastName = "Bachem",
-          UserDisplayName = "DrNoEscape",
-        };
-      }
-    }
-
-    public static User User6 {
-      get {
-        return new User() {
-          UserId = 6,
-          UserFirstName = "Lukas",
-          UserLastName = "Tuggener",
-          UserDisplayName = "Schnidlauch",
-        };
-      }
-    }
-
-    #endregion
-
-    public static BindingList<Attendance> GetAttendanceList() {
-      BindingList<Attendance> attendanceList = new BindingList<Attendance>();
-
-      attendanceList.Add(Attendance1);
-
-      return attendanceList;
-    }
-
-    public static BindingList<AttendanceType> GetAttendanceTypeList() {
-      BindingList<AttendanceType> attendanceTypeList = new BindingList<AttendanceType>();
-
-      attendanceTypeList.Add(AttendanceType1);
-      attendanceTypeList.Add(AttendanceType2);
-      attendanceTypeList.Add(AttendanceType3);
-
-      return attendanceTypeList;
-    }
-
-    public static BindingList<Entity.Event> GetEventList() {
-      BindingList<Entity.Event> eventList = new BindingList<Entity.Event>();
-
-      eventList.Add(Event1);
-      eventList.Add(Event2);
-
-      return eventList;
-    }
-
-    public static BindingList<EventInventory> GetEventInventoryList() {
-      BindingList<EventInventory> eventInventoryList = new BindingList<EventInventory>();
-
-      eventInventoryList.Add(EventInventory1);
-      eventInventoryList.Add(EventInventory2);
-      eventInventoryList.Add(EventInventory3);
-      eventInventoryList.Add(EventInventory4);
-      eventInventoryList.Add(EventInventory5);
-
-      return eventInventoryList;
-    }
-
-    public static BindingList<EventPrice> GetEventPriceList() {
-      BindingList<EventPrice> eventPriceList = new BindingList<EventPrice>();
-
-      eventPriceList.Add(EventPrice1);
-      eventPriceList.Add(EventPrice2);
-      eventPriceList.Add(EventPrice3);
-
-      return eventPriceList;
-    }
-
-    public static BindingList<Item> GetItemList() {
+    private static BindingList<Item> GetItemList() {
       BindingList<Item> itemList = new BindingList<Item>();
 
       itemList.Add(Item1);
@@ -380,16 +146,56 @@ namespace NoobApp.Connector {
       return itemList;
     }
 
-    public static BindingList<Purchase> GetPurchaseList() {
-      BindingList<Purchase> purchaseList = new BindingList<Purchase>();
-
-      purchaseList.Add(Purchase1);
-      purchaseList.Add(Purchase2);
-
-      return purchaseList;
+    private static Item Item1 {
+      get {
+        return new Item() {
+          ItemId = 1,
+          ItemName = "Coca Cola",
+        };
+      }
     }
 
-    public static BindingList<User> GetUserList() {
+    private static Item Item2 {
+      get {
+        return new Item() {
+          ItemId = 2,
+          ItemName = "Coca Cola Zero",
+        };
+      }
+    }
+
+    private static Item Item3 {
+      get {
+        return new Item() {
+          ItemId = 3,
+          ItemName = "MBudget Energy Drink",
+        };
+      }
+    }
+
+    private static Item Item4 {
+      get {
+        return new Item() {
+          ItemId = 4,
+          ItemName = "Pizza Prosciutto",
+        };
+      }
+    }
+
+    private static Item Item5 {
+      get {
+        return new Item() {
+          ItemId = 5,
+          ItemName = "Snickers",
+        };
+      }
+    }
+
+    #endregion
+
+    #region - User -
+
+    private static BindingList<User> GetUserList() {
       BindingList<User> userList = new BindingList<User>();
 
       userList.Add(User1);
@@ -401,6 +207,74 @@ namespace NoobApp.Connector {
 
       return userList;
     }
+
+    private static User User1 {
+      get {
+        return new User() {
+          UserId = 1,
+          UserFirstName = "Pascal",
+          UserLastName = "Schneider",
+          UserDisplayName = "Bachtoldi",
+        };
+      }
+    }
+
+    private static User User2 {
+      get {
+        return new User() {
+          UserId = 2,
+          UserFirstName = "Michi",
+          UserLastName = "Rickli",
+          UserDisplayName = "Gnorsh",
+        };
+      }
+    }
+
+    private static User User3 {
+      get {
+        return new User() {
+          UserId = 3,
+          UserFirstName = "Beni",
+          UserLastName = "Käslin",
+          UserDisplayName = "Prelmoid",
+        };
+      }
+    }
+
+    private static User User4 {
+      get {
+        return new User() {
+          UserId = 4,
+          UserFirstName = "Donat",
+          UserLastName = "Roduner",
+          UserDisplayName = "Skatanic",
+        };
+      }
+    }
+
+    private static User User5 {
+      get {
+        return new User() {
+          UserId = 5,
+          UserFirstName = "Oli",
+          UserLastName = "Bachem",
+          UserDisplayName = "DrNoEscape",
+        };
+      }
+    }
+
+    private static User User6 {
+      get {
+        return new User() {
+          UserId = 6,
+          UserFirstName = "Lukas",
+          UserLastName = "Tuggener",
+          UserDisplayName = "Schnidlauch",
+        };
+      }
+    }
+
+    #endregion
 
   }
 }

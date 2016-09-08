@@ -83,7 +83,7 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      _event = DummyDataConnector.Event1;
+      //_event = DummyDataConnector.Event1;
 
       ExecuteHomeCmd();
     }
@@ -120,22 +120,7 @@ namespace NoobApp.ViewModel {
     #region -- PopulateDatabaseCmd --
 
     private void ExecutePopulateDatabaseCmd() {
-
-      var userList = DummyDataConnector.GetUserList();
-      var inventoryItemsList = DummyDataConnector.GetEventInventoryList();
-      using (var dataService = new DataService()) {
-
-        foreach (var user in userList) {
-
-          dataService.Users.Add(user);
-        }
-
-        foreach(var inventoryItem in inventoryItemsList) {
-          dataService.EventInventories.Add(inventoryItem);
-        }
-
-        dataService.SaveChanges();
-      }
+      DummyDataConnector.PopulateDatabase();
     }
 
     private bool CanExecutePopulateDatabaseCmd() {
