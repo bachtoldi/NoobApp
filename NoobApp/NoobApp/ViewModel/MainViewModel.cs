@@ -5,6 +5,8 @@ using NoobApp.Enum;
 using NoobApp.Event;
 using NoobApp.Model;
 using NoobApp.View;
+using System.Data.Entity;
+using System.Linq;
 using System.Windows;
 
 namespace NoobApp.ViewModel {
@@ -83,9 +85,14 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      //_event = DummyDataConnector.Event1;
+      //TODO - Fenster um aktuellen Event auswählen
 
-      ExecuteHomeCmd();
+      using (var dataService = new DataService()) {
+        dataService.Events.Load();
+        _event = dataService.Events.Find(11);
+      }
+
+        ExecuteHomeCmd();
     }
 
     #endregion
