@@ -38,7 +38,7 @@ namespace NoobApp.ViewModel {
         return _contentControlView;
       }
       set {
-        if(_contentControlView == value) {
+        if (_contentControlView == value) {
           return;
         }
 
@@ -69,7 +69,7 @@ namespace NoobApp.ViewModel {
 
     private RelayCommand _populateDatabaseCmd;
 
-    public RelayCommand PopulateDatabaseCmd{
+    public RelayCommand PopulateDatabaseCmd {
       get {
         return _populateDatabaseCmd;
       }
@@ -92,7 +92,7 @@ namespace NoobApp.ViewModel {
         _event = dataService.Events.Find(11);
       }
 
-        ExecuteHomeCmd();
+      ExecuteHomeCmd();
     }
 
     #endregion
@@ -124,6 +124,7 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    //TODO Entfernen
     #region -- PopulateDatabaseCmd --
 
     private void ExecutePopulateDatabaseCmd() {
@@ -141,7 +142,7 @@ namespace NoobApp.ViewModel {
 
     private void ChangeWindow(object sender, UserControlEventArgs e) {
 
-      if(e.View == Views.USER) {
+      if (e.View == Views.USER) {
 
         UserViewModel viewModel = new UserViewModel(e.User);
         UserView view = new UserView(viewModel);
@@ -150,16 +151,16 @@ namespace NoobApp.ViewModel {
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      } else if(e.View == Views.PURCHASE) {
+      } else if (e.View == Views.PURCHASE) {
 
-        PurchaseViewModel viewModel = new PurchaseViewModel(e.User);
+        PurchaseViewModel viewModel = new PurchaseViewModel(e.User, _event);
         PurchaseView view = new PurchaseView(viewModel);
 
         ContentControlView = view;
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      } else if(e.View == Views.ATTENDANCE) {
+      } else if (e.View == Views.ATTENDANCE) {
 
         AttendanceViewModel viewModel = new AttendanceViewModel(e.User, _event);
         AttendanceView view = new AttendanceView(viewModel);
@@ -168,7 +169,7 @@ namespace NoobApp.ViewModel {
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      } else if(e.View == Views.PURCHASED) {
+      } else if (e.View == Views.PURCHASED) {
 
         PurchasedViewModel viewModel = new PurchasedViewModel(e.User);
         PurchasedView view = new PurchasedView(viewModel);

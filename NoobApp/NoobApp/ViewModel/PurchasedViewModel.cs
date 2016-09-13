@@ -4,8 +4,10 @@ using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
+using NoobApp.Model;
 using System;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 
 namespace NoobApp.ViewModel {
@@ -13,12 +15,15 @@ namespace NoobApp.ViewModel {
 
     #region - Instance Variables -
 
+    private readonly Entity.Event _event;
+
     #endregion
 
     #region - Constructor -
 
-    public PurchasedViewModel(User user) {
+    public PurchasedViewModel(User user, Entity.Event eventEntity) {
       User = user;
+      _event = eventEntity;
 
       InitializeData();
     }
@@ -173,20 +178,25 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
-    #region -- CalculateAttendancePrice --
+    #region -- InitializeAttendancePrice --
 
     private void InitializeAttendancePrice() {
 
-      //var attendance = DummyDataConnector.Attendance1;
-      //attendance.AttendanceAttendanceTypeRef = DummyDataConnector.AttendanceType1;
+      using(var dataService = new DataService()) {
 
-      //if (attendance != null) {
-      //  var eventPrice = DummyDataConnector.GetEventPriceList().Where(x => x.EventPriceEventRef.EventId == attendance.AttendanceEventRef.EventId && x.EventPriceAttendanceTypeRef.AttendanceTypeId == attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
+        dataService.Attendances.Load();
+        var attendance = dataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId && x.AttendanceEventRef.EventId == _event.EventId).FirstOrDefault();
 
-      //  if (eventPrice != null) {
-      //    AttendancePrice = eventPrice.EventPriceValue;
-      //  }
-      //}
+        if(attendance != null) {
+          dataService.EventPrices.Load();
+          var eventPrice = dataService.EventPrices.Where(x => x.EventPriceAttendanceTypeRef.AttendanceTypeId == attendance.AttendanceAttendanceTypeRef.AttendanceTypeId && x.EventPriceEventRef.EventId == _event.EventId).FirstOrDefault();
+
+          if(eventPrice != null) {
+            AttendancePrice = eventPrice.EventPriceValue;
+          }
+        }
+
+      }
 
     }
 
@@ -196,9 +206,18 @@ namespace NoobApp.ViewModel {
 
     private void InitializeDisplayItemList() {
 
-      //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
+      using (var dataService = new DataService()) {
 
-      var random = new Random();
+        dataService.EventInventories.Load();
+        dataService.Events.Load();
+        dataService.Items.Load();
+        DisplayItemList = new BindingList<DisplayItem>(dataService.EventInventories.Local.Where(x=>x.EventInventoryEventRef.EventId == _event.EventId).Select(x => new DisplayItem(x)).ToList());
+
+      }
+
+        //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
+
+        var random = new Random();
 
       foreach (var di in DisplayItemList) {
         di.DisplayItemAmount = random.Next(1, 21);

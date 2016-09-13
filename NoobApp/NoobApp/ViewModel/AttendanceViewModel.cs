@@ -264,12 +264,13 @@ namespace NoobApp.ViewModel {
       }
 
       using (var dataService = new DataService()) {
+        //TODO kann man irgendwie ohne das EntityState speichern?
         dataService.Entry(_attendance.AttendanceAttendanceTypeRef).State = EntityState.Unchanged;
         dataService.Entry(_attendance.AttendanceUserRef).State = EntityState.Unchanged;
         dataService.Entry(_attendance.AttendanceEventRef).State = EntityState.Unchanged;
         dataService.Entry(_attendance).State = (_attendance.AttendanceId == 0) ? EntityState.Added : EntityState.Modified;
         dataService.SaveChanges();
-       }
+      }
 
     }
 

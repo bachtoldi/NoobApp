@@ -14,16 +14,17 @@ namespace NoobApp.ViewModel {
 
     #region - Instance Variables -
 
+    private readonly Entity.Event _event;
+
     #endregion
 
     #region - Constructor -
 
-    public PurchaseViewModel(User user) {
+    public PurchaseViewModel(User user, Entity.Event eventEntity) {
       User = user;
+      _event = eventEntity;
 
       InitializeData();
-
-      InitializeCommands();
     }
 
     #endregion
@@ -39,7 +40,7 @@ namespace NoobApp.ViewModel {
         return _user;
       }
       set {
-        if(_user == value) {
+        if (_user == value) {
           return;
         }
 
@@ -59,7 +60,7 @@ namespace NoobApp.ViewModel {
         return _displayItemList;
       }
       set {
-        if(_displayItemList == value) {
+        if (_displayItemList == value) {
           return;
         }
 
@@ -111,18 +112,17 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      //TODO
 
-      //using (var dataContext = new DataService()) {
+      using (var dataService = new DataService()) {
+        //TODO kann man ohne das scheiss load die referenzen ranholen?
+        dataService.EventInventories.Load();
+        dataService.Events.Load();
+        dataService.Items.Load();
+        DisplayItemList = new BindingList<DisplayItem>(dataService.EventInventories.Local.Where(x => x.EventInventoryEventRef.EventId == _event.EventId).Select(x => new DisplayItem(x)).ToList());
+      }
 
-      //  dataContext.EventInventories.Load();
-         
-      //  var eventInventories = dataContext.EventInventories.ToList();
+      InitializeCommands();
 
-      //  DisplayItemList = new BindingList<DisplayItem>(eventInventories.Select(x => new DisplayItem(x)).ToList());
-      //}
-
-      //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
     }
 
     #endregion
@@ -142,7 +142,7 @@ namespace NoobApp.ViewModel {
 
       SavePurchase();
 
-      if(OnChangeWindow == null) {
+      if (OnChangeWindow == null) {
         return;
       }
 
@@ -161,7 +161,7 @@ namespace NoobApp.ViewModel {
 
     private void ExecuteCancelCmd() {
 
-      if(OnChangeWindow == null) {
+      if (OnChangeWindow == null) {
         return;
       }
 
@@ -180,19 +180,27 @@ namespace NoobApp.ViewModel {
 
     private void SavePurchase() {
 
-      foreach(var item in DisplayItemList) {
+      using (var dataService = new DataService()) {
+        foreach (var item in DisplayItemList) {
+          if (item.DisplayItemAmount > 0) {
+            for (int i = 0; i < item.DisplayItemAmount; i++) {
 
-        var purchase = new Purchase() {
+              var purchase = new Purchase() {
 
-          PurchaseBilled = false,
-          PurchaseEventInventoryRef = item.GetEventInventory(),
-          PurchaseUserRef = User,
+                PurchaseBilled = false,
+                PurchaseEventInventoryRef = item.GetEventInventory(),
+                PurchaseUserRef = User,
 
-        };
+              };
 
-        //TODO
-        //Save<Purchase>(purchase);
+              dataService.Entry(purchase.PurchaseEventInventoryRef).State = EntityState.Unchanged;
+              dataService.Entry(purchase.PurchaseUserRef).State = EntityState.Unchanged;
+              dataService.Entry(purchase).State = (purchase.PurchaseId == 0) ? EntityState.Added : EntityState.Modified;
+              dataService.SaveChanges();
 
+            }
+          }
+        }
       }
 
     }

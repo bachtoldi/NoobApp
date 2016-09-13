@@ -33,7 +33,7 @@ namespace NoobApp.ViewModel {
         return _userList;
       }
       set {
-        if(_userList == value) {
+        if (_userList == value) {
           return;
         }
 
@@ -53,14 +53,14 @@ namespace NoobApp.ViewModel {
         return _userSelected;
       }
       set {
-        if(_userSelected == value) {
+        if (_userSelected == value) {
           return;
         }
 
         _userSelected = value;
         RaisePropertyChanged(UserSelectedPropertyName);
 
-        if(CanExecuteSelectUserCmd()) {
+        if (CanExecuteSelectUserCmd()) {
           ExecuteSelectUserCmd();
         }
       }
@@ -103,7 +103,7 @@ namespace NoobApp.ViewModel {
         UserList = dataService.Users.Local.ToBindingList();
       }
 
-        InitializeCommands();
+      InitializeCommands();
 
     }
 
@@ -122,7 +122,7 @@ namespace NoobApp.ViewModel {
     private void ExecuteSelectUserCmd() {
       OpenUserView();
     }
-    
+
     private bool CanExecuteSelectUserCmd() {
       return true;
     }
@@ -133,7 +133,7 @@ namespace NoobApp.ViewModel {
 
     private void OpenUserView() {
 
-      if(OnUserSelected == null) {
+      if (OnUserSelected == null) {
         return;
       }
 
