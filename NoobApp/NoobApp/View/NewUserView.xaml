@@ -7,6 +7,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <DockPanel LastChildFill="True">
+                <Label Width="150" Content="Vorname" />
+                <TextBox Text="{Binding UserFirstName, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Width="150" Content="Nachname" />
+                <TextBox Text="{Binding UserLastName, UpdateSourceTrigger=PropertyChanged}" />
+            </DockPanel>
+            <DockPanel LastChildFill="True">
+                <Label Width="150" Content="Anzeigename" />
+                <TextBox Text="{Binding UserDisplayName, UpdateSourceTrigger=PropertyChanged }" />
+            </DockPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal">
+            <DockPanel>
+                <Button Height="40" Width="150" Command="{Binding SaveCmd}">Speichern</Button>
+                <Button Height="40" Width="150" Command="{Binding CancelCmd}">Abbrechen</Button>
+            </DockPanel>
+        </StackPanel>
+
     </Grid>
 </UserControl>

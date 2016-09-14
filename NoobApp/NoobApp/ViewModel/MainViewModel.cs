@@ -115,7 +115,7 @@ namespace NoobApp.ViewModel {
 
       ContentControlView = view;
 
-      viewModel.OnUserSelected += new ChangeWindowEventHandler(ChangeWindow);
+      viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
     }
 
     private bool CanExecuteHomeCmd() {
@@ -173,6 +173,24 @@ namespace NoobApp.ViewModel {
 
         PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event);
         PurchasedView view = new PurchasedView(viewModel);
+
+        ContentControlView = view;
+
+        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+
+      } else if (e.View == Views.NEWUSER) {
+
+        NewUserViewModel viewModel = new NewUserViewModel();
+        NewUserView view = new NewUserView(viewModel);
+
+        ContentControlView = view;
+
+        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+
+      } else if (e.View == Views.HOME) {
+
+        HomeViewModel viewModel = new HomeViewModel();
+        HomeView view = new HomeView(viewModel);
 
         ContentControlView = view;
 

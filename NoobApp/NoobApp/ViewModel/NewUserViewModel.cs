@@ -43,6 +43,66 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region -- UserFirstName --
+
+    public static string UserFirstNamePropertyName = "UserFirstName";
+    public string UserFirstName {
+      get {
+        return _user.UserFirstName;
+      }
+      set {
+        if (_user.UserFirstName == value) {
+          return;
+        }
+
+        _user.UserFirstName = value;
+        RaisePropertyChanged(UserFirstNamePropertyName);
+        RaiseCanExecuteChanged();
+      }
+    }
+
+    #endregion
+
+    #region -- UserLastName --
+
+    public static string UserLastNamePropertyName = "UserLastName";
+    public string UserLastName {
+      get {
+        return _user.UserLastName;
+      }
+      set {
+        if (_user.UserLastName == value) {
+          return;
+        }
+
+        _user.UserLastName = value;
+        RaisePropertyChanged(UserLastNamePropertyName);
+        RaiseCanExecuteChanged();
+      }
+    }
+
+    #endregion
+
+    #region -- UserDisplayName --
+
+    public static string UserDisplayNamePropertyName = "UserDisplayName";
+    public string UserDisplayName {
+      get {
+        return _user.UserDisplayName;
+      }
+      set {
+        if (_user.UserDisplayName == value) {
+          return;
+        }
+
+        _user.UserDisplayName = value;
+        RaisePropertyChanged(UserDisplayNamePropertyName);
+        RaiseCanExecuteChanged();
+      }
+    }
+
+    #endregion
+
     #endregion
 
     #region - Commands -
@@ -109,13 +169,23 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      var args = new UserControlEventArgs(Views.USER, false, null);
+      var args = new UserControlEventArgs(Views.HOME, false, null);
       OnChangeWindow(this, args);
 
     }
 
     private bool CanExecuteSaveCmd() {
-      return false;
+      var canSave = true;
+
+      if (User.UserFirstName == null || User.UserFirstName == string.Empty) {
+        canSave = false;
+      } else if (User.UserLastName == null || User.UserLastName == string.Empty) {
+        canSave = false;
+      } else if (User.UserDisplayName == null || User.UserDisplayName == string.Empty) {
+        canSave = false;
+      }
+
+      return canSave;
     }
 
     #endregion
@@ -128,7 +198,7 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      var args = new UserControlEventArgs(Views.USER, true, null);
+      var args = new UserControlEventArgs(Views.HOME, true, null);
       OnChangeWindow(this, args);
 
 
@@ -151,6 +221,14 @@ namespace NoobApp.ViewModel {
 
       }
 
+    }
+
+    #endregion
+
+    #region -- RaiseCanExecuteChanged --
+
+    private void RaiseCanExecuteChanged() {
+      _saveCmd.RaiseCanExecuteChanged();
     }
 
     #endregion

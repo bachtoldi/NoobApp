@@ -5,5 +5,6 @@
     PURCHASE,
     ATTENDANCE,
     PURCHASED,
+    NEWUSER,
   }
 }

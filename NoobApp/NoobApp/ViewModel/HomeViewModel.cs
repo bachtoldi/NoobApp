@@ -84,11 +84,23 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region -- NewUserCmd --
+
+    private RelayCommand _newUserCmd;
+
+    public RelayCommand NewUserCmd {
+      get {
+        return _newUserCmd;
+      }
+    }
+
+    #endregion
+
     #endregion
 
     #region - Public Methods -
 
-    public event ChangeWindowEventHandler OnUserSelected;
+    public event ChangeWindowEventHandler OnChangeWindow;
 
     #endregion
 
@@ -113,6 +125,7 @@ namespace NoobApp.ViewModel {
 
     private void InitializeCommands() {
       _selectUserCmd = new RelayCommand(ExecuteSelectUserCmd, CanExecuteSelectUserCmd);
+      _newUserCmd = new RelayCommand(ExecuteNewUserCmd, CanExecuteNewUserCmd);
     }
 
     #endregion
@@ -129,19 +142,46 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
-    #region -- ChangeWindow --
+    #region -- ExecuteNewUserCmd --
+
+    private void ExecuteNewUserCmd() {
+      OpenNewUserView();
+    }
+
+    private bool CanExecuteNewUserCmd() {
+      return true;
+    }
+
+    #endregion
+
+    #region -- OpenUserView --
 
     private void OpenUserView() {
 
-      if (OnUserSelected == null) {
+      if (OnChangeWindow == null) {
         return;
       }
 
       UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, UserSelected);
-      OnUserSelected(this, args);
+      OnChangeWindow(this, args);
 
     }
 
+    #endregion
+
+    #region -- OpenNewUserView --
+
+    private void OpenNewUserView() {
+
+      if(OnChangeWindow == null) {
+        return;
+      }
+
+      UserControlEventArgs args = new UserControlEventArgs(Views.NEWUSER, false, null);
+      OnChangeWindow(this, args);
+
+    }
+    
     #endregion
 
     #endregion
