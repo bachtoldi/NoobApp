@@ -1,11 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NoobApp.Connector;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
 using NoobApp.Model;
-using System;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
@@ -189,7 +187,9 @@ namespace NoobApp.ViewModel {
 
         if(attendance != null) {
           dataService.EventPrices.Load();
-          var eventPrice = dataService.EventPrices.Where(x => x.EventPriceAttendanceTypeRef.AttendanceTypeId == attendance.AttendanceAttendanceTypeRef.AttendanceTypeId && x.EventPriceEventRef.EventId == _event.EventId).FirstOrDefault();
+          dataService.Events.Load();
+          dataService.AttendanceTypes.Load();
+          var eventPrice = dataService.EventPrices.Local.Where(x => x.EventPriceAttendanceTypeRef.AttendanceTypeId == attendance.AttendanceAttendanceTypeRef.AttendanceTypeId && x.EventPriceEventRef.EventId == _event.EventId).FirstOrDefault();
 
           if(eventPrice != null) {
             AttendancePrice = eventPrice.EventPriceValue;
@@ -213,14 +213,14 @@ namespace NoobApp.ViewModel {
         dataService.Items.Load();
         DisplayItemList = new BindingList<DisplayItem>(dataService.EventInventories.Local.Where(x=>x.EventInventoryEventRef.EventId == _event.EventId).Select(x => new DisplayItem(x)).ToList());
 
-      }
+        dataService.Purchases.Load();
+        dataService.Users.Load();
+        foreach(var displayItem in DisplayItemList) {
+          displayItem.DisplayItemAmount = dataService.Purchases.Local.Where(x => x.PurchaseEventInventoryRef.EventInventoryId == displayItem.GetEventInventory().EventInventoryId && x.PurchaseUserRef.UserId == User.UserId).Count();
+        }
 
-        //DisplayItemList = new BindingList<DisplayItem>(DummyDataConnector.GetEventInventoryList().Select(x => new DisplayItem(x)).ToList());
+        DisplayItemList = new BindingList<DisplayItem>(DisplayItemList.Where(x => x.DisplayItemAmount != 0).ToList());
 
-        var random = new Random();
-
-      foreach (var di in DisplayItemList) {
-        di.DisplayItemAmount = random.Next(1, 21);
       }
 
     }

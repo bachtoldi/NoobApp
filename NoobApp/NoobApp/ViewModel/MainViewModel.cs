@@ -171,7 +171,7 @@ namespace NoobApp.ViewModel {
 
       } else if (e.View == Views.PURCHASED) {
 
-        PurchasedViewModel viewModel = new PurchasedViewModel(e.User);
+        PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event);
         PurchasedView view = new PurchasedView(viewModel);
 
         ContentControlView = view;

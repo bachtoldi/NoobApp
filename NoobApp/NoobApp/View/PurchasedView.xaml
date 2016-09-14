@@ -26,7 +26,11 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel LastChildFill="True">
-                            <Label Width="100" Content="{Binding DisplayItemAmount}" />
+                            <StackPanel Width="100" Orientation="Horizontal">
+                                <Label Content="{Binding DisplayItemAmount}" />
+                                <Label Content="X"/>
+                                <Label Content="{Binding DisplayItemPrice}" />
+                            </StackPanel>
                             <Label Width="100" Content="{Binding DisplayItemName}" />
                             <Label Content="{Binding DisplayItemTotal}" />
                         </DockPanel>
