@@ -108,6 +108,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AttachedProperties\DialogCloser.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Connector\DummyDataConnector.cs" />
     <Compile Include="Entity\Attendance.cs" />
@@ -129,6 +130,10 @@
     <Compile Include="ViewModel\NewUserViewModel.cs" />
     <Compile Include="ViewModel\PurchasedViewModel.cs" />
     <Compile Include="ViewModel\PurchaseViewModel.cs" />
+    <Compile Include="ViewModel\SelectEventViewModel.cs" />
+    <Compile Include="View\SelectEventView.xaml.cs">
+      <DependentUpon>SelectEventView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\AttendanceView.xaml.cs">
@@ -161,6 +166,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\SelectEventView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AttendanceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

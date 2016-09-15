@@ -1,0 +1,28 @@
+﻿<Window x:Class="NoobApp.View.SelectEventView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:NoobApp.ViewModel"
+        xmlns:dc="clr-namespace:NoobApp.AttachedProperties"
+        mc:Ignorable="d" 
+        d:DesignHeight="150" 
+        d:DesignWidth="300"
+        dc:DialogCloser.DialogResult="{Binding DialogResult}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <DockPanel Grid.Row="0" LastChildFill="True" Height="25">
+            <Label Width="150" Content="Anlass" />
+            <ComboBox ItemsSource="{Binding EventList}" SelectedItem="{Binding EventSelected}" DisplayMemberPath="EventName" />
+        </DockPanel>
+
+        <StackPanel Grid.Row="1">
+            
+        </StackPanel>
+
+    </Grid>
+</Window>
