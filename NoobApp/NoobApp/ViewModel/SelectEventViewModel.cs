@@ -58,6 +58,7 @@ namespace NoobApp.ViewModel {
 
         _eventSelected = value;
         RaisePropertyChanged(EventSelectedPropertyName);
+        RaiseCanExecuteChanged();
       }
     }
 
@@ -161,6 +162,15 @@ namespace NoobApp.ViewModel {
 
     private bool CanExecuteCancelCmd() {
       return (EventSelected != null);
+    }
+
+    #endregion
+
+    #region -- RaiseCanExecuteChanged --
+
+    private void RaiseCanExecuteChanged() {
+      if (_cancelCmd != null) { _cancelCmd.RaiseCanExecuteChanged(); }
+      if (_selectCmd != null) { _selectCmd.RaiseCanExecuteChanged(); }
     }
 
     #endregion

@@ -21,6 +21,14 @@ namespace NoobApp.ViewModel {
     #region - Constructor -
 
     public MainViewModel() {
+
+      SelectEventViewModel viewModel = new SelectEventViewModel();
+      SelectEventView view = new SelectEventView(viewModel);
+
+      if (view.ShowDialog() == true) {
+        _event = viewModel.EventSelected;
+      }
+
       InitializeData();
       InitializeCommands();
     }
@@ -85,8 +93,6 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      //TODO - Fenster um aktuellen Event auswählen
-
       using (var dataService = new DataService()) {
         dataService.Events.Load();
         _event = dataService.Events.Find(11);

@@ -20,8 +20,11 @@
             <ComboBox ItemsSource="{Binding EventList}" SelectedItem="{Binding EventSelected}" DisplayMemberPath="EventName" />
         </DockPanel>
 
-        <StackPanel Grid.Row="1">
-            
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right">
+            <DockPanel>
+                <Button Height="40" Width="150" IsDefault="True" Command="{Binding SelectCmd}">Auswählen</Button>
+                <Button Height="40" Width="150" IsCancel="True" Command="{Binding CancelCmd}">Abbrechen</Button>
+            </DockPanel>
         </StackPanel>
 
     </Grid>
