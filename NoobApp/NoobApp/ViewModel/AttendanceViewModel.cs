@@ -181,7 +181,9 @@ namespace NoobApp.ViewModel {
         AttendanceTypeList = new BindingList<AttendanceType>(dataService.AttendanceTypes.Local);
 
         dataService.Attendances.Load();
-        _attendance = dataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId).FirstOrDefault();
+        dataService.Users.Load();
+        dataService.Events.Load();
+        _attendance = dataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId && x.AttendanceEventRef.EventId == _event.EventId).FirstOrDefault();
 
         if (_attendance != null) {
           AttendanceTypeSelected = AttendanceTypeList.Where(x => x.AttendanceTypeId == _attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();

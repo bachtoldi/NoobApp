@@ -93,10 +93,10 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      using (var dataService = new DataService()) {
-        dataService.Events.Load();
-        _event = dataService.Events.Find(11);
-      }
+      //using (var dataService = new DataService()) {
+      //  dataService.Events.Load();
+      //  _event = dataService.Events.Find(11);
+      //}
 
       ExecuteHomeCmd();
     }
