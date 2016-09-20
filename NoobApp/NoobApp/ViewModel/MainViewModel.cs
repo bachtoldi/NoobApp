@@ -85,6 +85,17 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region -- AdminCmd --
+
+    private RelayCommand _adminCmd;
+
+    public RelayCommand AdminCmd {
+      get {
+        return _adminCmd;
+      }
+    }
+
+    #endregion
 
     #endregion
 
@@ -108,7 +119,7 @@ namespace NoobApp.ViewModel {
     private void InitializeCommands() {
       _homeCmd = new RelayCommand(ExecuteHomeCmd, CanExecuteHomeCmd);
       _populateDatabaseCmd = new RelayCommand(ExecutePopulateDatabaseCmd, CanExecutePopulateDatabaseCmd);
-
+      _adminCmd = new RelayCommand(ExecuteAdminCmd, CanExecuteAdminCmd);
     }
 
     #endregion
@@ -143,6 +154,17 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region -- AdminCmd --
+
+    private void ExecuteAdminCmd() {
+
+    }
+
+    private bool CanExecuteAdminCmd() {
+      return true;
+    }
+
+    #endregion
 
     #region -- ChangeWindow --
 
