@@ -5,6 +5,7 @@ using NoobApp.Enum;
 using NoobApp.Event;
 using NoobApp.Model;
 using NoobApp.View;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -30,7 +31,6 @@ namespace NoobApp.ViewModel {
       }
 
       InitializeData();
-      InitializeCommands();
     }
 
     #endregion
@@ -104,11 +104,7 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      //using (var dataService = new DataService()) {
-      //  dataService.Events.Load();
-      //  _event = dataService.Events.Find(11);
-      //}
-
+      InitializeCommands();
       ExecuteHomeCmd();
     }
 
@@ -157,7 +153,12 @@ namespace NoobApp.ViewModel {
     #region -- AdminCmd --
 
     private void ExecuteAdminCmd() {
+      var viewModel = new PasswordViewModel();
+      var view = new PasswordView(viewModel);
 
+      if (view.ShowDialog() == true) {
+        throw new NotImplementedException();
+      }
     }
 
     private bool CanExecuteAdminCmd() {

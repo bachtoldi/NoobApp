@@ -1,15 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoobApp.ViewModel {
   public class PasswordViewModel : ViewModelBase {
 
     #region - Instance Variables -
+
+    private readonly string _adminPassword = "wiga15";
 
     #endregion
 
@@ -38,6 +35,26 @@ namespace NoobApp.ViewModel {
 
         _password = value;
         RaisePropertyChanged(PasswordPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region -- DialogResult --
+
+    public static string DialogResultPropertyName = "DialogResult";
+    private bool? _dialogResult;
+    public bool? DialogResult {
+      get {
+        return _dialogResult;
+      }
+      set {
+        if (_dialogResult == value) {
+          return;
+        }
+
+        _dialogResult = value;
+        RaisePropertyChanged(DialogResultPropertyName);
       }
     }
 
@@ -95,7 +112,7 @@ namespace NoobApp.ViewModel {
     #region -- OkCmd --
 
     private void ExecuteOkCmd() {
-
+      DialogResult = (_adminPassword.Equals(_password)) ? true : false;
     }
 
     private bool CanExecuteOkCmd() {
@@ -107,7 +124,7 @@ namespace NoobApp.ViewModel {
     #region -- CancelCmd --
 
     private void ExecuteCancelCmd() {
-
+      DialogResult = false;
     }
 
     private bool CanExecuteCancelCmd() {

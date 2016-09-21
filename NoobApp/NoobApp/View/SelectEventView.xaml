@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:NoobApp.ViewModel"
         xmlns:dc="clr-namespace:NoobApp.AttachedProperties"
         mc:Ignorable="d" 
-        d:DesignHeight="150" 
-        d:DesignWidth="300"
+        Height="150" 
+        Width="300"
         dc:DialogCloser.DialogResult="{Binding DialogResult}">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         
         <DockPanel Grid.Row="0" LastChildFill="True" Height="25">
-            <Label Width="150" Content="Anlass" />
+            <Label Width="50" Content="Anlass" />
             <ComboBox ItemsSource="{Binding EventList}" SelectedItem="{Binding EventSelected}" DisplayMemberPath="EventName" />
         </DockPanel>
 
