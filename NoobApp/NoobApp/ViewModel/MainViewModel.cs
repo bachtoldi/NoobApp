@@ -157,10 +157,14 @@ namespace NoobApp.ViewModel {
       var view = new PasswordView(viewModel);
 
       if (view.ShowDialog() == true) {
-        throw new NotImplementedException();
-      }
-    }
+        var adminViewModel = new AdminViewModel();
+        var adminView = new AdminView(adminViewModel);
 
+        adminView.ShowDialog();
+      }
+
+    }
+    
     private bool CanExecuteAdminCmd() {
       return true;
     }

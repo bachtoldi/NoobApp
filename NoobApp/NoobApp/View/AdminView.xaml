@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoobApp.View"
         mc:Ignorable="d"
-        Title="AdminView" Height="300" Width="300">
+        Title="AdminView"
+        WindowState="Maximized">
     <Grid>
-        
+        <TabControl>
+            
+            <TabItem Header="Allgemein">
+                
+            </TabItem>
+
+            <TabItem Header="Anlassbezogen">
+                
+            </TabItem>
+            
+        </TabControl>
     </Grid>
 </Window>
