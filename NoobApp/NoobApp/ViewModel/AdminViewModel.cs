@@ -1,12 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using NoobApp.Entity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NoobApp.ViewModel {
   public class AdminViewModel : ViewModelBase {
@@ -25,8 +22,28 @@ namespace NoobApp.ViewModel {
 
     #region - Properties -
 
-    #region -- AttendanceType --
+    #region -- DialogResult --
 
+    public static string DialogResultPropertyName = "DialogResult";
+    private bool? _dialogResult;
+    public bool? DialogResult {
+      get {
+        return _dialogResult;
+      }
+      set {
+        if (_dialogResult == value) {
+          return;
+        }
+
+        _dialogResult = value;
+        RaisePropertyChanged(DialogResultPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region -- AttendanceType --
+    
     #region --- AttendanceTypeList ---
 
     public static string AttendanceTypeListPropertyName = "AttendanceTypeList";
@@ -144,7 +161,7 @@ namespace NoobApp.ViewModel {
         return _eventInventorySelected;
       }
       set {
-        if(_eventInventorySelected==value) {
+        if (_eventInventorySelected == value) {
           return;
         }
 
@@ -202,7 +219,7 @@ namespace NoobApp.ViewModel {
     #endregion
 
     #region -- Item --
-
+    
     #region --- ItemList ---
 
     public static string ItemListPropertyName = "ItemList";
@@ -245,26 +262,6 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
-    #region -- HasChanges --
-
-    public static string HasChangesPropertyName = "HasChanges";
-    private bool _hasChanges;
-    public bool HasChanges {
-      get {
-        return _hasChanges;
-      }
-      set {
-        if (_hasChanges == value) {
-          return;
-        }
-
-        _hasChanges = value;
-        RaisePropertyChanged(HasChangesPropertyName);
-      }
-    }
-
-    #endregion
-
     #endregion
 
     #region - Commands -
@@ -293,13 +290,73 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
-    #region -- BackCmd --
+    #region -- AddAttendanceTypeCmd --
 
-    private RelayCommand _backCmd;
+    private RelayCommand _addAttendanceTypeCmd;
 
-    public RelayCommand BackCmd {
+    public RelayCommand AddAttendanceTypeCmd {
       get {
-        return _backCmd;
+        return _addAttendanceTypeCmd;
+      }
+    }
+
+    #endregion
+
+    #region -- RemoveAttendanceTypeCmd --
+
+    private RelayCommand _removeAttendanceTypeCmd;
+
+    public RelayCommand RemoveAttendanceTypeCmd {
+      get {
+        return _removeAttendanceTypeCmd;
+      }
+    }
+
+    #endregion
+
+    #region -- AddEventCmd --
+
+    private RelayCommand _addEventCmd;
+
+    public RelayCommand AddEventCmd {
+      get {
+        return _addEventCmd;
+      }
+    }
+
+    #endregion
+
+    #region -- RemoveEventCmd --
+
+    private RelayCommand _removeEventCmd;
+
+    public RelayCommand RemoveEventCmd {
+      get {
+        return _removeEventCmd;
+      }
+    }
+
+    #endregion
+
+    #region -- AddItemCmd --
+
+    private RelayCommand _addItemCmd;
+
+    public RelayCommand AddItemCmd {
+      get {
+        return _addItemCmd;
+      }
+    }
+
+    #endregion
+
+    #region -- RemoveItemCmd --
+
+    private RelayCommand _removeItemCmd;
+
+    public RelayCommand RemoveItemCmd {
+      get {
+        return _removeItemCmd;
       }
     }
 
@@ -312,7 +369,35 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
+      InitializeAttendance();
+      InitializeEvent();
+      InitializeItem();
+
       InitializeCommands();
+    }
+
+    #endregion
+
+    #region -- InitializeAttendance --
+
+    private void InitializeAttendance() {
+      AttendanceTypeList = Global.DataService.AttendanceTypes.Local.ToBindingList();
+    }
+
+    #endregion
+
+    #region -- InitializeEvent --
+
+    private void InitializeEvent() {
+      EventList = Global.DataService.Events.Local.ToBindingList();
+    }
+
+    #endregion
+
+    #region -- InitializeItem --
+
+    private void InitializeItem() {
+      ItemList = Global.DataService.Items.Local.ToBindingList();
     }
 
     #endregion
@@ -322,7 +407,12 @@ namespace NoobApp.ViewModel {
     private void InitializeCommands() {
       _saveCmd = new RelayCommand(ExecuteSaveCmd, CanExecuteSaveCmd);
       _cancelCmd = new RelayCommand(ExecuteCancelCmd, CanExecuteCancelCmd);
-      _backCmd = new RelayCommand(ExecuteBackCmd, CanExecuteBackCmd);
+      _addAttendanceTypeCmd = new RelayCommand(ExecuteAddAttendanceTypeCmd, CanExecuteAddAttendanceTypeCmd);
+      _removeAttendanceTypeCmd = new RelayCommand(ExecuteRemoveAttendanceTypeCmd, CanExecuteRemoveAttendanceTypeCmd);
+      _addEventCmd = new RelayCommand(ExecuteAddEventCmd, CanExecuteAddEventCmd);
+      _removeEventCmd = new RelayCommand(ExecuteRemoveEventCmd, CanExecuteRemoveEventCmd);
+      _addItemCmd = new RelayCommand(ExecuteAddItemCmd, CanExecuteAddItemCmd);
+      _removeItemCmd = new RelayCommand(ExecuteRemoveItemCmd, CanExecuteRemoveItemCmd);
     }
 
     #endregion
@@ -330,11 +420,13 @@ namespace NoobApp.ViewModel {
     #region -- SaveCmd --
 
     private void ExecuteSaveCmd() {
+      Global.DataService.SaveChanges();
 
+      DialogResult = true;
     }
 
     private bool CanExecuteSaveCmd() {
-      return false;
+      return true;
     }
 
     #endregion
@@ -342,7 +434,9 @@ namespace NoobApp.ViewModel {
     #region -- CancelCmd --
 
     private void ExecuteCancelCmd() {
+      Global.Rollback();
 
+      DialogResult = false;
     }
 
     private bool CanExecuteCancelCmd() {
@@ -350,15 +444,79 @@ namespace NoobApp.ViewModel {
     }
 
     #endregion
+    
+    #region -- AddAttendanceTypeCmd --
 
-    #region -- BackCmd --
+    private void ExecuteAddAttendanceTypeCmd() {
+      AttendanceTypeList.Add(new AttendanceType());
+      AttendanceTypeSelected = AttendanceTypeList[AttendanceTypeList.Count() - 1];
+    }
 
-    private void ExecuteBackCmd() {
+    private bool CanExecuteAddAttendanceTypeCmd() {
+      return true;
+    }
+
+    #endregion
+
+    #region -- RemoveAttendanceTypeCmd --
+
+    private void ExecuteRemoveAttendanceTypeCmd() { 
+      AttendanceTypeList.Remove(AttendanceTypeSelected);
 
     }
 
-    private bool CanExecuteBackCmd() {
+    private bool CanExecuteRemoveAttendanceTypeCmd() {
+      return (AttendanceTypeSelected != null);
+    }
+
+    #endregion
+
+    #region -- AddEventCmd --
+
+    private void ExecuteAddEventCmd() {
+      EventList.Add(new Entity.Event());
+      EventSelected = EventList[EventList.Count() - 1];
+    }
+
+    private bool CanExecuteAddEventCmd() {
       return true;
+    }
+
+    #endregion
+
+    #region -- RemoveEventCmd --
+
+    private void ExecuteRemoveEventCmd() {
+      EventList.Remove(EventSelected);
+    }
+
+    private bool CanExecuteRemoveEventCmd() {
+      return (EventSelected != null);
+    }
+
+    #endregion
+
+    #region -- AddItemCmd --
+
+    private void ExecuteAddItemCmd() {
+      ItemList.Add(new Item());
+      ItemSelected = ItemList[ItemList.Count() - 1];
+    }
+
+    private bool CanExecuteAddItemCmd() {
+      return true;
+    }
+
+    #endregion
+
+    #region -- RemoveItemCmd --
+
+    private void ExecuteRemoveItemCmd() {
+      ItemList.Remove(ItemSelected);
+    }
+
+    private bool CanExecuteRemoveItemCmd() {
+      return (ItemSelected != null);
     }
 
     #endregion

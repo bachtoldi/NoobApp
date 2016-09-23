@@ -5,112 +5,180 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoobApp.View"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:dc="clr-namespace:NoobApp.AttachedProperties"
         mc:Ignorable="d"
         Title="AdminView"
-        WindowState="Maximized">
-    <Grid>
-        <TabControl>
+        WindowState="Maximized"
+        dc:DialogCloser.DialogResult="{Binding DialogResult}">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
-            <TabItem Header="Allgemein">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="11" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="11" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+    <TabControl Grid.Row="0">
 
-                    <StackPanel Grid.Row="0" Grid.Column="0">
-                        <DockPanel LastChildFill="True">
-                            <Label Content="Anwesenheitstyp" FontWeight="Bold" FontSize="14" />
-                        </DockPanel>
+      <TabItem Header="Allgemein">
 
-                        <DockPanel LastChildFill="True">
-                            <TextBox Text="{Binding AttendanceTypeSelected.AttendanceTypeName}" />
-                        </DockPanel>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
 
-                        <DockPanel LastChildFill="True">
-                            <ListBox ItemsSource="{Binding AttendanceTypeList}" SelectedItem="{Binding AttendanceTypeSelected}" DisplayMemberPath="AttendanceTypeName">
-                                <ListBox.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Hinzufügen" Command="{Binding AddAttendanceType}" />
-                                        <MenuItem Header="Entfernen" Command="{Binding DeleteAttendanceType}" />
-                                    </ContextMenu>
-                                </ListBox.ContextMenu>
-                            </ListBox>
-                        </DockPanel>
+          <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="1" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" Grid.Column="0" LastChildFill="True">
+              <Label Content="Anwesenheitstyp" FontWeight="Bold" FontSize="14" />
+            </DockPanel>
+            <DockPanel Grid.Row="1" Grid.Column="0" LastChildFill="True" Margin="5,5,5,5">
+              <TextBox Height="25" VerticalAlignment="Top" Text="{Binding AttendanceTypeSelected.AttendanceTypeName}" />
+            </DockPanel>
+            <DockPanel LastChildFill="True" Grid.Row="2" Grid.Column="0" Margin="5,5,5,5">
+              <ListBox ItemsSource="{Binding AttendanceTypeList}" SelectedItem="{Binding AttendanceTypeSelected}" DisplayMemberPath="AttendanceTypeName">
+                <ListBox.ContextMenu>
+                  <ContextMenu>
+                    <MenuItem Header="Hinzufügen" Command="{Binding AddAttendanceTypeCmd}" />
+                    <MenuItem Header="Entfernen" Command="{Binding RemoveAttendanceTypeCmd}" />
+                  </ContextMenu>
+                </ListBox.ContextMenu>
+              </ListBox>
+            </DockPanel>
+            <Grid Grid.Row="3" Grid.Column="0" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Button Grid.Row="0" Grid.Column="0" Height="25" Content="+" Command="{Binding AddAttendanceTypeCmd}" />
+              <Button Grid.Row="0" Grid.Column="1" Height="25" Content="-" Command="{Binding RemoveAttendanceTypeCmd}" />
+            </Grid>
 
-                            <Button Grid.Row="0" Grid.Column="0" Height="25" Content="+" Command="{Binding AddAttendanceType}" />
-                            <Button Grid.Row="0" Grid.Column="1" Height="25" Content="-" Command="{Binding DeleteAttendanceType}" />
-                        </Grid>
+            <GridSplitter Grid.Column="1" Width="1" Margin="5,0,5,0" />
 
-                    </StackPanel>
+            <DockPanel Grid.Row="0" Grid.Column="2" LastChildFill="True" Margin="5,5,5,5">
+              <Label Content="Anlass" FontWeight="Bold" FontSize="14" />
+            </DockPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2" Margin="5,5,5,5">
+              <DockPanel LastChildFill="True" Margin="0,0,0,5">
+                <TextBox Height="25" Text="{Binding EventSelected.EventName}" />
+              </DockPanel>
+              <DockPanel LastChildFill="True" Margin="0,0,0,5">
+                <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding EventSelected.EventStartDate}" />
+              </DockPanel>
+              <DockPanel LastChildFill="True">
+                <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding EventSelected.EventEndDate}" />
+              </DockPanel>
+            </StackPanel>
+            <DockPanel Grid.Row="2" Grid.Column="2" LastChildFill="True" Margin="5,5,5,5">
+              <ListBox ItemsSource="{Binding EventList}" SelectedItem="{Binding EventSelected}" DisplayMemberPath="EventName">
+                <ListBox.ContextMenu>
+                  <ContextMenu>
+                    <MenuItem Header="Hinzufügen" Command="{Binding AddEventCmd}" />
+                    <MenuItem Header="Entfernen" Command="{Binding RemoveEventCmd}" />
+                  </ContextMenu>
+                </ListBox.ContextMenu>
+              </ListBox>
+            </DockPanel>
+            <Grid Grid.Row="3" Grid.Column="2" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Button Grid.Row="0" Grid.Column="0" Height="25" Content="+" Command="{Binding AddEventCmd}" />
+              <Button Grid.Row="0" Grid.Column="1" Height="25" Content="-" Command="{Binding RemoveEventCmd}" />
+            </Grid>
 
-                    <GridSplitter Grid.Row="0" Grid.Column="1" Width="1" Margin="5,0,5,0" />
+          </Grid>
 
-                    <StackPanel Grid.Row="0" Grid.Column="2">
+          <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Height="1" Margin="0,5,0,5" />
 
-                        <DockPanel LastChildFill="True">
-                            <Label Content="Anlass" FontWeight="Bold" FontSize="14" />
-                        </DockPanel>
+          <Grid Grid.Row="2" Grid.Column="0" >
 
-                        <DockPanel LastChildFill="True">
-                            <TextBox Text="{Binding EventSelected.EventName}" />
-                        </DockPanel>
-                        <DockPanel LastChildFill="True">
-                            <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding EventSelected.EventStartDate}" />
-                        </DockPanel>
-                        <DockPanel LastChildFill="True">
-                            <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding EventSelected.EventEndDate}" />
-                        </DockPanel>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                        <DockPanel LastChildFill="True">
-                            <ListBox ItemsSource="{Binding EventList}" SelectedItem="{Binding EventSelected}" DisplayMemberPath="EventName">
-                                <ListBox.ContextMenu>
-                                    <ContextMenu>
-                                        <MenuItem Header="Hinzufügen" Command="{Binding AddEvent}" />
-                                        <MenuItem Header="Entfernen" Command="{Binding DeleteEvent}" />
-                                    </ContextMenu>
-                                </ListBox.ContextMenu>
-                            </ListBox>
-                        </DockPanel>
+            <DockPanel Grid.Row="0" Grid.Column="2" LastChildFill="True" Margin="5,5,5,5">
+              <Label Content="Artikel" FontWeight="Bold" FontSize="14" />
+            </DockPanel>
+            <StackPanel Grid.Row="1" Grid.Column="2" Margin="5,5,5,5">
+              <DockPanel LastChildFill="True" Margin="0,0,0,5">
+                <TextBox Height="25" Text="{Binding ItemSelected.ItemName}" />
+              </DockPanel>
+              <DockPanel LastChildFill="True" Margin="0,0,0,5">
+                <TextBox Height="25" Text="[IMAGE PLACEHOLDER]" IsEnabled="False" />
+              </DockPanel>
+            </StackPanel>
+            <DockPanel Grid.Row="2" Grid.Column="2" LastChildFill="True" Margin="5,5,5,5">
+              <ListBox ItemsSource="{Binding ItemList}" SelectedItem="{Binding ItemSelected}" DisplayMemberPath="ItemName">
+                <ListBox.ContextMenu>
+                  <ContextMenu>
+                    <MenuItem Header="Hinzufügen" Command="{Binding AddItemCmd}" />
+                    <MenuItem Header="Entfernen" Command="{Binding RemoveItemCmd}" />
+                  </ContextMenu>
+                </ListBox.ContextMenu>
+              </ListBox>
+            </DockPanel>
+            <Grid Grid.Row="3" Grid.Column="2" Margin="5,5,5,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Button Grid.Row="0" Grid.Column="0" Height="25" Content="+" Command="{Binding AddItemCmd}" />
+              <Button Grid.Row="0" Grid.Column="1" Height="25" Content="-" Command="{Binding RemoveItemCmd}" />
+            </Grid>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+          </Grid>
 
-                            <Button Grid.Row="0" Grid.Column="0" Height="25" Content="+" Command="{Binding AddEvent}" />
-                            <Button Grid.Row="0" Grid.Column="1" Height="25" Content="-" Command="{Binding DeleteEvent}" />
-                        </Grid>
+        </Grid>
 
-                    </StackPanel>
+      </TabItem>
 
-                    <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Height="1" Margin="0,5,0,5" />
-                </Grid>
-            </TabItem>
+      <TabItem Header="Anlassbezogen">
 
-            <TabItem Header="Anlassbezogen">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          
+          
+          
+        </Grid>
 
-            </TabItem>
+      </TabItem>
 
-        </TabControl>
-    </Grid>
+    </TabControl>
+
+    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button Width="250" Height="25" Content="Abbrechen" Command="{Binding CancelCmd}" />
+      <Button Width="250" Height="25" Content="Speichern" Command="{Binding SaveCmd}" />
+    </StackPanel>
+
+  </Grid>
 </Window>
