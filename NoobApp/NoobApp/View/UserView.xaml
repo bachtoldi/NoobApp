@@ -31,7 +31,7 @@
       <Label Content="Kosten Total:" />
       <Label Width="80" HorizontalContentAlignment="Right" />
       <Label Content="CHF"/>
-      <Button Width="35" Content="..." />
+      <Button Width="35" Content="..." Command="{Binding ShowUserPurchasesCmd}"/>
     </DockPanel>
   </Grid>
 </UserControl>

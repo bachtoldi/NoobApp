@@ -15,7 +15,8 @@ namespace NoobApp.ViewModel {
 
     #region - Instance Variables -
 
-    Entity.Event _event;
+    private HomeViewModel _viewModel;
+    private Entity.Event _event;
 
     #endregion
 
@@ -155,12 +156,12 @@ namespace NoobApp.ViewModel {
     #region -- HomeCmd --
 
     private void ExecuteHomeCmd() {
-      HomeViewModel viewModel = new HomeViewModel();
-      HomeView view = new HomeView(viewModel);
+      _viewModel = new HomeViewModel();
+      HomeView view = new HomeView(_viewModel);
 
       UserListControlView = view;
 
-      viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+      _viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
     }
 
     private bool CanExecuteHomeCmd() {
@@ -208,7 +209,6 @@ namespace NoobApp.ViewModel {
     private void ChangeWindow(object sender, UserControlEventArgs e) {
 
       if (e.View == Views.USER) {
-
         UserViewModel viewModel = new UserViewModel(e.User, _event);
         UserView view = new UserView(viewModel);
 
@@ -223,53 +223,27 @@ namespace NoobApp.ViewModel {
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      //} else if (e.View == Views.PURCHASE) {
+      } else if (e.View == Views.PURCHASED) {
 
-      //  PurchaseViewModel viewModel = new PurchaseViewModel(e.User, _event);
-      //  PurchaseView view = new PurchaseView(viewModel);
+        PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event);
+        PurchasedView view = new PurchasedView(viewModel);
 
-      //  ContentControlView = view;
+        UserPurchaseButtonsControlView = view;
 
-      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
-
-      //} else if (e.View == Views.ATTENDANCE) {
-
-      //  AttendanceViewModel viewModel = new AttendanceViewModel(e.User, _event);
-      //  AttendanceView view = new AttendanceView(viewModel);
-
-      //  ContentControlView = view;
-
-      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
-
-      //} else if (e.View == Views.PURCHASED) {
-
-      //  PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event);
-      //  PurchasedView view = new PurchasedView(viewModel);
-
-      //  ContentControlView = view;
-
-      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
       } else if (e.View == Views.NEWUSER) {
-
-        NewUserViewModel viewModel = new NewUserViewModel();
+        NewUserViewModel viewModel = new NewUserViewModel(e.User);
         NewUserView view = new NewUserView(viewModel);
+
+        if (view.ShowDialog() == true) {
+          _viewModel.NewUserCallback();
+        }
 
         //ContentControlView = view;
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
-
-      //} else if (e.View == Views.HOME) {
-
-      //  HomeViewModel viewModel = new HomeViewModel();
-      //  HomeView view = new HomeView(viewModel);
-
-      //  ContentControlView = view;
-
-      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
-
       }
-
     }
 
     #endregion

@@ -12,21 +12,19 @@
           <RowDefinition Height="Auto" />
       </Grid.RowDefinitions>
 
-      <ListBox Grid.Row="0" ItemsSource="{Binding UserList}" SelectedItem="{Binding UserSelected}" HorizontalAlignment="Center" BorderThickness="0">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Label Content="{Binding UserDisplayName}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="Width" Value="250"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-
-    <Button Grid.Row="1" Height="40" Width="250" HorizontalContentAlignment="Center" Content="Neuen Benutzer erstellen" Command="{Binding NewUserCmd}" />
+    <ListBox Grid.Row="0" ItemsSource="{Binding UserList}" SelectedItem="{Binding UserSelected}" HorizontalAlignment="Center" BorderThickness="0">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <Label Content="{Binding UserDisplayName}" />
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+      <ListBox.ItemContainerStyle>
+        <Style TargetType="{x:Type ListBoxItem}">
+          <Setter Property="Height" Value="40"/>
+          <Setter Property="Width" Value="250"/>
+          <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+      </ListBox.ItemContainerStyle>
+    </ListBox>
   </Grid>
 </UserControl>

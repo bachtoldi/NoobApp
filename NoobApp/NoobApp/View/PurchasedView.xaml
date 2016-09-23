@@ -22,7 +22,8 @@
 
         <DockPanel Grid.Row="1" LastChildFill="True">
             <Label Width="100" Content="Konsum" />
-            <ItemsControl ItemsSource="{Binding DisplayItemList}">
+            <ItemsControl ItemsSource="{Binding 
+              }">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <DockPanel LastChildFill="True">

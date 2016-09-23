@@ -53,9 +53,9 @@ namespace NoobApp.ViewModel {
 
     #region -- DisplayItemList --
 
-    public static string DisplayItemListPropertyName = "DisplayItemList";
+    public static string PurchaseDisplayItemListPropertyName = "PurchaseDisplayItemList";
     private BindingList<DisplayItem> _displayItemList;
-    public BindingList<DisplayItem> DisplayItemList {
+    public BindingList<DisplayItem> PurchaseDisplayItemList {
       get {
         return _displayItemList;
       }
@@ -65,7 +65,30 @@ namespace NoobApp.ViewModel {
         }
 
         _displayItemList = value;
-        RaisePropertyChanged(DisplayItemListPropertyName);
+        RaisePropertyChanged(PurchaseDisplayItemListPropertyName);
+      }
+    }
+
+    #endregion
+
+    #region -- DisplayItemSelected --
+    public static string DisplayItemSelectedPropertyName = "DisplayItemSelected";
+    private DisplayItem _displayItemSelected;
+    public DisplayItem DisplayItemSelected {
+      get {
+        return _displayItemSelected;
+      }
+      set {
+        if (_displayItemSelected == value) {
+          return;
+        }
+
+        _displayItemSelected = value;
+        RaisePropertyChanged(DisplayItemSelectedPropertyName);
+
+        if (CanExecuteSaveCmd()) {
+          ExecuteSaveCmd();
+        }
       }
     }
 
@@ -112,11 +135,8 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      //TODO kann man ohne das scheiss load die referenzen ranholen?
-      //dataService.EventInventories.Load();
-      //dataService.Events.Load();
-      //dataService.Items.Load();
-      DisplayItemList = new BindingList<DisplayItem>(Global.DataService.EventInventories.Local.Where(x => x.EventInventoryEventRef.EventId == _event.EventId).Select(x => new DisplayItem(x)).ToList());
+      var entityList = Global.DataService.EventInventories.Local.Where(x => x.EventInventoryEventRef.EventId == _event.EventId);
+      PurchaseDisplayItemList = new BindingList<DisplayItem>(entityList.Select(x => new DisplayItem(x)).ToList());
 
       InitializeCommands();
     }
@@ -138,12 +158,12 @@ namespace NoobApp.ViewModel {
 
       SavePurchase();
 
-      if (OnChangeWindow == null) {
-        return;
-      }
+      //if (OnChangeWindow == null) {
+      //  return;
+      //}
 
-      UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, User);
-      OnChangeWindow(this, args);
+      //UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, User);
+      //OnChangeWindow(this, args);
 
     }
 
@@ -175,23 +195,13 @@ namespace NoobApp.ViewModel {
     #region -- SavePurchase --
 
     private void SavePurchase() {
-      foreach (var item in DisplayItemList) {
-        if (item.DisplayItemAmount > 0) {
-          for (int i = 0; i < item.DisplayItemAmount; i++) {
-            var purchase = new Purchase() {
-              PurchaseBilled = false,
-              PurchaseEventInventoryRef = item.GetEventInventory(),
-              PurchaseUserRef = User,
+      var purchase = new Purchase() {
+        PurchaseBilled = false,
+        PurchaseEventInventoryRef = DisplayItemSelected.GetEventInventory(),
+        PurchaseUserRef = User,
+      };
 
-            };
-
-            //Global.DataService.Entry(purchase.PurchaseEventInventoryRef).State = EntityState.Unchanged;
-            //Global.DataService.Entry(purchase.PurchaseUserRef).State = EntityState.Unchanged;
-            //Global.DataService.Entry(purchase).State = (purchase.PurchaseId == 0) ? EntityState.Added : EntityState.Modified;
-            Global.DataService.SaveChanges();
-          }
-        }
-      }
+      Global.DataService.SaveChanges();
     }
 
     #endregion

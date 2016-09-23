@@ -126,7 +126,6 @@
     <Compile Include="Event\ChangeWindowEventHandler.cs" />
     <Compile Include="Event\UserControlEventArgs.cs" />
     <Compile Include="TriggerAction\NumericTextboxActions.cs" />
-    <Compile Include="ViewModel\AttendanceViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NewUserViewModel.cs" />
@@ -145,9 +144,6 @@
     </Compile>
     <Compile Include="ViewModel\UserViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="View\AttendanceView.xaml.cs">
-      <DependentUpon>AttendanceView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -184,10 +180,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SelectEventView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AttendanceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

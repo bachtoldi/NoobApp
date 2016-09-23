@@ -3,10 +3,9 @@ using GalaSoft.MvvmLight.CommandWpf;
 using NoobApp.Entity;
 using NoobApp.Enum;
 using NoobApp.Event;
-using NoobApp.Model;
 using System.ComponentModel;
 using System.Data.Entity;
-using System.Windows;
+using System.Linq;
 
 namespace NoobApp.ViewModel {
   public class HomeViewModel : ViewModelBase {
@@ -84,24 +83,16 @@ namespace NoobApp.ViewModel {
     }
 
     #endregion
-
-    #region -- NewUserCmd --
-
-    private RelayCommand _newUserCmd;
-
-    public RelayCommand NewUserCmd {
-      get {
-        return _newUserCmd;
-      }
-    }
-
-    #endregion
-
+    
     #endregion
 
     #region - Public Methods -
 
     public event ChangeWindowEventHandler OnChangeWindow;
+
+    public void NewUserCallback() {
+      AddDummyUser();
+    }
 
     #endregion
 
@@ -112,12 +103,18 @@ namespace NoobApp.ViewModel {
     private void InitializeData() {
       UserList = Global.DataService.Users.Local.ToBindingList();
 
+      AddDummyUser();
+
+      InitializeCommands();
+    }
+
+    private void AddDummyUser() {
       UserList.Add(new User() {
         UserDisplayName = "Neuer Teilnehmer",
         UserLastName = "1",
       });
 
-      InitializeCommands();
+      Global.DataService.Entry(UserList.Last()).State = EntityState.Unchanged;
     }
 
     #endregion
@@ -126,7 +123,6 @@ namespace NoobApp.ViewModel {
 
     private void InitializeCommands() {
       _selectUserCmd = new RelayCommand(ExecuteSelectUserCmd, CanExecuteSelectUserCmd);
-      _newUserCmd = new RelayCommand(ExecuteNewUserCmd, CanExecuteNewUserCmd);
     }
 
     #endregion
@@ -163,9 +159,11 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      if (UserSelected.UserLastName.Equals("1"))
-        ;
-
+      if (UserSelected.UserLastName.Equals("1")) {
+        UserControlEventArgs newUserArgs = new UserControlEventArgs(Views.NEWUSER, false, UserSelected);
+        OnChangeWindow(this, newUserArgs);
+      }
+        
       UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, UserSelected);
       OnChangeWindow(this, args);
 
@@ -181,9 +179,8 @@ namespace NoobApp.ViewModel {
         return;
       }
 
-      UserControlEventArgs args = new UserControlEventArgs(Views.NEWUSER, false, null);
+      UserControlEventArgs args = new UserControlEventArgs(Views.NEWUSER, false, UserSelected);
       OnChangeWindow(this, args);
-
     }
 
     #endregion

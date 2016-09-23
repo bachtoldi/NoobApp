@@ -9,30 +9,30 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <UserControl.Resources>
-        <BitmapImage x:Key="Up" UriSource="../img/arrow_up_24dp_1x.png" />
-        <BitmapImage x:Key="Down" UriSource="../img/arrow_down_24dp_1x.png" />
-    </UserControl.Resources>
+  <UserControl.Resources>
+    <BitmapImage x:Key="Up" UriSource="../img/arrow_up_24dp_1x.png" />
+    <BitmapImage x:Key="Down" UriSource="../img/arrow_down_24dp_1x.png" />
+  </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
-        <HeaderedItemsControl Grid.Row="0" ItemsSource="{Binding DisplayItemList}">
-            <HeaderedItemsControl.Template>
-                <ControlTemplate TargetType="HeaderedItemsControl">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-                        <DockPanel>
-                            <ContentPresenter DockPanel.Dock="Top" ContentSource="Header" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-                        </DockPanel>
-                    </Border>
-                </ControlTemplate>
-            </HeaderedItemsControl.Template>
-            <!--<HeaderedItemsControl.HeaderTemplate>
+    <!-- <HeaderedItemsControl Grid.Row="0" ItemsSource="{Binding DisplayItemList}">
+      <HeaderedItemsControl.Template>
+        <ControlTemplate TargetType="HeaderedItemsControl">
+          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+            <DockPanel>
+              <ContentPresenter DockPanel.Dock="Top" ContentSource="Header" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+              <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+            </DockPanel>
+          </Border>
+        </ControlTemplate>
+      </HeaderedItemsControl.Template>
+      <HeaderedItemsControl.HeaderTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -50,68 +50,24 @@
                         <Label Grid.Column="5" Content="Total" />
                     </Grid>
                 </DataTemplate>
-            </HeaderedItemsControl.HeaderTemplate>-->
-            <HeaderedItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="5*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="2" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <!--<Image Grid.Column="0" Source="{Binding DisplayItemImage}" Width="50" Height="50" />-->
-                        <Label Grid.Column="1" Content="{Binding DisplayItemName}" />
-                        <StackPanel Grid.Column="2" Orientation="Horizontal">
-                            <Label Content="{Binding DisplayItemPrice}" />
-                            <Label Content="CHF" />
-                        </StackPanel>
-                        <Line Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-
-                        <DockPanel Grid.Column="4">
-                            <TextBox Name="TextBoxAmount" Width="50" Height="30" Text="{Binding DisplayItemAmount, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
-                            <StackPanel Margin="1,1,1,1">
-                                <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="14" Height="14" Margin="1,0,0,1">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="{StaticResource Up}" />
-                                    </Button.Background>
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Click">
-                                            <ta:IncreaseTextboxAction Target="{Binding ElementName=TextBoxAmount}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Button>
-                                <Button VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="14" Height="14" Margin="1,1,0,0">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="{StaticResource Down}" />
-                                    </Button.Background>
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Click">
-                                            <ta:DecreaseTextboxAction Target="{Binding ElementName=TextBoxAmount}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Button>
-                            </StackPanel>
-                        </DockPanel>
-
-                        <StackPanel HorizontalAlignment="Right" Grid.Column="5" Orientation="Horizontal">
-                            <Label FontWeight="Bold" Content="{Binding DisplayItemTotal}" />
-                            <Label FontWeight="Bold" Content="CHF" />
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </HeaderedItemsControl.ItemTemplate>
-        </HeaderedItemsControl>
-
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <DockPanel>
-                <Button Height="40" Width="150" Command="{Binding SaveCmd}">Speichern</Button>
-                <Button Height="40" Width="150" Command="{Binding CancelCmd}">Abbrechen</Button>
-            </DockPanel>
-        </StackPanel>
-        
-    </Grid>
+            </HeaderedItemsControl.HeaderTemplate>
+      <HeaderedItemsControl.ItemTemplate>-->
+    <ListBox Grid.Row="0" ItemsSource="{Binding PurchaseDisplayItemList}" SelectedItem="{Binding DisplayItemSelected}" HorizontalAlignment="Center" BorderThickness="0">
+      <DataTemplate>
+        <DockPanel >
+          <Image Height="50" Width="50"></Image>
+          <Label Content="{Binding DisplayItemName}" />
+          <Label Content="{Binding DisplayItemPrice}" />
+          <Label Content="CHF" />
+        </DockPanel>
+      </DataTemplate>
+      <ListBox.ItemContainerStyle>
+        <Style TargetType="{x:Type ListBoxItem}">
+          <Setter Property="Height" Value="40"/>
+          <Setter Property="Width" Value="250"/>
+          <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+      </ListBox.ItemContainerStyle>
+    </ListBox>
+  </Grid>
 </UserControl>

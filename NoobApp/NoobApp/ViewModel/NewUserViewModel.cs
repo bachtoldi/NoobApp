@@ -15,7 +15,8 @@ namespace NoobApp.ViewModel {
 
     #region - Constructor -
 
-    public NewUserViewModel() {
+    public NewUserViewModel(User user) {
+      User = user;
       InitializeData();
     }
 
@@ -103,6 +104,26 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
+    #region -- DialogResult --
+
+    public static string DialogResultPropertyName = "DialogResult";
+    private bool? _dialogResult;
+    public bool? DialogResult {
+      get {
+        return _dialogResult;
+      }
+      set {
+        if (_dialogResult == value) {
+          return;
+        }
+
+        _dialogResult = value;
+        RaisePropertyChanged(DialogResultPropertyName);
+      }
+    }
+
+    #endregion
+
     #endregion
 
     #region - Commands -
@@ -144,7 +165,9 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      User = new User();
+      User.UserDisplayName = string.Empty;
+      User.UserLastName = string.Empty;
+
       InitializeCommands();
     }
 
@@ -163,15 +186,11 @@ namespace NoobApp.ViewModel {
 
     private void ExecuteSaveCmd() {
 
-      SaveUser();
+      Global.DataService.Entry(User).State = EntityState.Added;
 
-      if (OnChangeWindow == null) {
-        return;
-      }
+      Global.DataService.SaveChanges();
 
-      var args = new UserControlEventArgs(Views.HOME, false, null);
-      OnChangeWindow(this, args);
-
+      DialogResult = true;
     }
 
     private bool CanExecuteSaveCmd() {
@@ -193,28 +212,15 @@ namespace NoobApp.ViewModel {
     #region -- ExecuteCancelCmd --
 
     private void ExecuteCancelCmd() {
+      User.UserFirstName = string.Empty;
+      User.UserLastName = "1";
+      User.UserDisplayName = "Neuer Teilnehmer";
 
-      if (OnChangeWindow == null) {
-        return;
-      }
-
-      var args = new UserControlEventArgs(Views.HOME, true, null);
-      OnChangeWindow(this, args);
-
-
+      DialogResult = false;
     }
 
     private bool CanExecuteCancelCmd() {
       return true;
-    }
-
-    #endregion
-
-    #region -- SaveUser --
-
-    private void SaveUser() {
-      //Global.DataService.Entry(User).State = (User.UserId == 0) ? EntityState.Added : EntityState.Modified;
-      Global.DataService.SaveChanges();
     }
 
     #endregion

@@ -93,10 +93,30 @@ namespace NoobApp.ViewModel {
 
     #endregion
 
-
     #endregion
 
     #region - Commands -
+
+    #region -- ShowUserPurchasesCmd --
+
+    public static string ShowUserPurchasesCmdPropertyName = "ShowUserPurchasesCmd";
+    private RelayCommand _showUserPurchasesCmd;
+    public RelayCommand ShowUserPurchasesCmd {
+      get {
+        return _showUserPurchasesCmd;
+      }
+      set {
+        if (_showUserPurchasesCmd == value) {
+          return;
+        }
+
+        _showUserPurchasesCmd = value;
+        RaisePropertyChanged(ShowUserPurchasesCmdPropertyName);
+      }
+    }
+
+    #endregion
+
 
     #endregion
 
@@ -135,6 +155,22 @@ namespace NoobApp.ViewModel {
     #region -- InitializeCommands --
 
     private void InitializeCommands() {
+
+      ShowUserPurchasesCmd = new RelayCommand(ExecuteShowUserPurchasesCmd, CanExecuteShowUserPurchasesCmd);
+    }
+
+    #endregion
+
+    #region -- ExecuteShowUserPurchasesCmd --
+
+    private void ExecuteShowUserPurchasesCmd() {
+      var eventArgs = new UserControlEventArgs(Views.PURCHASED, false, User);
+
+      OnChangeWindow(this, eventArgs);
+    }
+
+    private bool CanExecuteShowUserPurchasesCmd() {
+      return true;
     }
 
     #endregion
