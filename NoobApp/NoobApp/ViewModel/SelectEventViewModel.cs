@@ -123,10 +123,8 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-      using (var dataService = new DataService()) {
-        dataService.Events.Load();
-        EventList = dataService.Events.Local.ToBindingList();
-      }
+      //dataService.Events.Load();
+      EventList = Global.DataService.Events.Local.ToBindingList();
 
       InitializeCommands();
     }

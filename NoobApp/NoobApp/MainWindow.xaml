@@ -8,19 +8,26 @@
         Title="MainWindow"
         WindowState="Maximized"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" /> 
-        </Grid.RowDefinitions>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
 
-        <ToolBar Grid.Row="0">
-            <Button Command="{Binding HomeCmd}">Home</Button>
-            <Button Command="{Binding PopulateDatabaseCmd}">DB füllen</Button>
-            <Button Command="{Binding AdminCmd}">Admin-Panel</Button>
-        </ToolBar>
+    <ToolBar Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+      <Button Command="{Binding HomeCmd}">Home</Button>
+      <Button Command="{Binding PopulateDatabaseCmd}">DB füllen</Button>
+      <Button Command="{Binding AdminCmd}">Admin-Panel</Button>
+    </ToolBar>
 
-        <ContentControl Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding ContentControlView}" />
+    <ContentControl Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding UserListControlView}" />
+    <ContentControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding UserDetailControlView}" />
+    <ContentControl Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding UserPurchaseButtonsControlView}" />
 
-    </Grid>
+  </Grid>
 </Window>

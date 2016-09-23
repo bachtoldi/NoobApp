@@ -176,24 +176,17 @@ namespace NoobApp.ViewModel {
 
     private void InitializeData() {
 
-      using (var dataService = new DataService()) {
-        dataService.AttendanceTypes.Load();
-        AttendanceTypeList = new BindingList<AttendanceType>(dataService.AttendanceTypes.Local);
+      AttendanceTypeList = Global.DataService.AttendanceTypes.Local.ToBindingList();
 
-        dataService.Attendances.Load();
-        dataService.Users.Load();
-        dataService.Events.Load();
-        _attendance = dataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId && x.AttendanceEventRef.EventId == _event.EventId).FirstOrDefault();
+      _attendance = Global.DataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId && x.AttendanceEventRef.EventId == _event.EventId).FirstOrDefault();
 
-        if (_attendance != null) {
-          AttendanceTypeSelected = AttendanceTypeList.Where(x => x.AttendanceTypeId == _attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
-          FromDateTime = _attendance.AttendanceStartDateTime;
-          TillDateTime = _attendance.AttendanceEndDateTime;
-        }
+      if (_attendance != null) {
+        AttendanceTypeSelected = AttendanceTypeList.Where(x => x.AttendanceTypeId == _attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
+        FromDateTime = _attendance.AttendanceStartDateTime;
+        TillDateTime = _attendance.AttendanceEndDateTime;
       }
 
       InitializeCommands();
-
     }
 
     #endregion
@@ -265,15 +258,14 @@ namespace NoobApp.ViewModel {
         _attendance.AttendanceAttendanceTypeRef = AttendanceTypeSelected;
       }
 
-      using (var dataService = new DataService()) {
-        //TODO kann man irgendwie ohne das EntityState speichern?
-        dataService.Entry(_attendance.AttendanceAttendanceTypeRef).State = EntityState.Unchanged;
-        dataService.Entry(_attendance.AttendanceUserRef).State = EntityState.Unchanged;
-        dataService.Entry(_attendance.AttendanceEventRef).State = EntityState.Unchanged;
-        dataService.Entry(_attendance).State = (_attendance.AttendanceId == 0) ? EntityState.Added : EntityState.Modified;
-        dataService.SaveChanges();
-      }
 
+      //TODO kann man irgendwie ohne das EntityState speichern?
+      //dataService.Entry(_attendance.AttendanceAttendanceTypeRef).State = EntityState.Unchanged;
+      //dataService.Entry(_attendance.AttendanceUserRef).State = EntityState.Unchanged;
+      //dataService.Entry(_attendance.AttendanceEventRef).State = EntityState.Unchanged;
+      //dataService.Entry(_attendance).State = (_attendance.AttendanceId == 0) ? EntityState.Added : EntityState.Modified;
+      Global.DataService.SaveChanges();
+      
     }
 
     #endregion

@@ -39,19 +39,51 @@ namespace NoobApp.ViewModel {
 
     #region -- ContentControlView --
 
-    public static string ContentControlViewPropertyName = "ContentControlView";
-    private FrameworkElement _contentControlView;
-    public FrameworkElement ContentControlView {
+    public static string ContentControlViewPropertyName = "UserListControlView";
+    private FrameworkElement _userListControlView;
+    public FrameworkElement UserListControlView {
       get {
-        return _contentControlView;
+        return _userListControlView;
       }
       set {
-        if (_contentControlView == value) {
+        if (_userListControlView == value) {
           return;
         }
 
-        _contentControlView = value;
+        _userListControlView = value;
         RaisePropertyChanged(ContentControlViewPropertyName);
+      }
+    }
+
+    public static string UserDetailControlViewPropertyName = "UserDetailControlView";
+    private FrameworkElement _userDetailControlView;
+    public FrameworkElement UserDetailControlView {
+      get {
+        return _userDetailControlView;
+      }
+      set {
+        if (_userDetailControlView == value) {
+          return;
+        }
+
+        _userDetailControlView = value;
+        RaisePropertyChanged(UserDetailControlViewPropertyName);
+      }
+    }
+
+    public static string UserPurchaseButtonsControlViewPropertyName = "UserPurchaseButtonsControlView";
+    private FrameworkElement _userPurchaseButtonsControlView;
+    public FrameworkElement UserPurchaseButtonsControlView {
+      get {
+        return _userPurchaseButtonsControlView;
+      }
+      set {
+        if (_userPurchaseButtonsControlView == value) {
+          return;
+        }
+
+        _userPurchaseButtonsControlView = value;
+        RaisePropertyChanged(UserPurchaseButtonsControlViewPropertyName);
       }
     }
 
@@ -126,7 +158,7 @@ namespace NoobApp.ViewModel {
       HomeViewModel viewModel = new HomeViewModel();
       HomeView view = new HomeView(viewModel);
 
-      ContentControlView = view;
+      UserListControlView = view;
 
       viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
     }
@@ -177,57 +209,64 @@ namespace NoobApp.ViewModel {
 
       if (e.View == Views.USER) {
 
-        UserViewModel viewModel = new UserViewModel(e.User);
+        UserViewModel viewModel = new UserViewModel(e.User, _event);
         UserView view = new UserView(viewModel);
 
-        ContentControlView = view;
+        UserDetailControlView = view;
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      } else if (e.View == Views.PURCHASE) {
+        PurchaseViewModel purchaseViewModel = new PurchaseViewModel(e.User, _event);
+        PurchaseView purchaseView = new PurchaseView(purchaseViewModel);
 
-        PurchaseViewModel viewModel = new PurchaseViewModel(e.User, _event);
-        PurchaseView view = new PurchaseView(viewModel);
-
-        ContentControlView = view;
+        UserPurchaseButtonsControlView = purchaseView;
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      } else if (e.View == Views.ATTENDANCE) {
+      //} else if (e.View == Views.PURCHASE) {
 
-        AttendanceViewModel viewModel = new AttendanceViewModel(e.User, _event);
-        AttendanceView view = new AttendanceView(viewModel);
+      //  PurchaseViewModel viewModel = new PurchaseViewModel(e.User, _event);
+      //  PurchaseView view = new PurchaseView(viewModel);
 
-        ContentControlView = view;
+      //  ContentControlView = view;
 
-        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      } else if (e.View == Views.PURCHASED) {
+      //} else if (e.View == Views.ATTENDANCE) {
 
-        PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event);
-        PurchasedView view = new PurchasedView(viewModel);
+      //  AttendanceViewModel viewModel = new AttendanceViewModel(e.User, _event);
+      //  AttendanceView view = new AttendanceView(viewModel);
 
-        ContentControlView = view;
+      //  ContentControlView = view;
 
-        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+
+      //} else if (e.View == Views.PURCHASED) {
+
+      //  PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event);
+      //  PurchasedView view = new PurchasedView(viewModel);
+
+      //  ContentControlView = view;
+
+      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
       } else if (e.View == Views.NEWUSER) {
 
         NewUserViewModel viewModel = new NewUserViewModel();
         NewUserView view = new NewUserView(viewModel);
 
-        ContentControlView = view;
+        //ContentControlView = view;
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-      } else if (e.View == Views.HOME) {
+      //} else if (e.View == Views.HOME) {
 
-        HomeViewModel viewModel = new HomeViewModel();
-        HomeView view = new HomeView(viewModel);
+      //  HomeViewModel viewModel = new HomeViewModel();
+      //  HomeView view = new HomeView(viewModel);
 
-        ContentControlView = view;
+      //  ContentControlView = view;
 
-        viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
+      //  viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
       }
 

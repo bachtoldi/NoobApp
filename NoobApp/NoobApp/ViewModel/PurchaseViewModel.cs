@@ -112,17 +112,13 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
-
-      using (var dataService = new DataService()) {
-        //TODO kann man ohne das scheiss load die referenzen ranholen?
-        dataService.EventInventories.Load();
-        dataService.Events.Load();
-        dataService.Items.Load();
-        DisplayItemList = new BindingList<DisplayItem>(dataService.EventInventories.Local.Where(x => x.EventInventoryEventRef.EventId == _event.EventId).Select(x => new DisplayItem(x)).ToList());
-      }
+      //TODO kann man ohne das scheiss load die referenzen ranholen?
+      //dataService.EventInventories.Load();
+      //dataService.Events.Load();
+      //dataService.Items.Load();
+      DisplayItemList = new BindingList<DisplayItem>(Global.DataService.EventInventories.Local.Where(x => x.EventInventoryEventRef.EventId == _event.EventId).Select(x => new DisplayItem(x)).ToList());
 
       InitializeCommands();
-
     }
 
     #endregion
@@ -179,30 +175,23 @@ namespace NoobApp.ViewModel {
     #region -- SavePurchase --
 
     private void SavePurchase() {
+      foreach (var item in DisplayItemList) {
+        if (item.DisplayItemAmount > 0) {
+          for (int i = 0; i < item.DisplayItemAmount; i++) {
+            var purchase = new Purchase() {
+              PurchaseBilled = false,
+              PurchaseEventInventoryRef = item.GetEventInventory(),
+              PurchaseUserRef = User,
 
-      using (var dataService = new DataService()) {
-        foreach (var item in DisplayItemList) {
-          if (item.DisplayItemAmount > 0) {
-            for (int i = 0; i < item.DisplayItemAmount; i++) {
+            };
 
-              var purchase = new Purchase() {
-
-                PurchaseBilled = false,
-                PurchaseEventInventoryRef = item.GetEventInventory(),
-                PurchaseUserRef = User,
-
-              };
-
-              dataService.Entry(purchase.PurchaseEventInventoryRef).State = EntityState.Unchanged;
-              dataService.Entry(purchase.PurchaseUserRef).State = EntityState.Unchanged;
-              dataService.Entry(purchase).State = (purchase.PurchaseId == 0) ? EntityState.Added : EntityState.Modified;
-              dataService.SaveChanges();
-
-            }
+            //Global.DataService.Entry(purchase.PurchaseEventInventoryRef).State = EntityState.Unchanged;
+            //Global.DataService.Entry(purchase.PurchaseUserRef).State = EntityState.Unchanged;
+            //Global.DataService.Entry(purchase).State = (purchase.PurchaseId == 0) ? EntityState.Added : EntityState.Modified;
+            Global.DataService.SaveChanges();
           }
         }
       }
-
     }
 
     #endregion

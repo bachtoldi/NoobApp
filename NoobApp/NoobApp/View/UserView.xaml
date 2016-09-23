@@ -6,13 +6,32 @@
              xmlns:local="clr-namespace:NoobApp.View"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
 
-        <ListBox HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0">
-            <Button Width="250" Height="40" Command="{Binding AddPurchaseCmd}" Content="Artikel konsumieren" />
-            <Button Width="250" Height="40" Command="{Binding AttendanceCmd}" Content="Anwesenheit definieren" />
-            <Button Width="250" Height="40" Command="{Binding ViewPurchasesCmd}" Content="Aktuelle Abrechnung" />
-        </ListBox>
-        
-    </Grid>
+    <StackPanel Grid.Row="0">
+      <DockPanel LastChildFill="True">
+        <Image Height="50" Width="50"/>
+        <Label Content="{Binding User.UserDisplayName}"/>
+      </DockPanel>
+      <DockPanel LastChildFill="True">
+        <Label Content="{Binding User.UserFirstName}"/>
+        <Label Content="{Binding User.UserLastName}"/>
+      </DockPanel>
+    </StackPanel>
+    <StackPanel Grid.Row="1">
+      <ComboBox SelectedItem="{Binding Attendance.AttendanceType}" ItemsSource="{Binding AttendanceTypeList}" DisplayMemberPath="AttendanceTypeName"/>
+    </StackPanel>
+    <DockPanel Grid.Row="3" LastChildFill="False">
+      <Label Content="Kosten Total:" />
+      <Label Width="80" HorizontalContentAlignment="Right" />
+      <Label Content="CHF"/>
+      <Button Width="35" Content="..." />
+    </DockPanel>
+  </Grid>
 </UserControl>

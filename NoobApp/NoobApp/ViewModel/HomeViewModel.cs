@@ -6,6 +6,7 @@ using NoobApp.Event;
 using NoobApp.Model;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Windows;
 
 namespace NoobApp.ViewModel {
   public class HomeViewModel : ViewModelBase {
@@ -109,14 +110,14 @@ namespace NoobApp.ViewModel {
     #region -- InitializeData --
 
     private void InitializeData() {
+      UserList = Global.DataService.Users.Local.ToBindingList();
 
-      using (var dataService = new DataService()) {
-        dataService.Users.Load();
-        UserList = dataService.Users.Local.ToBindingList();
-      }
+      UserList.Add(new User() {
+        UserDisplayName = "Neuer Teilnehmer",
+        UserLastName = "1",
+      });
 
       InitializeCommands();
-
     }
 
     #endregion
@@ -162,6 +163,9 @@ namespace NoobApp.ViewModel {
         return;
       }
 
+      if (UserSelected.UserLastName.Equals("1"))
+        ;
+
       UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, UserSelected);
       OnChangeWindow(this, args);
 
@@ -173,7 +177,7 @@ namespace NoobApp.ViewModel {
 
     private void OpenNewUserView() {
 
-      if(OnChangeWindow == null) {
+      if (OnChangeWindow == null) {
         return;
       }
 
@@ -181,7 +185,7 @@ namespace NoobApp.ViewModel {
       OnChangeWindow(this, args);
 
     }
-    
+
     #endregion
 
     #endregion

@@ -8,51 +8,45 @@ namespace NoobApp.Connector {
 
     public static void PopulateDatabase() {
       var random = new Random();
-
-      using (var dataService = new DataService()) {
-
-        foreach (var user in GetUserList()) {
-          dataService.Users.Add(user);
-        }
-
-        foreach (var item in GetItemList()) {
-          dataService.Items.Add(item);
-        }
-
-        foreach (var _event in GetEventList()) {
-          dataService.Events.Add(_event);
-        }
-
-        foreach(var attendanceType in GetAttendanceTypeList()) {
-          dataService.AttendanceTypes.Add(attendanceType);
-        }
-
-        dataService.SaveChanges();
-
-        foreach (var _event in dataService.Events.Local) {
-          foreach (var attendanceType in dataService.AttendanceTypes.Local) {
-            dataService.EventPrices.Add(new EventPrice() {
-              EventPriceAttendanceTypeRef = attendanceType,
-              EventPriceEventRef = _event,
-              EventPriceValue = random.Next(20, 81),
-            });
-          }
-        }
-
-        foreach(var _event in dataService.Events.Local) {
-          foreach(var item in dataService.Items.Local) {
-            dataService.EventInventories.Add(new EventInventory() {
-              EventIntenvotryItemRef = item,
-              EventInventoryEventRef = _event,
-              EventInventoryPrice = random.Next(1, 6),
-            });
-          }
-        }
-
-        dataService.SaveChanges();
-
-
+      foreach (var user in GetUserList()) {
+        Global.DataService.Users.Add(user);
       }
+
+      foreach (var item in GetItemList()) {
+        Global.DataService.Items.Add(item);
+      }
+
+      foreach (var _event in GetEventList()) {
+        Global.DataService.Events.Add(_event);
+      }
+
+      foreach (var attendanceType in GetAttendanceTypeList()) {
+        Global.DataService.AttendanceTypes.Add(attendanceType);
+      }
+
+      Global.DataService.SaveChanges();
+
+      foreach (var _event in Global.DataService.Events.Local) {
+        foreach (var attendanceType in Global.DataService.AttendanceTypes.Local) {
+          Global.DataService.EventPrices.Add(new EventPrice() {
+            EventPriceAttendanceTypeRef = attendanceType,
+            EventPriceEventRef = _event,
+            EventPriceValue = random.Next(20, 81),
+          });
+        }
+      }
+
+      foreach (var _event in Global.DataService.Events.Local) {
+        foreach (var item in Global.DataService.Items.Local) {
+          Global.DataService.EventInventories.Add(new EventInventory() {
+            EventIntenvotryItemRef = item,
+            EventInventoryEventRef = _event,
+            EventInventoryPrice = random.Next(1, 6),
+          });
+        }
+      }
+
+      Global.DataService.SaveChanges();
 
     }
 

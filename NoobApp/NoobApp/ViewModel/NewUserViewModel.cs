@@ -213,14 +213,8 @@ namespace NoobApp.ViewModel {
     #region -- SaveUser --
 
     private void SaveUser() {
-
-      using (var dataService = new DataService()) {
-
-        dataService.Entry(User).State = (User.UserId == 0) ? EntityState.Added : EntityState.Modified;
-        dataService.SaveChanges();
-
-      }
-
+      //Global.DataService.Entry(User).State = (User.UserId == 0) ? EntityState.Added : EntityState.Modified;
+      Global.DataService.SaveChanges();
     }
 
     #endregion
