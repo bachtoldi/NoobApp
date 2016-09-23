@@ -116,7 +116,6 @@ namespace NoobApp.ViewModel {
     }
 
     private void InitialzieAttendance() {
-
         AttendanceTypeList = Global.DataService.AttendanceTypes.Local.ToBindingList();
 
         _attendance = Global.DataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId && x.AttendanceEventRef.EventId == _event.EventId).FirstOrDefault();
