@@ -4,20 +4,113 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoobApp.View"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="AdminView"
         WindowState="Maximized">
     <Grid>
         <TabControl>
-            
+
             <TabItem Header="Allgemein">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="11" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="11" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <DockPanel LastChildFill="True">
+                            <Label Content="Anwesenheitstyp" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+
+                        <DockPanel LastChildFill="True">
+                            <TextBox Text="{Binding AttendanceTypeSelected.AttendanceTypeName}" />
+                        </DockPanel>
+
+                        <DockPanel LastChildFill="True">
+                            <ListBox ItemsSource="{Binding AttendanceTypeList}" SelectedItem="{Binding AttendanceTypeSelected}" DisplayMemberPath="AttendanceTypeName">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Hinzufügen" Command="{Binding AddAttendanceType}" />
+                                        <MenuItem Header="Entfernen" Command="{Binding DeleteAttendanceType}" />
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                        </DockPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0" Grid.Column="0" Height="25" Content="+" Command="{Binding AddAttendanceType}" />
+                            <Button Grid.Row="0" Grid.Column="1" Height="25" Content="-" Command="{Binding DeleteAttendanceType}" />
+                        </Grid>
+
+                    </StackPanel>
+
+                    <GridSplitter Grid.Row="0" Grid.Column="1" Width="1" Margin="5,0,5,0" />
+
+                    <StackPanel Grid.Row="0" Grid.Column="2">
+
+                        <DockPanel LastChildFill="True">
+                            <Label Content="Anlass" FontWeight="Bold" FontSize="14" />
+                        </DockPanel>
+
+                        <DockPanel LastChildFill="True">
+                            <TextBox Text="{Binding EventSelected.EventName}" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding EventSelected.EventStartDate}" />
+                        </DockPanel>
+                        <DockPanel LastChildFill="True">
+                            <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding EventSelected.EventEndDate}" />
+                        </DockPanel>
+
+                        <DockPanel LastChildFill="True">
+                            <ListBox ItemsSource="{Binding EventList}" SelectedItem="{Binding EventSelected}" DisplayMemberPath="EventName">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Hinzufügen" Command="{Binding AddEvent}" />
+                                        <MenuItem Header="Entfernen" Command="{Binding DeleteEvent}" />
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
+                        </DockPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0" Grid.Column="0" Height="25" Content="+" Command="{Binding AddEvent}" />
+                            <Button Grid.Row="0" Grid.Column="1" Height="25" Content="-" Command="{Binding DeleteEvent}" />
+                        </Grid>
+
+                    </StackPanel>
+
+                    <GridSplitter Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Height="1" Margin="0,5,0,5" />
+                </Grid>
             </TabItem>
 
             <TabItem Header="Anlassbezogen">
-                
+
             </TabItem>
-            
+
         </TabControl>
     </Grid>
 </Window>
