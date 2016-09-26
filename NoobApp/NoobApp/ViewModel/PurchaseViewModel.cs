@@ -201,6 +201,8 @@ namespace NoobApp.ViewModel {
         PurchaseUserRef = User,
       };
 
+      Global.DataService.Purchases.Add(purchase);
+
       Global.DataService.SaveChanges();
     }
 

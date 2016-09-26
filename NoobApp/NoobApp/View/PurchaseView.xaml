@@ -9,65 +9,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-  <UserControl.Resources>
-    <BitmapImage x:Key="Up" UriSource="../img/arrow_up_24dp_1x.png" />
-    <BitmapImage x:Key="Down" UriSource="../img/arrow_down_24dp_1x.png" />
-  </UserControl.Resources>
+    <UserControl.Resources>
+        <BitmapImage x:Key="Up" UriSource="../img/arrow_up_24dp_1x.png" />
+        <BitmapImage x:Key="Down" UriSource="../img/arrow_down_24dp_1x.png" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
-
-    <!-- <HeaderedItemsControl Grid.Row="0" ItemsSource="{Binding DisplayItemList}">
-      <HeaderedItemsControl.Template>
-        <ControlTemplate TargetType="HeaderedItemsControl">
-          <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
-            <DockPanel>
-              <ContentPresenter DockPanel.Dock="Top" ContentSource="Header" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-              <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
-            </DockPanel>
-          </Border>
-        </ControlTemplate>
-      </HeaderedItemsControl.Template>
-      <HeaderedItemsControl.HeaderTemplate>
+        <ListBox Grid.Row="0" ItemsSource="{Binding PurchaseDisplayItemList}" SelectedItem="{Binding DisplayItemSelected}" HorizontalAlignment="Center" BorderThickness="0">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="10*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="2" />
-                            <ColumnDefinition Width="3*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Grid.ColumnSpan="2" Content="Artikel" />
-                        <Label Grid.Column="2" Content="Preis" />
-                        <Label Grid.Column="4" Content="Menge" />
-                        <Label Grid.Column="5" Content="Total" />
-                    </Grid>
+                    <DockPanel>
+                        <Image Height="50" Width="50"></Image>
+                        <Label Content="{Binding DisplayItemName}" />
+                        <Label Content="{Binding DisplayItemPrice}" />
+                        <Label Content="CHF" />
+                    </DockPanel>
                 </DataTemplate>
-            </HeaderedItemsControl.HeaderTemplate>
-      <HeaderedItemsControl.ItemTemplate>-->
-    <ListBox Grid.Row="0" ItemsSource="{Binding PurchaseDisplayItemList}" SelectedItem="{Binding DisplayItemSelected}" HorizontalAlignment="Center" BorderThickness="0">
-      <DataTemplate>
-        <DockPanel >
-          <Image Height="50" Width="50"></Image>
-          <Label Content="{Binding DisplayItemName}" />
-          <Label Content="{Binding DisplayItemPrice}" />
-          <Label Content="CHF" />
-        </DockPanel>
-      </DataTemplate>
-      <ListBox.ItemContainerStyle>
-        <Style TargetType="{x:Type ListBoxItem}">
-          <Setter Property="Height" Value="40"/>
-          <Setter Property="Width" Value="250"/>
-          <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-      </ListBox.ItemContainerStyle>
-    </ListBox>
-  </Grid>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="Width" Value="250"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+    </Grid>
 </UserControl>
