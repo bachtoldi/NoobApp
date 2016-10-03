@@ -1,0 +1,8 @@
+Log: 
+
+* msiexec /i asdf.msi /l* asdf.log
+* msiexec /i asdf.msi /l*v asdf.log
+
+Uninstall:
+
+* msiexec /x asdf.msi
