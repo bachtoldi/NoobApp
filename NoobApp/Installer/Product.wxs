@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product
+    Id="864E5792-A00D-4FC0-B69D-B4BB93E06960"
+    Name="NoobApp 1.0"
+    Language="1033"
+    Version="1.0.0"
+    Manufacturer="L.A.G."
+    UpgradeCode="AD46C1F4-2798-4363-8C09-550D96FCA062">
+
+    <Package
+      Id="*"
+      Description="NoobLan Strichliste und Abrechnungssystem"
+      InstallerVersion="100"
+      Compressed="yes"
+      InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="Installer" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="L.A.G" Name="L.A.G">
+          <Directory Id="INSTALLDIR" Name="NoobApp" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLDIR">
+      <Directory Id="de" Name="de">
+        <Component Id="ProductComponent00001" Guid="{88BEB97F-D5C4-44FA-B093-014D8A8C840A}">
+          <File Id="file00001" KeyPath="yes" Source="file\de\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="es" Name="es">
+        <Component Id="ProductComponent00002" Guid="{8A081DC4-86BB-4F7B-84F0-00846A0B93D9}">
+          <File Id="file00002" KeyPath="yes" Source="file\es\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="fr" Name="fr">
+        <Component Id="ProductComponent00003" Guid="{89DF1488-C0DD-4876-9F26-019F4CCE2DA9}">
+          <File Id="file00003" KeyPath="yes" Source="file\fr\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="hu" Name="hu">
+        <Component Id="ProductComponent00004" Guid="{6898B06C-A621-4053-9CB5-A4B9506461CE}">
+          <File Id="file00004" KeyPath="yes" Source="file\hu\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="img" Name="img">
+        <Component Id="ProductComponent00005" Guid="{ADD6AD4D-998D-435C-ACB1-B3E34D68C7DE}">
+          <File Id="file00005" KeyPath="yes" Source="file\img\arrow_down.svg" />
+        </Component>
+        <Component Id="ProductComponent00006" Guid="{FCC7E6F2-DD04-4FD6-8DB9-3940BB6920DA}">
+          <File Id="file00006" KeyPath="yes" Source="file\img\arrow_up.svg" />
+        </Component>
+      </Directory>
+      <Directory Id="it" Name="it">
+        <Component Id="ProductComponent00007" Guid="{8631842C-BE06-4089-BC64-4FCF28724987}">
+          <File Id="file00007" KeyPath="yes" Source="file\it\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="ptBR" Name="pt-BR">
+        <Component Id="ProductComponent00008" Guid="{971B4D86-9CE1-4521-BF04-2140BE030D56}">
+          <File Id="file00008" KeyPath="yes" Source="file\pt-BR\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="ro" Name="ro">
+        <Component Id="ProductComponent00009" Guid="{A0BE2370-39DD-46D9-AAC5-5A525C20A99B}">
+          <File Id="file00009" KeyPath="yes" Source="file\ro\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="ru" Name="ru">
+        <Component Id="ProductComponent00010" Guid="{4D151413-57DF-4A8E-8629-52C20AA047C5}">
+          <File Id="file00010" KeyPath="yes" Source="file\ru\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="sv" Name="sv">
+        <Component Id="ProductComponent00011" Guid="{B05CC29D-D5BF-4BDF-A551-70E4728624CC}">
+          <File Id="file00011" KeyPath="yes" Source="file\sv\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+      <Directory Id="zhHans" Name="zh-Hans">
+        <Component Id="ProductComponent00012" Guid="{3A3D3ED3-AD15-42C8-B8D3-6CADD4CEECC1}">
+          <File Id="file00012" KeyPath="yes" Source="file\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll" />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLDIR">
+      <ComponentRef Id="ProductComponent00001" />
+      <ComponentRef Id="ProductComponent00002" />
+      <ComponentRef Id="ProductComponent00003" />
+      <ComponentRef Id="ProductComponent00004" />
+      <ComponentRef Id="ProductComponent00005" />
+      <ComponentRef Id="ProductComponent00006" />
+      <ComponentRef Id="ProductComponent00007" />
+      <ComponentRef Id="ProductComponent00008" />
+      <ComponentRef Id="ProductComponent00009" />
+      <ComponentRef Id="ProductComponent00010" />
+      <ComponentRef Id="ProductComponent00011" />
+      <ComponentRef Id="ProductComponent00012" />
+      <Component Id="ProductComponent00013" Guid="{CFF90E75-5BA6-4E88-B1A8-42EB01B5C998}">
+        <File Id="file00013" KeyPath="yes" Source="file\EntityFramework.dll" />
+      </Component>
+      <Component Id="ProductComponent00014" Guid="{E55A5C2D-3BE7-48FA-BD08-C422D7CBEAD6}">
+        <File Id="file00014" KeyPath="yes" Source="file\EntityFramework.SqlServer.dll" />
+      </Component>
+      <Component Id="ProductComponent00015" Guid="{6B875D4D-3F53-4383-A492-5BA2A2D2CEA6}">
+        <File Id="file00015" KeyPath="yes" Source="file\EntityFramework.SqlServer.xml" />
+      </Component>
+      <Component Id="ProductComponent00016" Guid="{1424F66E-51AA-403A-B403-DB7D9EE643DB}">
+        <File Id="file00016" KeyPath="yes" Source="file\EntityFramework.xml" />
+      </Component>
+      <Component Id="ProductComponent00017" Guid="{37A26F42-A007-49CF-B119-BCF7D7727B7A}">
+        <File Id="file00017" KeyPath="yes" Source="file\GalaSoft.MvvmLight.dll" />
+      </Component>
+      <Component Id="ProductComponent00018" Guid="{8A3A51C1-D920-4708-A553-98CB5691ECC4}">
+        <File Id="file00018" KeyPath="yes" Source="file\GalaSoft.MvvmLight.Extras.dll" />
+      </Component>
+      <Component Id="ProductComponent00019" Guid="{18F5401D-884B-41D3-9266-D0B96EEB23B2}">
+        <File Id="file00019" KeyPath="yes" Source="file\GalaSoft.MvvmLight.Extras.pdb" />
+      </Component>
+      <Component Id="ProductComponent00020" Guid="{72678989-269A-4D16-B739-1E4130073BD3}">
+        <File Id="file00020" KeyPath="yes" Source="file\GalaSoft.MvvmLight.Extras.xml" />
+      </Component>
+      <Component Id="ProductComponent00021" Guid="{0D84E351-58D8-4D49-89FC-156BB02709B2}">
+        <File Id="file00021" KeyPath="yes" Source="file\GalaSoft.MvvmLight.pdb" />
+      </Component>
+      <Component Id="ProductComponent00022" Guid="{5E8E9C3C-8DFF-437E-956D-022C14D9A280}">
+        <File Id="file00022" KeyPath="yes" Source="file\GalaSoft.MvvmLight.Platform.dll" />
+      </Component>
+      <Component Id="ProductComponent00023" Guid="{648AADE3-53F0-4324-8939-D497C49336C3}">
+        <File Id="file00023" KeyPath="yes" Source="file\GalaSoft.MvvmLight.Platform.pdb" />
+      </Component>
+      <Component Id="ProductComponent00024" Guid="{B7EDFC72-6E6A-4595-AFC1-618B87619FD8}">
+        <File Id="file00024" KeyPath="yes" Source="file\GalaSoft.MvvmLight.Platform.xml" />
+      </Component>
+      <Component Id="ProductComponent00025" Guid="{6FF5F509-5B8A-4CCF-BE14-F36B19BF7452}">
+        <File Id="file00025" KeyPath="yes" Source="file\GalaSoft.MvvmLight.xml" />
+      </Component>
+      <Component Id="ProductComponent00026" Guid="{05CE344C-9857-4546-97F1-78AE5C4C27CD}">
+        <File Id="file00026" KeyPath="yes" Source="file\Microsoft.Practices.ServiceLocation.dll" />
+      </Component>
+      <Component Id="ProductComponent00027" Guid="{D665D3C2-2E72-4C4F-907A-1B0419CD29C2}">
+        <File Id="file00027" KeyPath="yes" Source="file\Microsoft.Practices.ServiceLocation.pdb" />
+      </Component>
+      <Component Id="ProductComponent00028" Guid="{A0C56265-E351-4378-92CC-8761622F6278}">
+        <File Id="file00028" KeyPath="yes" Source="file\Microsoft.Practices.ServiceLocation.xml" />
+      </Component>
+      <Component Id="ProductComponent00029" Guid="{C0A17BFE-73DB-40D2-B14A-8583A7614B8E}">
+        <File Id="file00029" KeyPath="yes" Source="file\NoobApp.exe" />
+      </Component>
+      <Component Id="ProductComponent00030" Guid="{EECFB62C-7C81-48E4-920E-F8A0A2FBE211}">
+        <File Id="file00030" KeyPath="yes" Source="file\NoobApp.exe.config" />
+      </Component>
+      <Component Id="ProductComponent00031" Guid="{155788FB-C2F5-4290-9A4C-178BBCA79E47}">
+        <File Id="file00031" KeyPath="yes" Source="file\NoobApp.pdb" />
+      </Component>
+      <Component Id="ProductComponent00032" Guid="{67279C08-B580-4442-A271-D79A97CC2335}">
+        <File Id="file00032" KeyPath="yes" Source="file\NoobApp.vshost.exe" />
+      </Component>
+      <Component Id="ProductComponent00033" Guid="{B85A23E9-9095-4DDA-8D0F-BFFABFA63B03}">
+        <File Id="file00033" KeyPath="yes" Source="file\NoobApp.vshost.exe.config" />
+      </Component>
+      <Component Id="ProductComponent00034" Guid="{CAC5723E-FA00-46EC-A41E-93BD0C75EAAB}">
+        <File Id="file00034" KeyPath="yes" Source="file\NoobApp.vshost.exe.manifest" />
+      </Component>
+      <Component Id="ProductComponent00035" Guid="{EC9415EB-4884-49EB-940A-BA57B8E64B09}">
+        <File Id="file00035" KeyPath="yes" Source="file\System.Windows.Interactivity.dll" />
+      </Component>
+      <Component Id="ProductComponent00036" Guid="{CEC95386-AB3C-4FCD-839F-F404B35D1A61}">
+        <File Id="file00036" KeyPath="yes" Source="file\Xceed.Wpf.AvalonDock.dll" />
+      </Component>
+      <Component Id="ProductComponent00037" Guid="{53FBA10C-846F-4CEF-8473-FFD7134DD7C4}">
+        <File Id="file00037" KeyPath="yes" Source="file\Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
+      </Component>
+      <Component Id="ProductComponent00038" Guid="{CB344E88-8339-4776-960B-98A564742BC3}">
+        <File Id="file00038" KeyPath="yes" Source="file\Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
+      </Component>
+      <Component Id="ProductComponent00039" Guid="{229D0FBD-4115-4BD3-9F78-E36580216D07}">
+        <File Id="file00039" KeyPath="yes" Source="file\Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
+      </Component>
+      <Component Id="ProductComponent00040" Guid="{0E5F897B-2818-4DBA-8F05-129F88B50563}">
+        <File Id="file00040" KeyPath="yes" Source="file\Xceed.Wpf.DataGrid.dll" />
+      </Component>
+      <Component Id="ProductComponent00041" Guid="{C6423A06-AB1B-45DF-989C-AF19BC80F18D}">
+        <File Id="file00041" KeyPath="yes" Source="file\Xceed.Wpf.Toolkit.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

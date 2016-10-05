@@ -5,16 +5,30 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoobApp", "NoobApp\NoobApp.csproj", "{83486527-5ABD-4B31-8561-3CB8EBB9C070}"
 EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Installer", "Installer\Installer.wixproj", "{2F325AB5-FE0E-4C6C-AF12-351E2ED13D6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Debug|x86.Build.0 = Debug|Any CPU
 		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Release|x86.ActiveCfg = Release|Any CPU
+		{83486527-5ABD-4B31-8561-3CB8EBB9C070}.Release|x86.Build.0 = Release|Any CPU
+		{2F325AB5-FE0E-4C6C-AF12-351E2ED13D6F}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2F325AB5-FE0E-4C6C-AF12-351E2ED13D6F}.Debug|x86.ActiveCfg = Debug|x86
+		{2F325AB5-FE0E-4C6C-AF12-351E2ED13D6F}.Debug|x86.Build.0 = Debug|x86
+		{2F325AB5-FE0E-4C6C-AF12-351E2ED13D6F}.Release|Any CPU.ActiveCfg = Release|x86
+		{2F325AB5-FE0E-4C6C-AF12-351E2ED13D6F}.Release|x86.ActiveCfg = Release|x86
+		{2F325AB5-FE0E-4C6C-AF12-351E2ED13D6F}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
