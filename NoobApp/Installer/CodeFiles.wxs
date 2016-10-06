@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLDIR">
+            <Directory Id="dirF7A62AAB979B938D6BCEC1392A589DA5" Name="de" />
+            <Directory Id="dir577231E2EF642DDF4B09B65F4BEE3BE2" Name="es" />
+            <Directory Id="dir0B7D401DE3233449E75F31A823BF5B99" Name="fr" />
+            <Directory Id="dir09632C6D20BFA94E2A24ED0E6D9B2C41" Name="hu" />
+            <Directory Id="dir02D36D2599474528EA71C6DDA66822A7" Name="img" />
+            <Directory Id="dirB5B71807E9474A6ED7A421DAF6D9317F" Name="it" />
+            <Directory Id="dir3CF6B6BC48181D29C167EF5DB7F05816" Name="pt-BR" />
+            <Directory Id="dirE46F01F498F9406B4F44136993088698" Name="ro" />
+            <Directory Id="dirF7C0BEA86C276F53E8C9E8E6B2629A9B" Name="ru" />
+            <Directory Id="dir9E3C384CF512A10216EFD01F9D77AA26" Name="sv" />
+            <Directory Id="dirD5682402C737D6B46ADCA4F0C55141DF" Name="zh-Hans" />
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="CodeFiles">
+            <Component Id="cmpD4894193BCD88F6339AF712BA02A4C4B" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil3A795EBC412B33A14DA44BC843481BFD" KeyPath="yes" Source="$(var.SourceDir)\EntityFramework.dll" />
+            </Component>
+            <Component Id="cmp1C4889EB836095E6C0EEC7F98E5762F1" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil06E616908019B1062DC24B7A89F8DBE9" KeyPath="yes" Source="$(var.SourceDir)\EntityFramework.SqlServer.dll" />
+            </Component>
+            <Component Id="cmpCF33228BCFD8DA29D992692E702F8358" Directory="INSTALLDIR" Guid="*">
+                <File Id="filEB5B5023A23968D831EE954E1E3E7EF5" KeyPath="yes" Source="$(var.SourceDir)\EntityFramework.SqlServer.xml" />
+            </Component>
+            <Component Id="cmpE4141A8C7A05314BAD19A03ACB4A9164" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil39BD5B37E57387A6ADFBAD278C1936FB" KeyPath="yes" Source="$(var.SourceDir)\EntityFramework.xml" />
+            </Component>
+            <Component Id="cmp488D27FD7F12CC5B0CA2DA2EA3B41D0D" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil185ABF006E89BA8A4D51B571C8563487" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.dll" />
+            </Component>
+            <Component Id="cmp7DB90804D3EED1D9CFD3C64FFB5E4115" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil767D16365A57A31EFB10B16A311C4A96" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.Extras.dll" />
+            </Component>
+            <Component Id="cmp000187B772F54945E49130CB7B0A1835" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil6D63CCDA5AD4C972C9DF8ED7F14CBA85" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.Extras.pdb" />
+            </Component>
+            <Component Id="cmp43FDC0D8EAB795ED87E9842903C9D063" Directory="INSTALLDIR" Guid="*">
+                <File Id="filA039508EDA1EA01DE4A367E638EE2E55" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.Extras.xml" />
+            </Component>
+            <Component Id="cmpAD7864BC7F48A5B6FEFB0BD2C5A426A1" Directory="INSTALLDIR" Guid="*">
+                <File Id="filBE43A847BF9AA726D9BBF7D01E2ACE34" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.pdb" />
+            </Component>
+            <Component Id="cmp5B1CB9670A427F5E3F2553830607FC0D" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil3D52221AD70477F85AC254E167A7BD0B" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.Platform.dll" />
+            </Component>
+            <Component Id="cmp133580E063390AF6E027B001F05330C2" Directory="INSTALLDIR" Guid="*">
+                <File Id="filD412DE4CE077FA0909B197E0D5D5ABAD" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.Platform.pdb" />
+            </Component>
+            <Component Id="cmpC0038C428C5516461B7492EDD36FE0E7" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil2EA540DF0298B5F6B1074C073D8A87C1" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.Platform.xml" />
+            </Component>
+            <Component Id="cmp39B696D95524704A44D8AF768E3DA036" Directory="INSTALLDIR" Guid="*">
+                <File Id="filB478B151253DA8E4D690DD66DE7F18D7" KeyPath="yes" Source="$(var.SourceDir)\GalaSoft.MvvmLight.xml" />
+            </Component>
+            <Component Id="cmpA29C1A7B5910FFC929AFBBFEC3EA8129" Directory="INSTALLDIR" Guid="*">
+                <Class Id="{3CA2611C-F83B-3F7C-B26C-DEA377803521}" Context="InprocServer32" Description="Microsoft.Practices.ServiceLocation.ActivationException" ThreadingModel="both" ForeignServer="mscoree.dll">
+                    <ProgId Id="Microsoft.Practices.ServiceLocation.ActivationException" Description="Microsoft.Practices.ServiceLocation.ActivationException" />
+                </Class>
+                <File Id="filD651C3A8020C9B880EB84E0C130BF5F3" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Practices.ServiceLocation.dll" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32\1.3.0.0" Name="Class" Value="Microsoft.Practices.ServiceLocation.ActivationException" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32\1.3.0.0" Name="Assembly" Value="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32\1.3.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32\1.3.0.0" Name="CodeBase" Value="file:///[#filD651C3A8020C9B880EB84E0C130BF5F3]" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32" Name="Class" Value="Microsoft.Practices.ServiceLocation.ActivationException" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32" Name="Assembly" Value="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+                <RegistryValue Root="HKCR" Key="CLSID\{3CA2611C-F83B-3F7C-B26C-DEA377803521}\InprocServer32" Name="CodeBase" Value="file:///[#filD651C3A8020C9B880EB84E0C130BF5F3]" Type="string" Action="write" />
+            </Component>
+            <Component Id="cmpFB5534ACFE8C37B5CE1A1269D90DF819" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil5DCAB7CD8BE0DD1A5E0F0C5CF0B04E83" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Practices.ServiceLocation.pdb" />
+            </Component>
+            <Component Id="cmp447A1B845957958309E919CB233C21DB" Directory="INSTALLDIR" Guid="*">
+                <File Id="filD79970604D46513C8510D14054B93F98" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Practices.ServiceLocation.xml" />
+            </Component>
+            <Component Id="cmpEEA8FD2486699F3613127ADC0CF16DCB" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil2DD074FCDBE7F9C1E15DEB695AA3A16A" KeyPath="yes" Source="$(var.SourceDir)\NoobApp.exe" />
+            </Component>
+            <Component Id="cmp8C824C39B380D097254451F25A18D4D1" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil913A02E65515B79E156CBA547ED30E60" KeyPath="yes" Source="$(var.SourceDir)\NoobApp.exe.config" />
+            </Component>
+            <Component Id="cmpFD05815682EDB9DCAD8F3ACE5D5F69F5" Directory="INSTALLDIR" Guid="*">
+                <File Id="filAC05CF55BF2F779BBE3E1FF496404026" KeyPath="yes" Source="$(var.SourceDir)\NoobApp.pdb" />
+            </Component>
+            <Component Id="cmp5A864D94CF77DD7F2884FC6F835C0186" Directory="INSTALLDIR" Guid="*">
+                <File Id="filDCC06E1E1E952BF08F25269A16B0CEE0" KeyPath="yes" Source="$(var.SourceDir)\NoobApp.vshost.exe" />
+            </Component>
+            <Component Id="cmp53F4A536ADEE147B916FDD9AB9593AE3" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil2329DAAA0E35A9FCA6EDB6D70425001A" KeyPath="yes" Source="$(var.SourceDir)\NoobApp.vshost.exe.config" />
+            </Component>
+            <Component Id="cmpC2FA75614CD7205064F41FA3A55D9035" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil11EC61FF36EF0975E61F3FAA51AE360C" KeyPath="yes" Source="$(var.SourceDir)\NoobApp.vshost.exe.manifest" />
+            </Component>
+            <Component Id="cmp4FE4E61EC9791201921745B40643CBB8" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil6F11DE09547B0AE8405683CDB88F7FC4" KeyPath="yes" Source="$(var.SourceDir)\System.Windows.Interactivity.dll" />
+            </Component>
+            <Component Id="cmp7165B8BA93A80A0EA1B7728AD04D6E72" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil0F135695E925EFFCE422A78CD28F4C92" KeyPath="yes" Source="$(var.SourceDir)\Xceed.Wpf.AvalonDock.dll" />
+            </Component>
+            <Component Id="cmpE2468C9865F90573476173F547848D40" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil283C54AA0CCA5A82032AD6F88F3D5D84" KeyPath="yes" Source="$(var.SourceDir)\Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
+            </Component>
+            <Component Id="cmp25B7CDE65FC6F7EDFBADDCA69300789E" Directory="INSTALLDIR" Guid="*">
+                <File Id="filB6214F7016ABD85F0A90650A1F105B9C" KeyPath="yes" Source="$(var.SourceDir)\Xceed.Wpf.AvalonDock.Themes.Metro.dll" />
+            </Component>
+            <Component Id="cmp9A0FBE0E3FB55EEBB37903AC9A080A23" Directory="INSTALLDIR" Guid="*">
+                <File Id="filBB96100CC38385FF7DB0DBFE799C5F23" KeyPath="yes" Source="$(var.SourceDir)\Xceed.Wpf.AvalonDock.Themes.VS2010.dll" />
+            </Component>
+            <Component Id="cmp534258F1EDE5B85B801C883FD482C5BF" Directory="INSTALLDIR" Guid="*">
+                <File Id="filC4372CECB2F7DDF1687CA4F28356586D" KeyPath="yes" Source="$(var.SourceDir)\Xceed.Wpf.DataGrid.dll" />
+            </Component>
+            <Component Id="cmp6DF273F8C8C1322EE403E364E1D04A16" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil4F8E845B9B0CB9B26B9D7BA0D7737124" KeyPath="yes" Source="$(var.SourceDir)\Xceed.Wpf.Toolkit.dll" />
+            </Component>
+            <Component Id="cmp77E408438B67ACB68089BF9A4533D9B9" Directory="dirF7A62AAB979B938D6BCEC1392A589DA5" Guid="*">
+                <File Id="fil9D2A1A803B60D41FC0B1B7FD67EEC9C8" KeyPath="yes" Source="$(var.SourceDir)\de\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmp20C601C515B1A9B1C8B83C4DC4B15A48" Directory="dir577231E2EF642DDF4B09B65F4BEE3BE2" Guid="*">
+                <File Id="filB2E79FB9BDA560198EF614222AEFD35B" KeyPath="yes" Source="$(var.SourceDir)\es\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmpAFBB23E4CB7AAFE3697723FBD0A8FAE5" Directory="dir0B7D401DE3233449E75F31A823BF5B99" Guid="*">
+                <File Id="fil0A7B95A544322FBF913EFC9F81F2F770" KeyPath="yes" Source="$(var.SourceDir)\fr\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmp95321C55A234B86BACD5AE0C9AB72BAE" Directory="dir09632C6D20BFA94E2A24ED0E6D9B2C41" Guid="*">
+                <File Id="fil03C9F91F31E8A7A36DB419C8FE1DC94A" KeyPath="yes" Source="$(var.SourceDir)\hu\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmp029C79DB1C7D92B1C8A6D21D17879DBB" Directory="dir02D36D2599474528EA71C6DDA66822A7" Guid="*">
+                <File Id="fil77B469953FBB14C54CEAED7A70490549" KeyPath="yes" Source="$(var.SourceDir)\img\arrow_down.svg" />
+            </Component>
+            <Component Id="cmp6B167780B75FDB4F02B32FB622EA9263" Directory="dir02D36D2599474528EA71C6DDA66822A7" Guid="*">
+                <File Id="fil669C1873B1DD3BD86DFD15F7A75EA98B" KeyPath="yes" Source="$(var.SourceDir)\img\arrow_up.svg" />
+            </Component>
+            <Component Id="cmpC9079DF80F535A94B8EFD3CAEE503B47" Directory="dirB5B71807E9474A6ED7A421DAF6D9317F" Guid="*">
+                <File Id="fil9B6C5B62789CE1A08745B2D4EF180AD7" KeyPath="yes" Source="$(var.SourceDir)\it\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmp58E577A934474DDF9743DE68D7F6C376" Directory="dir3CF6B6BC48181D29C167EF5DB7F05816" Guid="*">
+                <File Id="fil4E3586A0BFA803F2FAD43187D2F52EF7" KeyPath="yes" Source="$(var.SourceDir)\pt-BR\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmpDC2AEC8B5E546B28E433C6FD8DFFC9C5" Directory="dirE46F01F498F9406B4F44136993088698" Guid="*">
+                <File Id="fil3F9345202472B57C4B615EF270AFC9AA" KeyPath="yes" Source="$(var.SourceDir)\ro\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmp1B521C36CDA7F2894096AEC00F606F18" Directory="dirF7C0BEA86C276F53E8C9E8E6B2629A9B" Guid="*">
+                <File Id="fil746AB0109F6368FE0AE56C2FA8C44711" KeyPath="yes" Source="$(var.SourceDir)\ru\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmp44669DE2975CB09B1ACBB4B0F7555A4A" Directory="dir9E3C384CF512A10216EFD01F9D77AA26" Guid="*">
+                <File Id="filEEFE836949B46D161629A8ED45C16294" KeyPath="yes" Source="$(var.SourceDir)\sv\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+            <Component Id="cmpABC3EB27A89BA4557928FFCF88C7959E" Directory="dirD5682402C737D6B46ADCA4F0C55141DF" Guid="*">
+                <File Id="fil50159FD0A95E9B1A680715A7BCAF1835" KeyPath="yes" Source="$(var.SourceDir)\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll" />
+            </Component>
+        </ComponentGroup>
+    </Fragment>
+</Wix>
