@@ -77,6 +77,9 @@
             <Component Id="cmp447A1B845957958309E919CB233C21DB" Directory="INSTALLDIR" Guid="*">
                 <File Id="filD79970604D46513C8510D14054B93F98" KeyPath="yes" Source="$(var.SourceDir)\Microsoft.Practices.ServiceLocation.xml" />
             </Component>
+            <Component Id="cmp5A3FAF51CE49D11B1BBF9D27FDE01AE5" Directory="INSTALLDIR" Guid="*">
+                <File Id="fil78D56353081E27B6399C5A759FFC029E" KeyPath="yes" Source="$(var.SourceDir)\migrate.exe" />
+            </Component>
             <Component Id="cmpEEA8FD2486699F3613127ADC0CF16DCB" Directory="INSTALLDIR" Guid="*">
                 <File Id="fil2DD074FCDBE7F9C1E15DEB695AA3A16A" KeyPath="yes" Source="$(var.SourceDir)\NoobApp.exe" />
             </Component>

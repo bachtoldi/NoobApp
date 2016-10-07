@@ -3,9 +3,11 @@
 	<Fragment>
 
     <Property Id="LaunchConditionsRef" Value="1" />
-
-    <Condition Message="Microsoft .NET Framework 4.6.1 or higher required.">
-      <![CDATA[Installed OR NETFRAMEWORK461]]>
+    <PropertyRef Id="NETFRAMEWORK45" />
+    <PropertyRef Id="SQLVERSION" />
+    
+    <Condition Message="Microsoft .NET Framework 4.5 or higher required.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
     </Condition>
 
     <Condition Message="Microsoft SQL Server 2016 required.">
