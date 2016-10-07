@@ -111,6 +111,15 @@
     </ApplicationDefinition>
     <Compile Include="AttachedProperties\DialogCloser.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="Migrations\201609231452029_InitialCreate.cs" />
+    <Compile Include="Migrations\201609231452029_InitialCreate.Designer.cs">
+      <DependentUpon>201609231452029_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610071551073_v0.1.cs" />
+    <Compile Include="Migrations\201610071551073_v0.1.Designer.cs">
+      <DependentUpon>201610071551073_v0.1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Connector\DummyDataConnector.cs" />
     <Compile Include="Entity\Attendance.cs" />
@@ -219,6 +228,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201609231452029_InitialCreate.resx">
+      <DependentUpon>201609231452029_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610071551073_v0.1.resx">
+      <DependentUpon>201610071551073_v0.1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

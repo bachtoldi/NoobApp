@@ -40,6 +40,6 @@ namespace NoobApp.Event {
         _user = value;
       }
     }
-
+    
   }
 }

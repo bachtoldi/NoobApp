@@ -8,6 +8,7 @@ using NoobApp.Model;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
+using System;
 
 namespace NoobApp.ViewModel {
   public class PurchaseViewModel : ViewModelBase {
@@ -26,6 +27,8 @@ namespace NoobApp.ViewModel {
 
       InitializeData();
     }
+
+   
 
     #endregion
 
@@ -79,16 +82,8 @@ namespace NoobApp.ViewModel {
         return _displayItemSelected;
       }
       set {
-        if (_displayItemSelected == value) {
-          return;
-        }
-
         _displayItemSelected = value;
         RaisePropertyChanged(DisplayItemSelectedPropertyName);
-
-        if (CanExecuteSaveCmd()) {
-          ExecuteSaveCmd();
-        }
       }
     }
 
@@ -128,6 +123,19 @@ namespace NoobApp.ViewModel {
 
     public event ChangeWindowEventHandler OnChangeWindow;
 
+    internal void AddPurchase(DisplayItem sender) {
+
+      DisplayItemSelected = sender;
+
+      if (CanExecuteSaveCmd() && _displayItemSelected != null) {
+        ExecuteSaveCmd();
+        DisplayItemSelected = null;
+      }
+    }
+
+    
+    public RefreshUserViewSumDelegate UserViewSumRefresh { get; set; }
+
     #endregion
 
     #region - Private Methods -
@@ -155,16 +163,7 @@ namespace NoobApp.ViewModel {
     #region -- ExecuteSaveCmd --
 
     private void ExecuteSaveCmd() {
-
       SavePurchase();
-
-      //if (OnChangeWindow == null) {
-      //  return;
-      //}
-
-      //UserControlEventArgs args = new UserControlEventArgs(Views.USER, false, User);
-      //OnChangeWindow(this, args);
-
     }
 
     private bool CanExecuteSaveCmd() {
@@ -204,6 +203,8 @@ namespace NoobApp.ViewModel {
       Global.DataService.Purchases.Add(purchase);
 
       Global.DataService.SaveChanges();
+
+      UserViewSumRefresh();
     }
 
     #endregion
@@ -212,3 +213,6 @@ namespace NoobApp.ViewModel {
 
   }
 }
+
+
+public delegate void RefreshUserViewSumDelegate();

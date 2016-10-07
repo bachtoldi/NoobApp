@@ -197,7 +197,7 @@ namespace NoobApp.ViewModel {
       }
 
     }
-    
+
     private bool CanExecuteAdminCmd() {
       return true;
     }
@@ -207,7 +207,6 @@ namespace NoobApp.ViewModel {
     #region -- ChangeWindow --
 
     private void ChangeWindow(object sender, UserControlEventArgs e) {
-
       if (e.View == Views.USER) {
         UserViewModel viewModel = new UserViewModel(e.User, _event);
         UserView view = new UserView(viewModel);
@@ -216,7 +215,9 @@ namespace NoobApp.ViewModel {
 
         viewModel.OnChangeWindow += new ChangeWindowEventHandler(ChangeWindow);
 
-        PurchaseViewModel purchaseViewModel = new PurchaseViewModel(e.User, _event);
+        PurchaseViewModel purchaseViewModel = new PurchaseViewModel(e.User, _event) {
+          UserViewSumRefresh = viewModel.CalcSum,
+        };
         PurchaseView purchaseView = new PurchaseView(purchaseViewModel);
 
         UserPurchaseButtonsControlView = purchaseView;
@@ -225,7 +226,9 @@ namespace NoobApp.ViewModel {
 
       } else if (e.View == Views.PURCHASED) {
 
-        PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event);
+        PurchasedViewModel viewModel = new PurchasedViewModel(e.User, _event) {
+          UserViewSumRefresh = ((UserViewModel)sender).CalcSum,
+        };
         PurchasedView view = new PurchasedView(viewModel);
 
         UserPurchaseButtonsControlView = view;

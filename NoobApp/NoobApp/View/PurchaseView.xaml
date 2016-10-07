@@ -9,33 +9,34 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <UserControl.Resources>
-        <BitmapImage x:Key="Up" UriSource="../img/arrow_up_24dp_1x.png" />
-        <BitmapImage x:Key="Down" UriSource="../img/arrow_down_24dp_1x.png" />
-    </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+  <UserControl.Resources>
+    <BitmapImage x:Key="Up" UriSource="../img/arrow_up_24dp_1x.png" />
+    <BitmapImage x:Key="Down" UriSource="../img/arrow_down_24dp_1x.png" />
+  </UserControl.Resources>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
 
-        <ListBox Grid.Row="0" ItemsSource="{Binding PurchaseDisplayItemList}" SelectedItem="{Binding DisplayItemSelected}" HorizontalAlignment="Center" BorderThickness="0">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <DockPanel>
-                        <Image Height="50" Width="50"></Image>
-                        <Label Content="{Binding DisplayItemName}" />
-                        <Label Content="{Binding DisplayItemPrice}" />
-                        <Label Content="CHF" />
-                    </DockPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <Setter Property="Height" Value="40"/>
-                    <Setter Property="Width" Value="250"/>
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-    </Grid>
+    <ListBox Grid.Row="0" ItemsSource="{Binding PurchaseDisplayItemList}" SelectedItem="{Binding DisplayItemSelected}" HorizontalAlignment="Center" BorderThickness="0">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <DockPanel>
+            <Image Height="50" Width="50"></Image>
+            <Label Content="{Binding DisplayItemName}" />
+            <Label Content="{Binding DisplayItemPrice}" HorizontalAlignment="Right"/>
+            <Label Content="CHF" HorizontalAlignment="Right"/>
+          </DockPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+      <ListBox.ItemContainerStyle>
+        <Style TargetType="{x:Type ListBoxItem}">
+          <Setter Property="Height" Value="40"/>
+          <Setter Property="Width" Value="250"/>
+          <Setter Property="HorizontalContentAlignment" Value="Center"/>
+          <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListBox_MouseLeftButtonDown" />
+        </Style>
+      </ListBox.ItemContainerStyle>
+    </ListBox>
+  </Grid>
 </UserControl>

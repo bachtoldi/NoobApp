@@ -6,48 +6,60 @@
              xmlns:local="clr-namespace:NoobApp.View"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+  <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
 
-        <DockPanel Grid.Row="0" LastChildFill="True">
-            <Label Width="100" Content="Teilnahme" />
-            <Label HorizontalContentAlignment="Right" Content="{Binding AttendancePrice}" />
+    <DockPanel Grid.Row="0" LastChildFill="True">
+      <Label Width="100" Content="Teilnahme" />
+      <Label HorizontalContentAlignment="Right" Content="{Binding AttendancePrice}" />
+    </DockPanel>
+
+    <DockPanel Grid.Row="1" LastChildFill="True">
+      <Label Width="100" Content="Konsum" />
+      <StackPanel>
+        <DockPanel LastChildFill="True">
+          <Label>Anzahl</Label>
+          <Label>Preis</Label>
+          <Label>Item</Label>
+          <Label HorizontalAlignment="Center">Preis</Label>
         </DockPanel>
+      <ItemsControl ItemsSource="{Binding DisplayItemList}">
+          <ItemsControl.ItemTemplate>
+            <DataTemplate>
+              <DockPanel>
+                <Button Content="-1"
+                        Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, Path=DataContext.RemoveItemCommand}" 
+                        CommandParameter="{Binding }" />
+                <StackPanel Width="100" Orientation="Horizontal">
+                  <Label Content="{Binding DisplayItemAmount}" />
+                  <Label Content="X"/>
+                  <Label Content="{Binding DisplayItemPrice}" />
+                  <Label Content="CHF" />
+                </StackPanel>
+                <Label Width="100" Content="{Binding DisplayItemName}" />
+                <Label Content="{Binding DisplayItemTotal}"/>
+                <Label>CHF</Label>
+              </DockPanel>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+    </DockPanel>
 
-        <DockPanel Grid.Row="1" LastChildFill="True">
-            <Label Width="100" Content="Konsum" />
-            <ItemsControl ItemsSource="{Binding 
-              }">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel LastChildFill="True">
-                            <StackPanel Width="100" Orientation="Horizontal">
-                                <Label Content="{Binding DisplayItemAmount}" />
-                                <Label Content="X"/>
-                                <Label Content="{Binding DisplayItemPrice}" />
-                            </StackPanel>
-                            <Label Width="100" Content="{Binding DisplayItemName}" />
-                            <Label Content="{Binding DisplayItemTotal}" />
-                        </DockPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </DockPanel>
+    <DockPanel Grid.Row="2" LastChildFill="True">
+      <Label FontWeight="Bold" FontSize="14" Width="100" Content="Total" />
+      <Label FontWeight="Bold" FontSize="14" Content="{Binding Total}" />
+    </DockPanel>
 
-        <DockPanel Grid.Row="2" LastChildFill="True">
-            <Label FontWeight="Bold" FontSize="14" Width="100" Content="Total" />
-            <Label FontWeight="Bold" FontSize="14" Content="{Binding Total}" />
-        </DockPanel>
+    <DockPanel Grid.Row="3" HorizontalAlignment="Right">
+      <Button Height="40" Width="150" Command="{Binding BackCmd}">Zurück</Button>
+    </DockPanel>
 
-        <DockPanel Grid.Row="3" HorizontalAlignment="Right">
-            <Button Height="40" Width="150" Command="{Binding BackCmd}">Zurück</Button>
-        </DockPanel>
-
-    </Grid>
+  </Grid>
 </UserControl>

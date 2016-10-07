@@ -25,11 +25,11 @@
       </DockPanel>
     </StackPanel>
     <StackPanel Grid.Row="1">
-      <ComboBox SelectedItem="{Binding Attendance.AttendanceType}" ItemsSource="{Binding AttendanceTypeList}" DisplayMemberPath="AttendanceTypeName"/>
+      <ComboBox SelectedItem="{Binding AttendanceTypeSelected}" ItemsSource="{Binding AttendanceTypeList}" DisplayMemberPath="AttendanceTypeName"/>
     </StackPanel>
     <DockPanel Grid.Row="3" LastChildFill="False">
       <Label Content="Kosten Total:" />
-      <Label Width="80" HorizontalContentAlignment="Right" />
+      <Label Width="80" HorizontalContentAlignment="Right" Content="{Binding Total}"/>
       <Label Content="CHF"/>
       <Button Width="35" Content="..." Command="{Binding ShowUserPurchasesCmd}"/>
     </DockPanel>
