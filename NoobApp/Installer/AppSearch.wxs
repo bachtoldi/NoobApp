@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="SQLFOUND">
+      <RegistrySearch Id="SqlInstanceFound" Root="HKLM" Name="SQLEXPRESS" Key="SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL" Type="raw" Win64="no" />
+    </Property>
+    <Property Id="SQL64FOUND">
+      <RegistrySearch Id="SqlInstance64" Root="HKLM" Name="SQLEXPRESS" Key="SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL" Type="raw" Win64="yes" />
+    </Property>
+
+    <Property Id="SQLVERSION">
+      <RegistrySearch Id="SqlInstanceVersion" Root="HKLM" Name="CurrentVersion" Key="SOFTWARE\Microsoft\Microsoft SQL Server\[SQLFOUND]\MSSQLServer\CurrentVersion" Type="raw" Win64="no" />
+    </Property>
+    <Property Id="SQL64VERSION">
+      <RegistrySearch Id="SqlInstanceVersion64" Root="HKLM" Name="CurrentVersion" Key="SOFTWARE\Microsoft\Microsoft SQL Server\[SQL64FOUND]\MSSQLServer\CurrentVersion" Type="raw" Win64="yes" />
+    </Property>
+    
+	</Fragment>
+</Wix>

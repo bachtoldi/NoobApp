@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <Property Id="LaunchConditionsRef" Value="1" />
+
+    <Condition Message="Microsoft .NET Framework 4.6.1 or higher required.">
+      <![CDATA[Installed OR NETFRAMEWORK461]]>
+    </Condition>
+
+    <Condition Message="Microsoft SQL Server 2016 required.">
+      <![CDATA[Installed OR SQLVERSION >= "12.0.2000.8" OR SQL64VERSION >= "12.0.2000.8"]]>
+    </Condition>
+    
+	</Fragment>
+</Wix>

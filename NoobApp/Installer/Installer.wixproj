@@ -22,7 +22,9 @@
     <DefineConstants>Debug;SourceDir=$(SolutionDir)NoobApp\bin\$(Configuration)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AppSearch.wxs" />
     <Compile Include="CodeFiles.wxs" />
+    <Compile Include="LaunchConditions.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />

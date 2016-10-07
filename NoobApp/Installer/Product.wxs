@@ -22,6 +22,9 @@
     <Feature Id="ProductFeature" Title="Installer" Level="1">
       <ComponentGroupRef Id="CodeFiles" />
     </Feature>
+
+    <PropertyRef Id="LaunchConditionsRef" />
+    <PropertyRef Id="SQLFOUND" />
   </Product>
 
   <Fragment>
