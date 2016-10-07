@@ -7,6 +7,7 @@ using NoobApp.Model;
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Windows.Input;
 
 namespace NoobApp.ViewModel {
   public class PurchasedViewModel : ViewModelBase {
@@ -124,6 +125,11 @@ namespace NoobApp.ViewModel {
       }
     }
 
+    private RelayCommand<DisplayItem> _removeItemCommand;
+    public RelayCommand<DisplayItem> RemoveItemCommand {
+      get { return _removeItemCommand; }
+    }
+
     #endregion
 
     #endregion
@@ -131,6 +137,8 @@ namespace NoobApp.ViewModel {
     #region - Public Methods -
 
     public event ChangeWindowEventHandler OnChangeWindow;
+
+    public RefreshUserViewSumDelegate UserViewSumRefresh { get; set; }
 
     #endregion
 
@@ -153,6 +161,7 @@ namespace NoobApp.ViewModel {
 
     private void InitializeCommands() {
       _backCmd = new RelayCommand(ExecuteBackCmd, CanExecuteBackCmd);
+      _removeItemCommand = new RelayCommand<DisplayItem>(ExecuteRemoveItem);
     }
 
     #endregion
@@ -171,6 +180,31 @@ namespace NoobApp.ViewModel {
     }
 
     private bool CanExecuteBackCmd() {
+      return true;
+    }
+
+    #endregion
+
+    #region ExecuteRemoveItem
+
+    private void ExecuteRemoveItem(DisplayItem displayItem) {
+      var purchaseList = Global.DataService.Purchases.Where(x => x.PurchaseUserRef.UserId == User.UserId && x.PurchaseEventInventoryRef.EventIntenvotryItemRef.ItemName == displayItem.DisplayItemName).ToList();
+
+      Purchase itemToRemove = null;
+
+      if (purchaseList.Count > 0) {
+        itemToRemove = purchaseList.FirstOrDefault();
+        Global.DataService.Purchases.Remove(itemToRemove);
+      }
+
+      Global.DataService.SaveChanges();
+      Global.DataService.Purchases.Load();
+      InitializeDisplayItemList();
+      InitializeTotal();
+      UserViewSumRefresh();
+    }
+
+    private bool CanExecuteRemoveItem() {
       return true;
     }
 
@@ -222,7 +256,6 @@ namespace NoobApp.ViewModel {
         Total += displayItem.DisplayItemTotal;
 
       }
-
     }
 
     #endregion

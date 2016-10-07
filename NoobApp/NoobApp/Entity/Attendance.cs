@@ -36,45 +36,45 @@ namespace NoobApp.Entity {
 
     #endregion
 
-    #region -- AttendanceStartDateTime --
+    //#region -- AttendanceStartDateTime --
 
-    public static string AttendanceStartDateTimePropertyName = "AttendanceStartDateTime";
-    private DateTime _attendanceStartDateTime;
-    public DateTime AttendanceStartDateTime {
-      get {
-        return _attendanceStartDateTime;
-      }
-      set {
-        if (_attendanceStartDateTime == value) {
-          return;
-        }
+    //public static string AttendanceStartDateTimePropertyName = "AttendanceStartDateTime";
+    //private DateTime _attendanceStartDateTime;
+    //public DateTime AttendanceStartDateTime {
+    //  get {
+    //    return _attendanceStartDateTime;
+    //  }
+    //  set {
+    //    if (_attendanceStartDateTime == value) {
+    //      return;
+    //    }
 
-        _attendanceStartDateTime = value;
-        RaisePropertyChanged(AttendanceStartDateTimePropertyName);
-      }
-    }
+    //    _attendanceStartDateTime = value;
+    //    RaisePropertyChanged(AttendanceStartDateTimePropertyName);
+    //  }
+    //}
 
-    #endregion
+    //#endregion
 
-    #region -- AttendanceEndDateTime --
+    //#region -- AttendanceEndDateTime --
 
-    public static string AttendanceEndDateTimePropertyName = "AttendanceEndDateTime";
-    private DateTime _attendanceEndDateTime;
-    public DateTime AttendanceEndDateTime {
-      get {
-        return _attendanceEndDateTime;
-      }
-      set {
-        if (_attendanceEndDateTime == value) {
-          return;
-        }
+    //public static string AttendanceEndDateTimePropertyName = "AttendanceEndDateTime";
+    //private DateTime _attendanceEndDateTime;
+    //public DateTime AttendanceEndDateTime {
+    //  get {
+    //    return _attendanceEndDateTime;
+    //  }
+    //  set {
+    //    if (_attendanceEndDateTime == value) {
+    //      return;
+    //    }
 
-        _attendanceEndDateTime = value;
-        RaisePropertyChanged(AttendanceEndDateTimePropertyName);
-      }
-    }
+    //    _attendanceEndDateTime = value;
+    //    RaisePropertyChanged(AttendanceEndDateTimePropertyName);
+    //  }
+    //}
 
-    #endregion
+    //#endregion
 
     #region -- AttendanceAttendanceTypeRef --
 

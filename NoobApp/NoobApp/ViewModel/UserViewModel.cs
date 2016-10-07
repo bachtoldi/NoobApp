@@ -15,7 +15,6 @@ namespace NoobApp.ViewModel {
 
     private Entity.Event _event;
     private Attendance _attendance;
-    private float _total;
 
     #endregion
 
@@ -88,6 +87,31 @@ namespace NoobApp.ViewModel {
 
         _attendanceTypeSelected = value;
         RaisePropertyChanged(AttendanceTypeSelectedPropertyName);
+
+        if(CanExecuteUserAttendanceTypeSelected() && _attendanceTypeSelected != null) {
+          ExecuteUserAttendanceTypeSelected();
+        }
+      }
+    }
+
+    #endregion
+
+    #region -- Total --
+
+    public static string TotalPropertyName = "Total";
+    private string _total;
+    public string Total {
+      get {
+        return _total;
+      }
+      set {
+        if (_total == value) {
+          return;
+        }
+
+        _total = value;
+        RaisePropertyChanged(TotalPropertyName);
+
       }
     }
 
@@ -132,6 +156,7 @@ namespace NoobApp.ViewModel {
 
     private void InitializeData() {
       InitialzieAttendance();
+      CalcSum();
       InitializeCommands();
     }
 
@@ -141,13 +166,21 @@ namespace NoobApp.ViewModel {
         _attendance = Global.DataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId && x.AttendanceEventRef.EventId == _event.EventId).FirstOrDefault();
 
         if (_attendance != null) {
-          AttendanceTypeSelected = AttendanceTypeList.Where(x => x.AttendanceTypeId == _attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
+          _attendanceTypeSelected = AttendanceTypeList.Where(x => x.AttendanceTypeId == _attendance.AttendanceAttendanceTypeRef.AttendanceTypeId).FirstOrDefault();
         }
 
     }
 
-    private string CalcSum() {
-      return string.Empty;
+    public void CalcSum() {
+      var purchases = Global.DataService.Purchases.Where(x => x.PurchaseUserRef.UserId == User.UserId && x.PurchaseEventInventoryRef.EventInventoryEventRef.EventId == _event.EventId).Sum(y => y.PurchaseEventInventoryRef.EventInventoryPrice);
+      float attendancePrice = 0.0f;
+
+      var attendance = Global.DataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId && x.AttendanceEventRef.EventId == _event.EventId).FirstOrDefault();
+      if (attendance != null) {
+        attendancePrice = Global.DataService.EventPrices.Local.Where(x => x.EventPriceAttendanceTypeRef.AttendanceTypeId == attendance.AttendanceAttendanceTypeRef.AttendanceTypeId && x.EventPriceEventRef.EventId == _event.EventId).FirstOrDefault().EventPriceValue;
+      }
+
+      Total = (purchases + attendancePrice).ToString();
     }
 
     #endregion
@@ -155,8 +188,33 @@ namespace NoobApp.ViewModel {
     #region -- InitializeCommands --
 
     private void InitializeCommands() {
-
       ShowUserPurchasesCmd = new RelayCommand(ExecuteShowUserPurchasesCmd, CanExecuteShowUserPurchasesCmd);
+    }
+
+    #endregion
+
+    #region -- ExecuteUserAttendanceTypeSelected --
+
+    private void ExecuteUserAttendanceTypeSelected() {
+
+      Attendance userAttendance = Global.DataService.Attendances.Where(x => x.AttendanceUserRef.UserId == User.UserId).FirstOrDefault();
+
+      if(userAttendance != null) {
+        userAttendance.AttendanceAttendanceTypeRef = AttendanceTypeSelected;
+      }else {
+        userAttendance = new Attendance() {
+          AttendanceAttendanceTypeRef = AttendanceTypeSelected,
+          AttendanceUserRef = User,
+          AttendanceEventRef = _event,
+        };
+      }
+
+      Global.DataService.Attendances.Add(userAttendance);
+      Global.DataService.SaveChanges();
+    }
+
+    private bool CanExecuteUserAttendanceTypeSelected() { 
+      return true;
     }
 
     #endregion
