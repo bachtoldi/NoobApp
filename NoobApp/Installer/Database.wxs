@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+
+    <ComponentGroup Id="DbMigration" />
+
+      <CustomAction Id="MigrateScriptEF" Directory="INSTALLDIR" ExeCommand='cmd /k "[INSTALLDIR]\DbMigration.cmd"' Impersonate="yes" Execute="deferred" Return="asyncNoWait" />
+
+    <InstallExecuteSequence>
+      <Custom Action="MigrateScriptEF" After="InstallFiles"><![CDATA[NOT Installed OR PATCH]]></Custom>
+    </InstallExecuteSequence>
+
+  </Fragment>
+</Wix>

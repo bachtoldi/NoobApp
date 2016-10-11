@@ -24,6 +24,7 @@
   <ItemGroup>
     <Compile Include="AppSearch.wxs" />
     <Compile Include="CodeFiles.wxs" />
+    <Compile Include="Database.wxs" />
     <Compile Include="LaunchConditions.wxs" />
     <Compile Include="Product.wxs" />
   </ItemGroup>
@@ -32,6 +33,12 @@
       <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
       <Name>WixNetFxExtension</Name>
     </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\DbMigration.cmd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--

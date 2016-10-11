@@ -21,6 +21,10 @@
 
     <Feature Id="ProductFeature" Title="Installer" Level="1">
       <ComponentGroupRef Id="CodeFiles" />
+      <Component Id="DbMigrationScript" Directory="INSTALLDIR" Guid="*">
+        <File Id="DbMigrationBatchFile" KeyPath="yes" Source="Scripts/DbMigration.cmd" />
+      </Component>
+      <ComponentGroupRef Id="DbMigration" />
     </Feature>
 
     <PropertyRef Id="LaunchConditionsRef" />
