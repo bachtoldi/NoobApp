@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Bundle Name="Bootstrapper" Version="1.0.0.0" Manufacturer="L.A.G." UpgradeCode="14ef0ec4-06ea-4958-adee-458dba0a21f7">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.RtfLicense" />
+
+    <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Net Framework Setup\NDP\v4\Full" Value="Version" Variable="Net4FullVersion" />
+    <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Net Framework Setup\NDP\v4\Full" Value="Version" Variable="Net4x64FullVersion" Win64="yes" />
+
+    <Chain>
+      <!--
+      InstallCondition	
+      * String	
+      * A condition to evaluate before installing the package. 
+      * The package will only be installed if the condition evaluates to true. 
+      * If the condition evaluates to false and the bundle is being installed, repaired, or modified, the package will be uninstalled.
+      
+      DetectCondition	
+      * String	
+      * A condition that determines if the package is present on the target system. 
+      * This condition can use built-in variables and variables returned by searches. 
+      * This condition is necessary because Windows doesn't provide a method to detect the presence of an ExePackage. 
+      * Burn uses this condition to determine how to treat this package during a bundle action; for example, 
+      * if this condition is false or omitted and the bundle is being installed, Burn will install this package.
+      -->
+
+      <ExePackage
+        Id="net461"
+        Name="Microsoft .Net Framework 4.6.1"
+        Cache="no"
+        Compressed="yes"
+        PerMachine="yes"
+        Permanent="yes"
+        Vital="yes"
+        InstallCommand="/q"
+        SourceFile="file\NDP461-KB3102436-x86-x64-AllOS-ENU.exe"
+        DetectCondition="(Net4FullVersion > &quot;4.6&quot;) OR (Net4x64FullVersion > &quot;4.6&quot;)"
+        InstallCondition="(NOT Net4FullVersion > &quot;4.6&quot;) AND (NOT Net4x64FullVersion > &quot;4.6&quot;)" />
+
+      <RollbackBoundary />
+
+      <MsiPackage Id="Installer" SourceFile="file\Installer.msi" Visible="yes" />
+    </Chain>
+  </Bundle>
+</Wix>

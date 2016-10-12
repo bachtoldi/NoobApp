@@ -4,7 +4,7 @@
 
     <ComponentGroup Id="DbMigration" />
 
-      <CustomAction Id="MigrateScriptEF" Directory="INSTALLDIR" ExeCommand='cmd /k "[INSTALLDIR]\DbMigration.cmd"' Impersonate="yes" Execute="deferred" Return="asyncNoWait" />
+      <CustomAction Id="MigrateScriptEF" Directory="INSTALLDIR" ExeCommand='cmd /c "[INSTALLDIR]\DbMigration.cmd"' Impersonate="yes" Execute="deferred" Return="asyncNoWait" />
 
     <InstallExecuteSequence>
       <Custom Action="MigrateScriptEF" After="InstallFiles"><![CDATA[NOT Installed OR PATCH]]></Custom>

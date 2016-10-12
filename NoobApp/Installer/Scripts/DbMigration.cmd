@@ -1,3 +1,3 @@
-REM @ECHO OFF
+@ECHO OFF
 
 migrate.exe NoobApp.exe
