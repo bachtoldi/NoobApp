@@ -1,3 +1,6 @@
+*.exe
+*.msi
+
 #directories
 Installer/Installer/file/
 
