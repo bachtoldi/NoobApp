@@ -7,6 +7,12 @@
     <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Net Framework Setup\NDP\v4\Full" Value="Version" Variable="Net4FullVersion" />
     <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Net Framework Setup\NDP\v4\Full" Value="Version" Variable="Net4x64FullVersion" Win64="yes" />
 
+    <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL" Value="SQLEXPRESS" Variable="SqlExpressInstanceName" />
+    <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\Instance Names\SQL" Value="SQLEXPRESS" Variable="SqlExpress64InstanceName" Win64="yes" />
+
+    <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\[SqlExpressInstanceName]\MSSQLServer\CurrentVersion" Value="CurrentVersion" Variable="SqlExpressVersion" />
+    <util:RegistrySearch Root="HKLM" Key="SOFTWARE\Microsoft\Microsoft SQL Server\[SqlExpress64InstanceName]\MSSQLServer\CurrentVersion" Value="CurrentVersion" Variable="SqlExpress64Version" />
+
     <Chain>
       <!--
       InstallCondition	
@@ -32,10 +38,24 @@
         PerMachine="yes"
         Permanent="yes"
         Vital="yes"
-        InstallCommand="/q"
         SourceFile="file\NDP461-KB3102436-x86-x64-AllOS-ENU.exe"
         DetectCondition="(Net4FullVersion > &quot;4.6&quot;) OR (Net4x64FullVersion > &quot;4.6&quot;)"
-        InstallCondition="(NOT Net4FullVersion > &quot;4.6&quot;) AND (NOT Net4x64FullVersion > &quot;4.6&quot;)" />
+        InstallCondition="(NOT Net4FullVersion > &quot;4.6&quot;) AND (NOT Net4x64FullVersion > &quot;4.6&quot;)"
+      />
+      
+      <RollbackBoundary />
+
+      <ExePackage
+        Id="sql2016"
+        Name="Microsoft SQL Server 2016 Express"
+        Cache="no"
+        PerMachine="yes"
+        Permanent="yes"
+        Vital="yes"
+        SourceFile="file\SQLEXPR_x64_ENU.exe"
+        DetectCondition="(SqlExpressVersion >= &quot;12.0.2000.8&quot;) OR (SqlExpress64Version >= &quot;12.0.2000.8&quot;)"
+        InstallCondition="(NOT SqlExpressVersion >= &quot;12.0.2000.8&quot;) AND (NOT SqlExpress64Version >= &quot;12.0.2000.8&quot;)"
+        />
 
       <RollbackBoundary />
 
