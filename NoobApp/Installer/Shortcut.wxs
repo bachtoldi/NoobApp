@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="{F51D34CB-1D47-43EE-A507-5D3FB42C2383}">
+        <Shortcut Id="ApplicationMenuShortcut"
+                  Name="NoobApp"
+                  Description="Strichliliste der Noob-Lan"
+                  Target="[#fil2DD074FCDBE7F9C1E15DEB695AA3A16A]"
+                  WorkingDirectory="INSTALLDIR" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Microsoft\NoobApp" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+    
+	</Fragment>
+</Wix>
